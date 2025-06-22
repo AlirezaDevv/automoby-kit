@@ -1,14 +1,7 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  extends: [
-    'airbnb',
-    'airbnb-typescript',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:prettier/recommended', 
-    'prettier', 
-  ],
+  extends: ['airbnb', 'airbnb-typescript', 'plugin:react/recommended', 'plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended', 'prettier', 'plugin:storybook/recommended'],
   parserOptions: {
     project: './tsconfig.json',
   },
