@@ -9,7 +9,9 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "storybook:dev": "concurrently \"npm:build:storybook:css\" \"storybook dev -p 6006\"",
+    "build-storybook": "storybook build",
+    "build:storybook:css": "npx @tailwindcss/cli -i ./.storybook/tailwind.css -o ./.storybook/tailwind.build.css --watch"
   },
   "author": "Ghazal_kordi Alireza_mirzaee",
   "license": "ISC",
@@ -24,6 +26,7 @@
     "@storybook/addon-docs": "^9.0.6",
     "@storybook/addon-onboarding": "^9.0.6",
     "@storybook/react-vite": "^9.0.6",
+    "@tailwindcss/cli": "^4.1.10",
     "@tailwindcss/postcss": "^4.1.10",
     "@types/node": "^24.0.3",
     "@types/react": "^19.1.4",
@@ -31,6 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "autoprefixer": "^10.4.21",
+    "concurrently": "^9.2.0",
     "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
