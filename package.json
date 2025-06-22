@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "this package was created in war 2025",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint \"src/**/*.{js,ts,jsx,tsx}\" --fix",
@@ -11,7 +12,8 @@
     "storybook": "storybook dev -p 6006",
     "storybook:dev": "concurrently \"npm:build:storybook:css\" \"storybook dev -p 6006\"",
     "build-storybook": "storybook build",
-    "build:storybook:css": "npx @tailwindcss/cli -i ./.storybook/tailwind.css -o ./.storybook/tailwind.build.css --watch"
+    "build:storybook:css": "npx @tailwindcss/cli -i ./.storybook/tailwind.css -o ./.storybook/tailwind.build.css --watch",
+    "build": "rollup -c"
   },
   "author": "Ghazal_kordi Alireza_mirzaee",
   "license": "ISC",
