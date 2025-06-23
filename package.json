@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "description": "this package was created in war 2025",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint \"src/**/*.{js,ts,jsx,tsx}\" --fix",
@@ -48,6 +47,7 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-storybook": "^9.0.6",
     "husky": "^9.1.7",
+    "lucide-react": "^0.522.0",
     "prettier": "^3.5.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
