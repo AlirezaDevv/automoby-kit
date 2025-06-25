@@ -1,0 +1,1069 @@
+<<<<<<< HEAD
+=======
+/*! tailwindcss v4.1.10 | MIT License | https://tailwindcss.com */
+@layer properties;
+@font-face {
+  font-family: "YekanBakh";
+  src: url("../src/assets/fonts/YekanBakhFaNum-VF.woff2") format("woff2"), url("../src/assets/fonts/YekanBakhFaNum-VF.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@layer theme, base, components, utilities;
+@layer theme {
+  :root, :host {
+    --font-sans: "YekanBakh", "Vazirmatn", "IRANSansX", "Tahoma", "Arial", sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    --color-red-500: oklch(63.7% 0.237 25.331);
+    --color-purple-600: oklch(55.8% 0.288 302.321);
+    --color-gray-100: oklch(96.7% 0.003 264.542);
+=======
+    --color-red-500: oklch(63.7% 0.237 25.331);
+<<<<<<< HEAD
+    --color-red-600: oklch(57.7% 0.245 27.325);
+    --color-purple-600: oklch(55.8% 0.288 302.321);
+    --color-gray-50: oklch(98.5% 0.002 247.839);
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+    --color-gray-200: oklch(92.8% 0.006 264.531);
+    --color-gray-300: oklch(87.2% 0.01 258.338);
+    --color-gray-400: oklch(70.7% 0.022 261.325);
+    --color-gray-500: oklch(55.1% 0.027 264.364);
+<<<<<<< HEAD
+    --color-gray-800: oklch(27.8% 0.033 256.848);
+=======
+    --color-gray-900: oklch(21% 0.034 264.665);
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+=======
+>>>>>>> ee1921f (refactor: update Input component styles and structure)
+    --color-white: #ffffff;
+    --spacing: 0.25rem;
+    --text-xs: 12px;
+    --text-xs--line-height: calc(1 / 0.75);
+<<<<<<< HEAD
+    --text-base: 1rem;
+    --text-base--line-height: calc(1.5 / 1);
+<<<<<<< HEAD
+    --font-weight-medium: 400;
+    --font-weight-bold: 600;
+    --radius-lg: 0.5rem;
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+=======
+    --color-white: #ffffff;
+    --spacing: 0.25rem;
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
+=======
+=======
+    --font-weight-light: 300;
+    --font-weight-medium: 400;
+>>>>>>> ee1921f (refactor: update Input component styles and structure)
+    --radius-lg: 0.5rem;
+    --default-transition-duration: 150ms;
+    --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+=======
+    --color-white: #ffffff;
+    --spacing: 0.25rem;
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
+    --default-font-family: var(--font-sans);
+    --default-mono-font-family: var(--font-mono);
+    --color-primary: #590db8;
+    --color-primary-dark: #5f26d1;
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+    --color-primary-light: #d0b4f2;
+    --color-primary-lighter: #eadaff;
+    --color-primary-lightest: #ecebff;
+    --color-secondary: #f5b414;
+    --color-neutral-darker: #1a1a23;
+    --color-neutral-dark: #44425a;
+=======
+    --color-error: #d63333;
+    --color-neutral-darker: #1a1a23;
+<<<<<<< HEAD
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+=======
+    --color-neutral-dark: #44425a;
+>>>>>>> ee1921f (refactor: update Input component styles and structure)
+    --color-neutral-main: #6b688d;
+    --color-neutral-light: #ebeaf0;
+    --text-l: 18px;
+    --text-m: 16px;
+    --text-s: 14px;
+    --font-weight-fat: 900;
+    --font-weight-heavy: 700;
+=======
+    --color-neutral-darker: #1a1a23;
+    --color-neutral-light: #ebeaf0;
+    --text-s: 14px;
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
+=======
+    --color-neutral-darker: #1a1a23;
+    --color-neutral-light: #ebeaf0;
+    --text-s: 14px;
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
+    --leading-default: 1.8;
+  }
+}
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0 solid;
+  }
+  html, :host {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+    tab-size: 4;
+    font-family: var(--default-font-family, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji");
+    font-feature-settings: var(--default-font-feature-settings, normal);
+    font-variation-settings: var(--default-font-variation-settings, normal);
+    -webkit-tap-highlight-color: transparent;
+  }
+  hr {
+    height: 0;
+    color: inherit;
+    border-top-width: 1px;
+  }
+  abbr:where([title]) {
+    -webkit-text-decoration: underline dotted;
+    text-decoration: underline dotted;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+  a {
+    color: inherit;
+    -webkit-text-decoration: inherit;
+    text-decoration: inherit;
+  }
+  b, strong {
+    font-weight: bolder;
+  }
+  code, kbd, samp, pre {
+    font-family: var(--default-mono-font-family, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace);
+    font-feature-settings: var(--default-mono-font-feature-settings, normal);
+    font-variation-settings: var(--default-mono-font-variation-settings, normal);
+    font-size: 1em;
+  }
+  small {
+    font-size: 80%;
+  }
+  sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  sub {
+    bottom: -0.25em;
+  }
+  sup {
+    top: -0.5em;
+  }
+  table {
+    text-indent: 0;
+    border-color: inherit;
+    border-collapse: collapse;
+  }
+  :-moz-focusring {
+    outline: auto;
+  }
+  progress {
+    vertical-align: baseline;
+  }
+  summary {
+    display: list-item;
+  }
+  ol, ul, menu {
+    list-style: none;
+  }
+  img, svg, video, canvas, audio, iframe, embed, object {
+    display: block;
+    vertical-align: middle;
+  }
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+  button, input, select, optgroup, textarea, ::file-selector-button {
+    font: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    border-radius: 0;
+    background-color: transparent;
+    opacity: 1;
+  }
+  :where(select:is([multiple], [size])) optgroup {
+    font-weight: bolder;
+  }
+  :where(select:is([multiple], [size])) optgroup option {
+    padding-inline-start: 20px;
+  }
+  ::file-selector-button {
+    margin-inline-end: 4px;
+  }
+  ::placeholder {
+    opacity: 1;
+  }
+  @supports (not (-webkit-appearance: -apple-pay-button))  or (contain-intrinsic-size: 1px) {
+    ::placeholder {
+      color: currentcolor;
+      @supports (color: color-mix(in lab, red, red)) {
+        color: color-mix(in oklab, currentcolor 50%, transparent);
+      }
+    }
+  }
+  textarea {
+    resize: vertical;
+  }
+  ::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+  ::-webkit-date-and-time-value {
+    min-height: 1lh;
+    text-align: inherit;
+  }
+  ::-webkit-datetime-edit {
+    display: inline-flex;
+  }
+  ::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+  ::-webkit-datetime-edit, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-month-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-hour-field, ::-webkit-datetime-edit-minute-field, ::-webkit-datetime-edit-second-field, ::-webkit-datetime-edit-millisecond-field, ::-webkit-datetime-edit-meridiem-field {
+    padding-block: 0;
+  }
+  :-moz-ui-invalid {
+    box-shadow: none;
+  }
+  button, input:where([type="button"], [type="reset"], [type="submit"]), ::file-selector-button {
+    appearance: button;
+  }
+  ::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+    height: auto;
+  }
+  [hidden]:where(:not([hidden="until-found"])) {
+    display: none !important;
+  }
+}
+@layer utilities {
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  .pointer-events-none {
+    pointer-events: none;
+  }
+  .absolute {
+    position: absolute;
+  }
+  .relative {
+    position: relative;
+  }
+<<<<<<< HEAD
+  .top-0 {
+    top: calc(var(--spacing) * 0);
+=======
+  .top-1 {
+    top: calc(var(--spacing) * 1);
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  }
+  .top-1\/2 {
+    top: calc(1/2 * 100%);
+  }
+<<<<<<< HEAD
+=======
+  .top-\[-10px\] {
+    top: -10px;
+  }
+  .right-1 {
+    right: calc(var(--spacing) * 1);
+  }
+  .right-3 {
+    right: calc(var(--spacing) * 3);
+  }
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  .right-4 {
+    right: calc(var(--spacing) * 4);
+  }
+  .right-11 {
+    right: calc(var(--spacing) * 11);
+  }
+  .left-4 {
+    left: calc(var(--spacing) * 4);
+  }
+<<<<<<< HEAD
+=======
+  .mx-3 {
+    margin-inline: calc(var(--spacing) * 3);
+  }
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .mt-1 {
+    margin-top: calc(var(--spacing) * 1);
+  }
+  .mr-2 {
+    margin-right: calc(var(--spacing) * 2);
+  }
+  .mr-2\.5 {
+    margin-right: calc(var(--spacing) * 2.5);
+  }
+  .mr-4 {
+    margin-right: calc(var(--spacing) * 4);
+  }
+  .ml-2 {
+    margin-left: calc(var(--spacing) * 2);
+  }
+  .ml-2\.5 {
+    margin-left: calc(var(--spacing) * 2.5);
+  }
+  .ml-4 {
+    margin-left: calc(var(--spacing) * 4);
+  }
+  .flex {
+    display: flex;
+  }
+<<<<<<< HEAD
+  .inline-flex {
+    display: inline-flex;
+  }
+=======
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .flex {
+    display: flex;
+  }
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
+=======
+  .table {
+    display: table;
+  }
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  .size-4 {
+    width: calc(var(--spacing) * 4);
+    height: calc(var(--spacing) * 4);
+  }
+  .size-9 {
+    width: calc(var(--spacing) * 9);
+    height: calc(var(--spacing) * 9);
+  }
+<<<<<<< HEAD
+<<<<<<< HEAD
+  .h-5 {
+    height: calc(var(--spacing) * 5);
+  }
+=======
+  .h-4 {
+    height: calc(var(--spacing) * 4);
+  }
+  .h-5 {
+    height: calc(var(--spacing) * 5);
+  }
+  .h-12 {
+    height: calc(var(--spacing) * 12);
+  }
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  .h-\[40px\] {
+    height: 40px;
+  }
+  .h-\[48px\] {
+    height: 48px;
+  }
+  .h-\[54px\] {
+    height: 54px;
+  }
+  .h-full {
+    height: 100%;
+  }
+  .w-5 {
+    width: calc(var(--spacing) * 5);
+  }
+  .w-\[40px\] {
+    width: 40px;
+  }
+  .w-\[48px\] {
+    width: 48px;
+  }
+  .w-\[89px\] {
+    width: 89px;
+  }
+  .w-\[360px\] {
+    width: 360px;
+  }
+  .w-full {
+    width: 100%;
+  }
+<<<<<<< HEAD
+  .origin-right {
+    transform-origin: right;
+=======
+  .border-collapse {
+    border-collapse: collapse;
+  }
+  .-translate-y-1 {
+    --tw-translate-y: calc(var(--spacing) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  }
+  .-translate-y-1\/2 {
+    --tw-translate-y: calc(calc(1/2 * 100%) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .cursor-not-allowed {
+    cursor: not-allowed;
+  }
+<<<<<<< HEAD
+  .flex-col {
+    flex-direction: column;
+  }
+=======
+=======
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .flex {
+    display: flex;
+  }
+  .size-4 {
+    width: calc(var(--spacing) * 4);
+    height: calc(var(--spacing) * 4);
+  }
+  .size-9 {
+    width: calc(var(--spacing) * 9);
+    height: calc(var(--spacing) * 9);
+  }
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
+  .h-\[40px\] {
+    height: 40px;
+  }
+  .w-\[40px\] {
+    width: 40px;
+  }
+  .w-full {
+    width: 100%;
+  }
+<<<<<<< HEAD
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
+=======
+  .resize {
+    resize: both;
+=======
+  .flex-row {
+    flex-direction: row;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .gap-1 {
+    gap: calc(var(--spacing) * 1);
+  }
+  .rounded-\[6px\] {
+    border-radius: 6px;
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
+  }
+  .flex-col {
+    flex-direction: column;
+  }
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  .flex-row {
+    flex-direction: row;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+<<<<<<< HEAD
+  .gap-2 {
+    gap: calc(var(--spacing) * 2);
+  }
+  .gap-8 {
+    gap: calc(var(--spacing) * 8);
+  }
+  .gap-\[6px\] {
+    gap: 6px;
+  }
+  .self-stretch {
+    align-self: stretch;
+  }
+  .rounded-\[6px\] {
+    border-radius: 6px;
+  }
+<<<<<<< HEAD
+  .rounded-\[8px\] {
+    border-radius: 8px;
+  }
+  .rounded-lg {
+    border-radius: var(--radius-lg);
+=======
+  .gap-1 {
+    gap: calc(var(--spacing) * 1);
+  }
+  .rounded-\[6px\] {
+    border-radius: 6px;
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
+=======
+  .rounded-lg {
+    border-radius: var(--radius-lg);
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  }
+  .border {
+    border-style: var(--tw-border-style);
+    border-width: 1px;
+  }
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+  .border-\[var\(--color-primary-light\)\] {
+    border-color: var(--color-primary-light);
+=======
+=======
+  .border-error {
+    border-color: var(--color-error);
+=======
+  .border-neutral-light {
+    border-color: var(--color-neutral-light);
+  }
+  .bg-primary {
+    background-color: var(--color-primary);
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
+  }
+<<<<<<< HEAD
+  .border-gray-200 {
+    border-color: var(--color-gray-200);
+  }
+  .border-gray-300 {
+    border-color: var(--color-gray-300);
+  }
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+=======
+>>>>>>> ee1921f (refactor: update Input component styles and structure)
+  .border-neutral-light {
+    border-color: var(--color-neutral-light);
+  }
+  .border-primary {
+    border-color: var(--color-primary);
+  }
+  .bg-primary {
+    background-color: var(--color-primary);
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
+  }
+  .border-gray-200 {
+    border-color: var(--color-gray-200);
+  }
+<<<<<<< HEAD
+  .border-gray-300 {
+    border-color: var(--color-gray-300);
+  }
+  .border-neutral-light {
+    border-color: var(--color-neutral-light);
+  }
+  .border-red-500 {
+    border-color: var(--color-red-500);
+  }
+  .bg-\[var\(--color-primary\)\] {
+    background-color: var(--color-primary);
+  }
+  .bg-\[var\(--color-primary-lightest\)\] {
+    background-color: var(--color-primary-lightest);
+  }
+  .bg-gray-100 {
+    background-color: var(--color-gray-100);
+  }
+  .bg-primary {
+    background-color: var(--color-primary);
+  }
+  .bg-transparent {
+    background-color: transparent;
+  }
+  .bg-transparent {
+    background-color: transparent;
+  }
+  .bg-white {
+    background-color: var(--color-white);
+  }
+  .px-1 {
+    padding-inline: calc(var(--spacing) * 1);
+  }
+<<<<<<< HEAD
+  .px-\[16px\] {
+    padding-inline: 16px;
+  }
+  .px-\[20px\] {
+    padding-inline: 20px;
+  }
+  .py-\[7px\] {
+    padding-block: 7px;
+  }
+  .py-\[9px\] {
+    padding-block: 9px;
+  }
+  .py-\[13px\] {
+    padding-block: 13px;
+  }
+  .pt-2 {
+    padding-top: calc(var(--spacing) * 2);
+=======
+  .px-2 {
+    padding-inline: calc(var(--spacing) * 2);
+  }
+  .px-4 {
+    padding-inline: calc(var(--spacing) * 4);
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  }
+  .pr-4 {
+    padding-right: calc(var(--spacing) * 4);
+  }
+<<<<<<< HEAD
+  .pr-11 {
+    padding-right: calc(var(--spacing) * 11);
+=======
+  .pr-12 {
+    padding-right: calc(var(--spacing) * 12);
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  }
+  .pl-4 {
+    padding-left: calc(var(--spacing) * 4);
+  }
+<<<<<<< HEAD
+  .pl-11 {
+    padding-left: calc(var(--spacing) * 11);
+  }
+  .text-right {
+    text-align: right;
+=======
+  .pl-12 {
+    padding-left: calc(var(--spacing) * 12);
+  }
+<<<<<<< HEAD
+  .text-base {
+    font-size: var(--text-base);
+    line-height: var(--tw-leading, var(--text-base--line-height));
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  }
+=======
+>>>>>>> ee1921f (refactor: update Input component styles and structure)
+  .text-xs {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
+  }
+<<<<<<< HEAD
+  .text-\[9px\] {
+    font-size: 9px;
+  }
+  .text-\[10px\] {
+    font-size: 10px;
+  }
+  .text-\[12px\] {
+    font-size: 12px;
+  }
+  .text-\[13px\] {
+    font-size: 13px;
+  }
+  .text-\[14px\] {
+    font-size: 14px;
+  }
+  .text-\[16px\] {
+    font-size: 16px;
+  }
+  .text-\[18px\] {
+    font-size: 18px;
+  }
+  .text-\[20px\] {
+    font-size: 20px;
+  }
+  .text-\[22px\] {
+    font-size: 22px;
+  }
+  .text-\[24px\] {
+    font-size: 24px;
+  }
+  .text-\[28px\] {
+    font-size: 28px;
+  }
+  .text-\[32px\] {
+    font-size: 32px;
+  }
+  .text-\[36px\] {
+    font-size: 36px;
+  }
+=======
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  .text-l {
+    font-size: var(--text-l);
+=======
+  .bg-white {
+    background-color: var(--color-white);
+  }
+  .p-\[6px\] {
+    padding: 6px;
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
+  }
+  .text-m {
+    font-size: var(--text-m);
+  }
+  .text-s {
+    font-size: var(--text-s);
+  }
+<<<<<<< HEAD
+  .leading-\[var\(--leading-default\)\] {
+    --tw-leading: var(--leading-default);
+    line-height: var(--leading-default);
+  }
+  .font-\[var\(--font-weight-bold\)\] {
+    --tw-font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-bold);
+  }
+  .font-\[var\(--font-weight-fat\)\] {
+    --tw-font-weight: var(--font-weight-fat);
+    font-weight: var(--font-weight-fat);
+  }
+  .font-\[var\(--font-weight-heavy\)\] {
+    --tw-font-weight: var(--font-weight-heavy);
+    font-weight: var(--font-weight-heavy);
+  }
+  .font-\[var\(--font-weight-medium\)\] {
+    --tw-font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-medium);
+  }
+  .font-heavy {
+    --tw-font-weight: var(--font-weight-heavy);
+    font-weight: var(--font-weight-heavy);
+  }
+<<<<<<< HEAD
+<<<<<<< HEAD
+  .text-\[var\(--color-neutral-dark\)\] {
+    color: var(--color-neutral-dark);
+  }
+  .text-\[var\(--color-neutral-darker\)\] {
+    color: var(--color-neutral-darker);
+  }
+  .text-\[var\(--color-neutral-main\)\] {
+    color: var(--color-neutral-main);
+  }
+  .text-\[var\(--color-primary\)\] {
+    color: var(--color-primary);
+  }
+  .text-\[var\(--color-secondary\)\] {
+    color: var(--color-secondary);
+  }
+  .text-\[var\(--color-white\)\] {
+    color: var(--color-white);
+=======
+  .text-error {
+    color: var(--color-error);
+  }
+  .text-gray-300 {
+    color: var(--color-gray-300);
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  }
+  .text-gray-400 {
+    color: var(--color-gray-400);
+  }
+  .text-gray-500 {
+    color: var(--color-gray-500);
+  }
+<<<<<<< HEAD
+  .text-gray-800 {
+    color: var(--color-gray-800);
+  }
+  .text-inherit {
+    color: inherit;
+  }
+  .text-neutral-darker {
+    color: var(--color-neutral-darker);
+  }
+  .text-red-500 {
+    color: var(--color-red-500);
+  }
+  .text-white {
+    color: var(--color-white);
+  }
+  .placeholder-transparent {
+    &::placeholder {
+      color: transparent;
+    }
+  }
+  .opacity-50 {
+    opacity: 50%;
+=======
+=======
+  .text-gray-900 {
+    color: var(--color-gray-900);
+=======
+  .font-light {
+    --tw-font-weight: var(--font-weight-light);
+    font-weight: var(--font-weight-light);
+  }
+  .font-medium {
+    --tw-font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-medium);
+  }
+  .text-error {
+    color: var(--color-error);
+  }
+  .text-neutral-dark {
+    color: var(--color-neutral-dark);
+>>>>>>> ee1921f (refactor: update Input component styles and structure)
+  }
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  .text-neutral-darker {
+    color: var(--color-neutral-darker);
+  }
+  .text-neutral-light {
+    color: var(--color-neutral-light);
+  }
+  .text-neutral-main {
+    color: var(--color-neutral-main);
+  }
+  .text-primary {
+    color: var(--color-primary);
+  }
+  .text-red-500 {
+    color: var(--color-red-500);
+  }
+  .text-white {
+    color: var(--color-white);
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
+  }
+  .bg-white {
+    background-color: var(--color-white);
+  }
+  .p-\[6px\] {
+    padding: 6px;
+  }
+  .text-s {
+    font-size: var(--text-s);
+  }
+  .text-neutral-darker {
+    color: var(--color-neutral-darker);
+  }
+  .text-white {
+    color: var(--color-white);
+  }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-colors {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+<<<<<<< HEAD
+  .duration-200 {
+    --tw-duration: 200ms;
+    transition-duration: 200ms;
+  }
+  .ease-in-out {
+    --tw-ease: var(--ease-in-out);
+    transition-timing-function: var(--ease-in-out);
+=======
+  .duration-300 {
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+  }
+  .outline-none {
+    --tw-outline-style: none;
+    outline-style: none;
+  }
+<<<<<<< HEAD
+<<<<<<< HEAD
+  .peer-placeholder-shown\:top-1\/2 {
+    &:is(:where(.peer):placeholder-shown ~ *) {
+      top: calc(1/2 * 100%);
+    }
+  }
+  .peer-placeholder-shown\:-translate-y-1\/2 {
+    &:is(:where(.peer):placeholder-shown ~ *) {
+      --tw-translate-y: calc(calc(1/2 * 100%) * -1);
+      translate: var(--tw-translate-x) var(--tw-translate-y);
+    }
+  }
+  .peer-placeholder-shown\:text-base {
+    &:is(:where(.peer):placeholder-shown ~ *) {
+      font-size: var(--text-base);
+      line-height: var(--tw-leading, var(--text-base--line-height));
+    }
+  }
+  .peer-focus\:text-purple-600 {
+    &:is(:where(.peer):focus ~ *) {
+      color: var(--color-purple-600);
+    }
+  }
+  .peer-focus\:text-red-500 {
+    &:is(:where(.peer):focus ~ *) {
+      color: var(--color-red-500);
+    }
+  }
+  .focus-within\:border-purple-600 {
+    &:focus-within {
+      border-color: var(--color-purple-600);
+    }
+  }
+  .focus-within\:border-red-500 {
+    &:focus-within {
+      border-color: var(--color-red-500);
+    }
+  }
+  .hover\:bg-\[var\(--color-neutral-lighter\)\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-neutral-lighter);
+      }
+    }
+  }
+  .hover\:bg-\[var\(--color-primary-dark\)\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-primary-dark);
+      }
+    }
+  }
+  .hover\:bg-\[var\(--color-primary-lighter\)\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-primary-lighter);
+      }
+    }
+  }
+  .hover\:bg-\[var\(--color-primary-lightest\)\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-primary-lightest);
+      }
+    }
+  }
+  .disabled\:bg-\[var\(--color-neutral-light\)\] {
+    &:disabled {
+      background-color: var(--color-neutral-light);
+    }
+  }
+  .disabled\:text-\[var\(--color-neutral-darker\)\] {
+    &:disabled {
+      color: var(--color-neutral-darker);
+    }
+  }
+}
+* {
+  line-height: var(--leading-default);
+}
+@property --tw-translate-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+=======
+  .disabled\:text-gray-500 {
+=======
+  .disabled\:text-neutral-light {
+>>>>>>> ee1921f (refactor: update Input component styles and structure)
+    &:disabled {
+      color: var(--color-neutral-light);
+    }
+  }
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+}
+* {
+  line-height: var(--leading-default);
+  direction: rtl;
+}
+@property --tw-translate-x {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-y {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+@property --tw-translate-z {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0;
+}
+* {
+  line-height: var(--leading-default);
+}
+@property --tw-border-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
+@property --tw-duration {
+  syntax: "*";
+  inherits: false;
+}
+<<<<<<< HEAD
+@property --tw-ease {
+  syntax: "*";
+  inherits: false;
+}
+=======
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+@layer properties {
+  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
+    *, ::before, ::after, ::backdrop {
+      --tw-translate-x: 0;
+      --tw-translate-y: 0;
+      --tw-translate-z: 0;
+      --tw-border-style: solid;
+      --tw-leading: initial;
+      --tw-font-weight: initial;
+      --tw-outline-style: solid;
+      --tw-duration: initial;
+<<<<<<< HEAD
+      --tw-ease: initial;
+=======
+>>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+    }
+  }
+}
+>>>>>>> 32f3f09 (feat: add Pagination component with controlled and uncontrolled modes)
