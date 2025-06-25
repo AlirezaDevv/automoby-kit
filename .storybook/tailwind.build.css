@@ -13,6 +13,7 @@
     --font-sans: "YekanBakh", "Vazirmatn", "IRANSansX", "Tahoma", "Arial", sans-serif;
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
+<<<<<<< HEAD
     --color-red-500: oklch(63.7% 0.237 25.331);
     --color-purple-600: oklch(55.8% 0.288 302.321);
     --color-gray-100: oklch(96.7% 0.003 264.542);
@@ -33,10 +34,15 @@
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+=======
+    --color-white: #ffffff;
+    --spacing: 0.25rem;
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
     --color-primary: #590db8;
     --color-primary-dark: #5f26d1;
+<<<<<<< HEAD
     --color-primary-light: #d0b4f2;
     --color-primary-lighter: #eadaff;
     --color-primary-lightest: #ecebff;
@@ -50,6 +56,11 @@
     --text-s: 14px;
     --font-weight-fat: 900;
     --font-weight-heavy: 700;
+=======
+    --color-neutral-darker: #1a1a23;
+    --color-neutral-light: #ebeaf0;
+    --text-s: 14px;
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
     --leading-default: 1.8;
   }
 }
@@ -199,6 +210,7 @@
   }
 }
 @layer utilities {
+<<<<<<< HEAD
   .pointer-events-none {
     pointer-events: none;
   }
@@ -253,6 +265,14 @@
   .inline-flex {
     display: inline-flex;
   }
+=======
+  .mx-auto {
+    margin-inline: auto;
+  }
+  .flex {
+    display: flex;
+  }
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
   .size-4 {
     width: calc(var(--spacing) * 4);
     height: calc(var(--spacing) * 4);
@@ -261,6 +281,7 @@
     width: calc(var(--spacing) * 9);
     height: calc(var(--spacing) * 9);
   }
+<<<<<<< HEAD
   .h-5 {
     height: calc(var(--spacing) * 5);
   }
@@ -307,6 +328,17 @@
   .flex-col {
     flex-direction: column;
   }
+=======
+  .h-\[40px\] {
+    height: 40px;
+  }
+  .w-\[40px\] {
+    width: 40px;
+  }
+  .w-full {
+    width: 100%;
+  }
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
   .flex-row {
     flex-direction: row;
   }
@@ -316,6 +348,7 @@
   .justify-center {
     justify-content: center;
   }
+<<<<<<< HEAD
   .gap-2 {
     gap: calc(var(--spacing) * 2);
   }
@@ -333,17 +366,33 @@
   }
   .rounded-lg {
     border-radius: var(--radius-lg);
+=======
+  .gap-1 {
+    gap: calc(var(--spacing) * 1);
+  }
+  .rounded-\[6px\] {
+    border-radius: 6px;
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
   }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+<<<<<<< HEAD
   .border-\[var\(--color-primary-light\)\] {
     border-color: var(--color-primary-light);
+=======
+  .border-neutral-light {
+    border-color: var(--color-neutral-light);
+  }
+  .bg-primary {
+    background-color: var(--color-primary);
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
   }
   .border-gray-200 {
     border-color: var(--color-gray-200);
   }
+<<<<<<< HEAD
   .border-gray-300 {
     border-color: var(--color-gray-300);
   }
@@ -452,10 +501,18 @@
   }
   .text-l {
     font-size: var(--text-l);
+=======
+  .bg-white {
+    background-color: var(--color-white);
+  }
+  .p-\[6px\] {
+    padding: 6px;
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
   }
   .text-s {
     font-size: var(--text-s);
   }
+<<<<<<< HEAD
   .leading-\[var\(--leading-default\)\] {
     --tw-leading: var(--leading-default);
     line-height: var(--leading-default);
@@ -526,6 +583,13 @@
   }
   .opacity-50 {
     opacity: 50%;
+=======
+  .text-neutral-darker {
+    color: var(--color-neutral-darker);
+  }
+  .text-white {
+    color: var(--color-white);
+>>>>>>> 2ab6578 (feat: add Pagination component with controlled and uncontrolled modes)
   }
   .outline {
     outline-style: var(--tw-outline-style);
@@ -646,6 +710,9 @@
   syntax: "*";
   inherits: false;
   initial-value: 0;
+}
+* {
+  line-height: var(--leading-default);
 }
 @property --tw-border-style {
   syntax: "*";

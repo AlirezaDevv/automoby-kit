@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -6,7 +7,6 @@ import {
   MoreHorizontalIcon,
 } from 'lucide-react';
 import cn from '@/utils/cn';
-import { useEffect, useState } from 'react';
 
 type Device = 'mobile' | 'desktop';
 

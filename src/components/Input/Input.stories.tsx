@@ -12,4 +12,4 @@ export const Default: StoryObj<typeof Input> = {
   args: {
     label: 'Label',
   },
-}; 
+};

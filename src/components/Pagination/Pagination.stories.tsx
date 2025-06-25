@@ -1,5 +1,5 @@
-import { Pagination } from '@/components/Pagination/Pagination';
 import { useEffect, useState } from 'react';
+import { Pagination } from '@/components/Pagination/Pagination';
 
 export default {
   title: 'Components/Pagination (Unified)',

@@ -76,5 +76,4 @@
 /* Global line-height rule */
 * {
   line-height: var(--leading-default);
-
 }
