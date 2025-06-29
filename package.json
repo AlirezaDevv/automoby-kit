@@ -18,9 +18,9 @@
   "author": "Ghazal_kordi Alireza_mirzaee",
   "license": "ISC",
   "peerDependencies": {
+    "lucide-react": "^0.522.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "lucide-react": "^0.522.0",
     "tailwindcss": "^4.1.10"
   },
   "devDependencies": {
@@ -55,6 +55,7 @@
     "react-dom": "^19.1.0",
     "rimraf": "^6.0.1",
     "rollup": "^4.44.0",
+    "serve": "^14.2.4",
     "storybook": "^9.0.6",
     "tailwindcss": "^4.1.10",
     "typescript": "^5.8.3"
