@@ -52,7 +52,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const baseLabelClasses =
       'absolute pointer-events-none transition-all duration-300';
     const baseInputClasses =
-      'peer w-full h-full bg-transparent outline-none text-neutral-darker disabled:text-neutral-main';
+      'peer w-full h-full bg-transparent outline-none text-m font-medium disabled:text-neutral-light';
     const baseIconClasses = 'absolute h-5 w-5 transition-colors duration-300';
 
     const containerClasses = cn(baseContainerClasses, {
@@ -61,20 +61,23 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       'border-neutral-light': state === 'default' && !isFocused,
       'border-primary': state === 'default' && isFocused,
       'border-error': state === 'error',
-      'bg-neutral-lighter border-neutral-light cursor-not-allowed': isDisabled,
+      'bg-white border-neutral-light cursor-not-allowed': isDisabled,
     });
 
     const labelClasses = cn(baseLabelClasses, {
-      'top-[-10px] text-xs bg-white px-1 mx-3': isLabelFloated,
+      'top-[-10px] bg-white px-1 mx-3 font-medium': isLabelFloated,
+      'text-s': (!isMobile && isLabelFloated) || (isMobile && !isLabelFloated),
+      'text-xs': isMobile && isLabelFloated,
+      'text-m': !isMobile && !isLabelFloated,
       'right-1': startIcon,
       'right-3': !startIcon,
-      'top-1/2 -translate-y-1/2 text-base': !isLabelFloated,
+      'top-1/2 -translate-y-1/2 text-m font-medium': !isLabelFloated,
       'right-11': !isLabelFloated && startIcon,
       'right-4': !isLabelFloated && !startIcon,
       'text-neutral-main': !isFocused && state === 'default',
       'text-neutral-light': isDisabled,
       'text-primary': isFocused && state === 'default',
-      'text-error': state === 'error',
+      'text-error': isLabelFloated && state === 'error',
     });
 
     const inputClasses = cn(baseInputClasses, {
@@ -83,7 +86,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       'px-4': !startIcon && !endIcon,
       'pr-4 pl-12': !startIcon && endIcon,
       'pl-4 pr-12': startIcon && !endIcon,
-      'cursor-not-allowed': isDisabled,
+      'cursor-not-allowed text-red-500': isDisabled,
+      'text-neutral-dark': !isFocused,
+      'text-neutral-darker': isFocused,
     });
 
     const iconClasses = cn(baseIconClasses, {
@@ -93,8 +98,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       'text-neutral-light': isDisabled,
     });
 
-    const helperTextClasses = cn('text-xs mt-1 px-2 h-4', {
+    const helperTextClasses = cn('font-light mt-1 px-2 h-4', {
+      'text-s': !isMobile,
+      'text-xs': isMobile,
       'text-neutral-main': state === 'default',
+      'text-primary': state === 'default' && isFocused,
       'text-error': state === 'error',
       'text-neutral-light': isDisabled,
     });

@@ -46,7 +46,7 @@ export const Uncontrolled = ({ pageCount, defaultPage }: StoryProps) => (
     <Pagination
       pageCount={pageCount}
       defaultPage={defaultPage}
-      onPageChange={(p) => console.log('page changed:', p)}
+      onPageChange={() => {}}
     />
   </div>
 );

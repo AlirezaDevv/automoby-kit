@@ -9,7 +9,7 @@ type StoryArgs = Omit<InputProps, 'onChange' | 'ref'> & {
 };
 
 export default {
-  title: 'Components/Forms/Input',
+  title: 'Components/Input',
   component: Input,
   parameters: {
     docs: {
