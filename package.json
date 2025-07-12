@@ -67,5 +67,9 @@
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.10",
     "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@types/ua-parser-js": "^0.7.39",
+    "ua-parser-js": "^2.0.4"
   }
 }

@@ -1,4 +1,5 @@
 import { createContext, useContext, useMemo, ReactNode } from 'react';
+import { UAParser } from 'ua-parser-js';
 
 interface MobileContextValue {
   isMobile: boolean;
@@ -13,9 +14,12 @@ interface MobileProviderProps {
 const MobileContext = createContext<MobileContextValue | undefined>(undefined);
 
 const detectMobile = (userAgent: string): boolean => {
-  const mobileRegex =
-    /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i;
-  return mobileRegex.test(userAgent);
+  const parser = new UAParser();
+  parser.setUA(userAgent);
+  const device = parser.getDevice();
+
+  // Consider mobile and tablet devices as mobile
+  return device.type === 'mobile' || device.type === 'tablet';
 };
 
 export const MobileProvider: React.FC<MobileProviderProps> = ({
