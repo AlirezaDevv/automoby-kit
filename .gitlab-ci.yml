@@ -2,7 +2,7 @@ stages:
   - build
   - deploy
 
-darkube_build_automoby-kit_nirvan-staging_hamravesh-c13:
+darkube_build:
   image: hamravesh.hamdocker.ir/public/darkube-cli:v1.1
   interruptible: true
   rules:
@@ -13,16 +13,15 @@ darkube_build_automoby-kit_nirvan-staging_hamravesh-c13:
       --file ./Dockerfile --build-context .'
   stage: build
 
-darkube_deploy_automoby-kit_nirvan-staging_hamravesh-c13:
+darkube_deploy:
   image: hamravesh.hamdocker.ir/public/darkube-cli:v1.1
   interruptible: true
   rules:
     - if: $CI_COMMIT_REF_NAME == "develop"
   script:
-    - 'darkube deploy --token ${DEPLOY_TOKEN_AUTOMOBY_KIT_NIRVAN_STAGING_HAMRAVESH_C13}
-      --app-id ${APP_ID_AUTOMOBY_KIT_NIRVAN_STAGING_HAMRAVESH_C13} 
-      --image-tag "${CI_COMMIT_SHORT_SHA}"
-      --job-id "${CI_JOB_ID}"'
+  - darkube deploy --token ${DEPLOY_TOKEN}
+    --app-id ${APP_ID} --image-tag ${CI_COMMIT_SHORT_SHA}
+    --job-id ${CI_JOB_ID}
   stage: deploy
   needs:
-    - darkube_build_automoby-kit_nirvan-staging_hamravesh-c13 
+    - darkube_build 
