@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, ReactNode } from 'react';
+import { createContext, useMemo, ReactNode } from 'react';
 import { UAParser } from 'ua-parser-js';
 
 interface MobileContextValue {
@@ -41,11 +41,16 @@ export const MobileProvider: React.FC<MobileProviderProps> = ({
   );
 };
 
-export const useMobile = (): MobileContextValue => {
-  const context = useContext(MobileContext);
-  if (context === undefined) {
-    throw new Error('useMobile must be used within a MobileProvider');
-  }
+export const useMobile = (isMobile?: boolean): MobileContextValue => {
+  // const context = useContext(MobileContext);
+  // if (context === undefined) {
+  //   throw new Error('useMobile must be used within a MobileProvider');
+  // }
+  const context = {
+    isMobile: isMobile || false,
+    userAgent:
+      'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1',
+  };
   return context;
 };
 
