@@ -1,7 +1,5 @@
-import React from 'react';
-import { Button } from '@/components/Button/Button';
 import { SearchIcon } from 'lucide-react';
-import type { Meta, StoryObj } from '@storybook/react';
+import { Button } from '@/components/Button/Button';
 
 export default {
   title: 'Components/Button',

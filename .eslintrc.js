@@ -25,15 +25,12 @@ module.exports = {
     'react/function-component-definition': 'off',
     'no-nested-ternary': 'off',
     '@typescript-eslint/no-use-before-define': ['error', { functions: false }],
+    'import/extensions': 'off',
   },
   settings: {
     react: {
       version: 'detect',
     },
-    'import/resolver': {
-      typescript: {
-        project: './tsconfig.json',
-      },
-    },
+
   },
 };
