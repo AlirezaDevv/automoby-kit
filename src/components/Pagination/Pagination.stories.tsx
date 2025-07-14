@@ -39,14 +39,13 @@ export default {
 type StoryProps = {
   pageCount: number;
   defaultPage: number;
-  page?: number;
 };
 
-export const Uncontrolled = (args: StoryProps) => (
+export const Uncontrolled = ({ pageCount, defaultPage }: StoryProps) => (
   <div dir="rtl" style={{ width: 480, margin: 'auto' }}>
     <Pagination
-      pageCount={args.pageCount}
-      defaultPage={args.defaultPage}
+      pageCount={pageCount}
+      defaultPage={defaultPage}
       onPageChange={(p) => console.log('page changed:', p)}
     />
   </div>
@@ -58,20 +57,16 @@ Uncontrolled.args = {
   defaultPage: 2,
 };
 
-export const Controlled = (args: StoryProps) => {
-  const [page, setPage] = useState(args.defaultPage);
+export const Controlled = ({ pageCount, defaultPage }: StoryProps) => {
+  const [page, setPage] = useState(defaultPage);
 
   useEffect(() => {
-    setPage(args.defaultPage);
-  }, [args.defaultPage]);
+    setPage(defaultPage);
+  }, [defaultPage]);
 
   return (
     <div dir="rtl" style={{ width: 480, margin: 'auto' }}>
-      <Pagination
-        pageCount={args.pageCount}
-        page={page}
-        onPageChange={setPage}
-      />
+      <Pagination pageCount={pageCount} page={page} onPageChange={setPage} />
       <div style={{ textAlign: 'center', marginTop: 16 }}>
         صفحه فعلی:{' '}
         <span style={{ color: '#590DB8', fontWeight: 700 }}>{page}</span>

@@ -14,10 +14,9 @@
     --color-primary-dark: #5f26d1;
     --color-neutral-darker: #1a1a23;
     --color-neutral-light: #ebeaf0;
-    --text-h1: 36px;
-    --text-h2: 32px;
     --text-l: 18px;
     --text-s: 14px;
+    --font-weight-heavy: 700;
     --leading-default: 1.8;
   }
 }
@@ -170,17 +169,11 @@
   .mx-auto {
     margin-inline: auto;
   }
-  .mr-2 {
-    margin-right: calc(var(--spacing) * 2);
-  }
   .mr-2\.5 {
     margin-right: calc(var(--spacing) * 2.5);
   }
   .mr-4 {
     margin-right: calc(var(--spacing) * 4);
-  }
-  .ml-2 {
-    margin-left: calc(var(--spacing) * 2);
   }
   .ml-2\.5 {
     margin-left: calc(var(--spacing) * 2.5);
@@ -190,9 +183,6 @@
   }
   .flex {
     display: flex;
-  }
-  .table {
-    display: table;
   }
   .size-4 {
     width: calc(var(--spacing) * 4);
@@ -205,9 +195,6 @@
   .h-\[40px\] {
     height: 40px;
   }
-  .h-\[48\] {
-    height: 48;
-  }
   .h-\[48px\] {
     height: 48px;
   }
@@ -217,20 +204,11 @@
   .w-\[48px\] {
     width: 48px;
   }
-  .w-\[89\] {
-    width: 89;
-  }
   .w-\[89px\] {
     width: 89px;
   }
   .w-full {
     width: 100%;
-  }
-  .border-collapse {
-    border-collapse: collapse;
-  }
-  .resize {
-    resize: both;
   }
   .flex-row {
     flex-direction: row;
@@ -266,26 +244,21 @@
   .bg-white {
     background-color: var(--color-white);
   }
-  .text-h1 {
-    font-size: var(--text-h1);
-  }
-  .text-h2 {
-    font-size: var(--text-h2);
-  }
   .text-l {
     font-size: var(--text-l);
   }
   .text-s {
     font-size: var(--text-s);
   }
+  .font-heavy {
+    --tw-font-weight: var(--font-weight-heavy);
+    font-weight: var(--font-weight-heavy);
+  }
   .text-neutral-darker {
     color: var(--color-neutral-darker);
   }
   .text-white {
     color: var(--color-white);
-  }
-  .underline {
-    text-decoration-line: underline;
   }
   .outline {
     outline-style: var(--tw-outline-style);
@@ -300,6 +273,10 @@
   inherits: false;
   initial-value: solid;
 }
+@property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
+}
 @property --tw-outline-style {
   syntax: "*";
   inherits: false;
@@ -309,6 +286,7 @@
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
       --tw-border-style: solid;
+      --tw-font-weight: initial;
       --tw-outline-style: solid;
     }
   }

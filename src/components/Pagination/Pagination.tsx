@@ -5,10 +5,10 @@ import {
   ChevronsLeftIcon,
   MoreHorizontalIcon,
 } from 'lucide-react';
-import { cn } from '@/utils/cn';
+import cn from '@/utils/cn';
 import { useEffect, useState } from 'react';
 
-type device = 'mobile' | 'desktop';
+type Device = 'mobile' | 'desktop';
 
 function PaginationRoot({ className, ...props }: React.ComponentProps<'nav'>) {
   return (
@@ -26,7 +26,7 @@ function PaginationContent({
   className,
   device,
   ...props
-}: React.ComponentProps<'ul'> & { device: device }) {
+}: React.ComponentProps<'ul'> & { device: Device }) {
   return (
     <ul
       data-slot="pagination-content"
@@ -49,7 +49,7 @@ type PaginationLinkVariant = 'main' | 'nextPrev';
 type PaginationLinkProps = {
   variant: PaginationLinkVariant;
   isActive?: boolean;
-} & React.ComponentProps<'a'> & { device: device };
+} & React.ComponentProps<'a'> & { device: Device };
 
 function PaginationLink({
   className,
@@ -169,14 +169,14 @@ function buttonVariants({
   device,
 }: {
   variant: ButtonVariant;
-  device: device;
+  device: Device;
 }) {
   const isMobile = device === 'mobile';
 
   const base = cn({
     'flex items-center justify-center rounded-[6px]': true,
-    'w-[40px] h-[40px] text-s weight-heavy': isMobile,
-    'w-[48px] h-[48px] text-l weight-heavy': !isMobile,
+    'w-[40px] h-[40px] text-s font-heavy': isMobile,
+    'w-[48px] h-[48px] text-l font-heavy': !isMobile,
   });
 
   const variants: Record<ButtonVariant, string> = {
@@ -209,7 +209,7 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
 
   const page = isControlled ? controlledPage! : internalPage;
 
-  const device: device = 'mobile';
+  const device: Device = 'desktop';
 
   useEffect(() => {
     if (!isControlled) setInternalPage(defaultPage);

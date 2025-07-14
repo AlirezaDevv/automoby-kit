@@ -54,10 +54,10 @@
   --text-ss: 9px;
 
   /* FONT WEIGHTS */
-  --weight-fat: 900;
-  --weight-heavy: 700;
-  --weight-bold: 600;
-  --weight-medium: 400;
+  --font-weight-fat: 900;
+  --font-weight-heavy: 700;
+  --font-weight-bold: 600;
+  --font-weight-medium: 400;
 
   /* LINE HEIGHT */
   --leading-default: 1.8;
@@ -66,4 +66,5 @@
 /* Global line-height rule */
 * {
   line-height: var(--leading-default);
+
 }
