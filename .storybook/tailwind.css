@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-
 @theme {
   /* PRIMARY PALETTE */
   --color-primary: #590db8;
@@ -33,25 +32,38 @@
   --color-neutral-light: #ebeaf0;
   --color-neutral-lighter: #f7f7f9;
 
-  /* ---- تایپوگرافی ---- */
+  /* TYPOGRAPHY */
   --font-sans: "Vazirmatn", "IRANSansX", "Tahoma", "Arial", sans-serif;
   --font-serif: "Georgia", serif;
 
-  /* سایز فونت */
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 1.875rem;
-  --text-4xl: 2.25rem;
+  /* FONT SIZES + WEIGHTS (from Frame 112) */
+  --text-h1: 36px;
+  --text-h2: 32px;
+  --text-h3: 28px;
+  --text-h4: 24px;
+  --text-h5: 22px;
+  --text-h6: 20px;
 
-  /* وزن فونت */
-  --font-thin: 100;
-  --font-light: 300;
-  --font-normal: 400;
-  --font-medium: 500;
-  --font-bold: 700;
-  --font-black: 900;
+  --text-xl: 20px;
+  --text-l: 18px;
+  --text-m: 16px;
+  --text-s: 14px;
+  --text-ms: 13px;
+  --text-xs: 12px;
+  --text-t: 10px;
+  --text-ss: 9px;
+
+  /* FONT WEIGHTS */
+  --weight-fat: 900;
+  --weight-heavy: 700;
+  --weight-bold: 600;
+  --weight-medium: 400;
+
+  /* LINE HEIGHT */
+  --leading-default: 1.8;
+}
+
+/* Global line-height rule */
+* {
+  line-height: var(--leading-default);
 }
