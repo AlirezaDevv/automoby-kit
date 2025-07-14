@@ -25,8 +25,6 @@ export default {
       },
     },
   },
-<<<<<<< HEAD
-=======
   argTypes: {
     state: {
       name: 'وضعیت (State)',
@@ -137,5 +135,5 @@ MobileVersion.args = {
   isMobile: true,
   label: 'جستجو (موبایل)',
   helperText: 'ارتفاع کامپوننت در حالت موبایل کمتر است',
->>>>>>> 9bbd2de (feat: enhance Input component with new features and RTL support)
+
 };
