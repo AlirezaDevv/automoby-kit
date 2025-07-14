@@ -1,3 +1,13 @@
+/* YekanBakh Font Face */
+@font-face {
+  font-family: "YekanBakh";
+  src: url("../src/assets/fonts/YekanBakhFaNum-VF.woff2") format("woff2"),
+       url("../src/assets/fonts/YekanBakhFaNum-VF.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @import "tailwindcss";
 
 @theme {
@@ -33,7 +43,7 @@
   --color-neutral-lighter: #f7f7f9;
 
   /* TYPOGRAPHY */
-  --font-sans: "Vazirmatn", "IRANSansX", "Tahoma", "Arial", sans-serif;
+  --font-sans: "YekanBakh", "Vazirmatn", "IRANSansX", "Tahoma", "Arial", sans-serif;
   --font-serif: "Georgia", serif;
 
   /* FONT SIZES + WEIGHTS */
@@ -56,7 +66,7 @@
   /* FONT WEIGHTS */
   --font-weight-fat: 900;
   --font-weight-heavy: 700;
-  --font-weight-bold: 500;
+  --font-weight-bold: 600;
   --font-weight-medium: 400;
 
   /* LINE HEIGHT */
