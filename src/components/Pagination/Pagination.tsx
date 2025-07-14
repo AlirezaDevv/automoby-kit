@@ -1,10 +1,14 @@
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
+  ChevronsRightIcon,
+  ChevronsLeftIcon,
   MoreHorizontalIcon,
 } from 'lucide-react';
 import { cn } from '@/utils/cn';
 import { useEffect, useState } from 'react';
+
+type device = 'mobile' | 'desktop';
 
 function PaginationRoot({ className, ...props }: React.ComponentProps<'nav'>) {
   return (
@@ -20,12 +24,17 @@ function PaginationRoot({ className, ...props }: React.ComponentProps<'nav'>) {
 
 function PaginationContent({
   className,
+  device,
   ...props
-}: React.ComponentProps<'ul'>) {
+}: React.ComponentProps<'ul'> & { device: device }) {
   return (
     <ul
       data-slot="pagination-content"
-      className={cn('flex flex-row items-center gap-1', className)}
+      className={cn(
+        'flex flex-row items-center',
+        device === 'mobile' ? 'gap-[6px]' : 'gap-2',
+        className,
+      )}
       {...props}
     />
   );
@@ -35,12 +44,17 @@ function PaginationItem({ ...props }: React.ComponentProps<'li'>) {
   return <li data-slot="pagination-item" {...props} />;
 }
 
+type PaginationLinkVariant = 'main' | 'nextPrev';
+
 type PaginationLinkProps = {
+  variant: PaginationLinkVariant;
   isActive?: boolean;
-} & React.ComponentProps<'a'>;
+} & React.ComponentProps<'a'> & { device: device };
 
 function PaginationLink({
   className,
+  device,
+  variant,
   isActive,
   ...props
 }: PaginationLinkProps) {
@@ -51,7 +65,9 @@ function PaginationLink({
       data-active={isActive}
       className={cn(
         buttonVariants({
-          variant: isActive ? 'active' : 'outline',
+          variant:
+            variant === 'nextPrev' ? variant : isActive ? 'active' : 'outline',
+          device,
         }),
         className,
       )}
@@ -63,30 +79,69 @@ function PaginationLink({
 
 function PaginationPrevious({
   className,
+  device,
+  variant,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
+  const isMobile = device === 'mobile';
+
+  const content = {
+    mobile: <ChevronRightIcon size={18} />,
+    desktop: (
+      <>
+        <ChevronsRightIcon size={20} /> <span>قبلی</span>
+      </>
+    ),
+  };
+
   return (
     <PaginationLink
       aria-label="Go to previous page"
-      className={className}
+      className={
+        !isMobile
+          ? 'flex justify-center items-center gap-2 w-[89px] h-[48px] ml-4'
+          : 'ml-2.5'
+      }
+      device={device}
+      variant="nextPrev"
       {...props}
     >
-      <ChevronRightIcon size={18} />
+      {device === 'mobile' ? content.mobile : content.desktop}
     </PaginationLink>
   );
 }
 
 function PaginationNext({
   className,
+  device,
+  variant,
   ...props
 }: React.ComponentProps<typeof PaginationLink>) {
+  const isMobile = device === 'mobile';
+
+  const content = {
+    mobile: <ChevronLeftIcon size={18} />,
+    desktop: (
+      <>
+        <span>بعدی</span>
+        <ChevronsLeftIcon size={20} />
+      </>
+    ),
+  };
+
   return (
     <PaginationLink
       aria-label="Go to next page"
-      className={className}
+      className={
+        !isMobile
+          ? 'flex justify-center items-center gap-2 w-[89px] h-[48px] mr-4'
+          : 'mr-2.5'
+      }
+      device={device}
+      variant="nextPrev"
       {...props}
     >
-      <ChevronLeftIcon size={18} />
+      {device === 'mobile' ? content.mobile : content.desktop}
     </PaginationLink>
   );
 }
@@ -107,14 +162,27 @@ function PaginationEllipsis({
   );
 }
 
-type ButtonVariant = 'outline' | 'active';
+type ButtonVariant = 'outline' | 'active' | 'nextPrev';
 
-function buttonVariants({ variant }: { variant: ButtonVariant }) {
-  const base =
-    'w-[40px] h-[40px] flex items-center justify-center rounded-[6px] p-[6px] text-s weight-heavy';
+function buttonVariants({
+  variant,
+  device,
+}: {
+  variant: ButtonVariant;
+  device: device;
+}) {
+  const isMobile = device === 'mobile';
+
+  const base = cn({
+    'flex items-center justify-center rounded-[6px]': true,
+    'w-[40px] h-[40px] text-s weight-heavy': isMobile,
+    'w-[48px] h-[48px] text-l weight-heavy': !isMobile,
+  });
+
   const variants: Record<ButtonVariant, string> = {
     outline: 'border border-neutral-light bg-white text-neutral-darker',
     active: 'bg-primary text-white',
+    nextPrev: 'border border-neutral-light bg-white text-neutral-darker',
   };
 
   return [base, variants[variant]].join(' ');
@@ -141,6 +209,8 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
 
   const page = isControlled ? controlledPage! : internalPage;
 
+  const device: device = 'mobile';
+
   useEffect(() => {
     if (!isControlled) setInternalPage(defaultPage);
   }, [defaultPage, isControlled]);
@@ -160,6 +230,8 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
             <PaginationLink
               href="#"
               isActive={page === i}
+              variant="main"
+              device={device}
               onClick={(e) => {
                 e.preventDefault();
                 if (page !== i) changePage(i);
@@ -179,6 +251,8 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
           <PaginationLink
             href="#"
             isActive={page === 1}
+            device={device}
+            variant="main"
             onClick={(e) => {
               e.preventDefault();
               if (page !== 1) changePage(1);
@@ -207,6 +281,8 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
             <PaginationLink
               href="#"
               isActive={page === i}
+              device={device}
+              variant="main"
               onClick={(e) => {
                 e.preventDefault();
                 if (page !== i) changePage(i);
@@ -233,6 +309,8 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
           <PaginationLink
             href="#"
             isActive={page === pageCount}
+            device={device}
+            variant="main"
             onClick={(e) => {
               e.preventDefault();
               if (page !== pageCount) changePage(pageCount);
@@ -250,7 +328,7 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
 
   return (
     <PaginationRoot className={className} {...navProps}>
-      <PaginationContent>
+      <PaginationContent device="mobile">
         <PaginationItem>
           <PaginationPrevious
             href="#"
@@ -258,6 +336,8 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
               e.preventDefault();
               if (page > 1) changePage(page - 1);
             }}
+            variant="nextPrev"
+            device={device}
             aria-disabled={page === 1}
             tabIndex={page === 1 ? -1 : 0}
           />
@@ -270,6 +350,8 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
               e.preventDefault();
               if (page < pageCount) changePage(page + 1);
             }}
+            variant="nextPrev"
+            device={device}
             aria-disabled={page === pageCount}
             tabIndex={page === pageCount ? -1 : 0}
           />
