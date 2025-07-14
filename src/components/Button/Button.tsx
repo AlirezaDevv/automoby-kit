@@ -1,5 +1,9 @@
 import React from 'react';
 import cn from '@/utils/cn';
+import {
+  TypographyVariant,
+  getTypographyClasses,
+} from '../Typography/Typography';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg' | 'xl';
@@ -8,16 +12,24 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
+  textVariant?: TypographyVariant;
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
   loading?: boolean;
 }
 
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: 'h-[32px] w-[103px] text-sm',
-  md: 'h-[40px] w-[121px] text-base',
-  lg: 'h-[48px] w-[136px] text-lg',
-  xl: 'h-[56px] w-[159px] text-xl',
+  sm: 'p-[7px 16px]',
+  md: 'p-[9px 16px]',
+  lg: 'h-[13px 16px]',
+  xl: 'h-[13px 20px]',
+};
+
+const defaultTextVariants: Record<ButtonSize, TypographyVariant> = {
+  sm: 'body-s-bold', // 14px / Bold (600)
+  md: 'body-m-bold', // 16px / Bold (600)
+  lg: 'body-l-bold', // 18px / Bold (600)
+  xl: 'body-xl-heavy', // 20px / Heavy (700)
 };
 
 const variantClasses: Record<ButtonVariant, string> = {
@@ -54,18 +66,22 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       loading = false,
       disabled,
+      textVariant,
       ...props
     },
     ref,
   ) => {
+    const finalTextVariant = textVariant || defaultTextVariants[size];
+
     return (
       <button
         ref={ref}
         type="button"
         className={cn(
-          'inline-flex items-center justify-center rounded-[8px] font-bold transition-colors duration-200',
+          'inline-flex items-center justify-center rounded-[8px] transition-colors duration-200',
           sizeClasses[size],
           variantClasses[variant],
+          getTypographyClasses(finalTextVariant),
           disabled && 'opacity-50 pointer-events-none',
           className,
         )}

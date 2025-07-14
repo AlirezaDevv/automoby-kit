@@ -70,6 +70,11 @@ const variantClasses: Record<TypographyVariant, string> = {
   'body-ss-medium': 'text-[9px] font-[var(--font-weight-medium)]',
 };
 
+// Export for reuse in other components
+export const getTypographyClasses = (variant: TypographyVariant): string => {
+  return variantClasses[variant];
+};
+
 const colorClasses: Record<string, string> = {
   primary: 'text-[var(--color-primary)]',
   secondary: 'text-[var(--color-secondary)]',

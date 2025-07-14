@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/Button/Button';
-import { SearchIcon, PlusIcon, DownloadIcon } from 'lucide-react';
+import { SearchIcon } from 'lucide-react';
 import type { Meta, StoryObj } from '@storybook/react';
 
 export default {
@@ -9,7 +9,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: `کامپوننت Button با ۴ نوع (primary, secondary, tertiary, ghost)، ۴ سایز و ۳ حالت (عادی، هاور، غیرفعال) مطابق پالت رنگ و دیزاین سیستم.`,
+        component: `کامپوننت Button با ۴ نوع (primary, secondary, tertiary, ghost)، ۴ سایز و ۳ حالت (عادی، هاور، غیرفعال) مطابق پالت رنگ و دیزاین سیستم. همچنین امکان استفاده از انواع تایپوگرافی سیستم دیزاین.`,
       },
     },
   },
@@ -25,6 +25,21 @@ export default {
       control: { type: 'select' },
       options: ['sm', 'md', 'lg', 'xl'],
       defaultValue: 'md',
+    },
+    textVariant: {
+      name: 'نوع تایپوگرافی',
+      control: { type: 'select' },
+      options: [
+        'body-s-bold',
+        'body-s-heavy',
+        'body-m-bold',
+        'body-m-heavy',
+        'body-l-bold',
+        'body-l-heavy',
+        'body-xl-heavy',
+        'h6',
+        'h5',
+      ],
     },
     disabled: {
       name: 'غیرفعال',
@@ -154,3 +169,67 @@ export const DisabledStates = () => {
   );
 };
 DisabledStates.storyName = 'حالت غیرفعال';
+
+export const WithCustomTypography = () => {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      <div>
+        <div style={{ marginBottom: 8, fontWeight: 700 }}>
+          دکمه‌ها با انواع مختلف تایپوگرافی
+        </div>
+        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+          <Button variant="primary" textVariant="body-s-bold">
+            کوچک بولد
+          </Button>
+          <Button variant="primary" textVariant="body-m-bold">
+            متوسط بولد (پیش‌فرض)
+          </Button>
+          <Button variant="primary" textVariant="body-l-bold">
+            بزرگ بولد
+          </Button>
+          <Button variant="primary" textVariant="body-xl-heavy">
+            خیلی بزرگ سنگین
+          </Button>
+          <Button variant="primary" textVariant="h6">
+            تیتر کوچک
+          </Button>
+        </div>
+      </div>
+
+      <div>
+        <div style={{ marginBottom: 8, fontWeight: 700 }}>
+          مقایسه وزن‌های مختلف (سایز یکسان)
+        </div>
+        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+          <Button variant="secondary" textVariant="body-m-medium">
+            متوسط معمولی
+          </Button>
+          <Button variant="secondary" textVariant="body-m-bold">
+            متوسط بولد
+          </Button>
+          <Button variant="secondary" textVariant="body-m-heavy">
+            متوسط سنگین
+          </Button>
+        </div>
+      </div>
+
+      <div>
+        <div style={{ marginBottom: 8, fontWeight: 700 }}>
+          ترکیب سایز دکمه و تایپوگرافی مختلف
+        </div>
+        <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+          <Button variant="tertiary" size="sm" textVariant="body-xs-bold">
+            دکمه کوچک با متن ریز
+          </Button>
+          <Button variant="tertiary" size="lg" textVariant="h6">
+            دکمه بزرگ با تیتر
+          </Button>
+          <Button variant="ghost" size="xl" textVariant="body-l-heavy">
+            دکمه خیلی بزرگ
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+WithCustomTypography.storyName = 'با تایپوگرافی سفارشی';
