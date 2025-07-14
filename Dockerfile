@@ -18,6 +18,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 # Build Storybook
+RUN npm run build:storybook:css
 RUN npm run build-storybook
 
 EXPOSE 80

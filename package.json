@@ -14,7 +14,8 @@
     "storybook": "storybook dev -p 6006",
     "storybook:dev": "concurrently \"npm:build:storybook:css\" \"storybook dev -p 6006\"",
     "build-storybook": "storybook build",
-    "build:storybook:css": "npx @tailwindcss/cli -i ./.storybook/tailwind.css -o ./.storybook/tailwind.build.css --watch",
+    "build:storybook:css:watch": "npx @tailwindcss/cli -i ./.storybook/tailwind.css -o ./.storybook/tailwind.build.css --watch",
+    "build:storybook:css": "npx @tailwindcss/cli -i ./.storybook/tailwind.css -o ./.storybook/tailwind.build.css",
     "clean": "rimraf dist",
     "build": "npm run clean && rollup -c"
   },
