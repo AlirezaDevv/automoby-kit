@@ -1,0 +1,24 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo '🚀🔍 Running final checks before pushing...'
+
+# Check ESLint Standards
+npm run check-lint ||
+(
+        echo '🚨⚠️ ESLint check failed! ⚠️🚨
+                Please fix the linting issues listed above, then try pushing again.'
+        false;
+)
+
+# Check tsconfig standards
+npm run check-types ||
+(
+    echo '🔴📝 TypeScript check failed! 📝🔴
+            Please fix the type errors listed above, then try pushing again.'
+    false;
+)
+
+# If everything passes... Now we can push
+echo '✅🚀 All checks passed! Pushing your awesome code... ✅🚀'
+

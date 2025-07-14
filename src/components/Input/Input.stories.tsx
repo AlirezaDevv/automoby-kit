@@ -135,5 +135,4 @@ MobileVersion.args = {
   isMobile: true,
   label: 'جستجو (موبایل)',
   helperText: 'ارتفاع کامپوننت در حالت موبایل کمتر است',
-
 };
