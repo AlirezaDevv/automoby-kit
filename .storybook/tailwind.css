@@ -1,5 +1,14 @@
-@import "tailwindcss";
+/* YekanBakh Font Face */
+@font-face {
+  font-family: "YekanBakh";
+  src: url("../src/assets/fonts/YekanBakhFaNum-VF.woff2") format("woff2"),
+       url("../src/assets/fonts/YekanBakhFaNum-VF.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
 
+@import "tailwindcss";
 
 @theme {
   /* PRIMARY PALETTE */
@@ -33,25 +42,39 @@
   --color-neutral-light: #ebeaf0;
   --color-neutral-lighter: #f7f7f9;
 
-  /* ---- تایپوگرافی ---- */
-  --font-sans: "Vazirmatn", "IRANSansX", "Tahoma", "Arial", sans-serif;
+  /* TYPOGRAPHY */
+  --font-sans: "YekanBakh", "Vazirmatn", "IRANSansX", "Tahoma", "Arial", sans-serif;
   --font-serif: "Georgia", serif;
 
-  /* سایز فونت */
-  --text-xs: 0.75rem;
-  --text-sm: 0.875rem;
-  --text-base: 1rem;
-  --text-lg: 1.125rem;
-  --text-xl: 1.25rem;
-  --text-2xl: 1.5rem;
-  --text-3xl: 1.875rem;
-  --text-4xl: 2.25rem;
+  /* FONT SIZES + WEIGHTS */
+  --text-h1: 36px;
+  --text-h2: 32px;
+  --text-h3: 28px;
+  --text-h4: 24px;
+  --text-h5: 22px;
+  --text-h6: 20px;
 
-  /* وزن فونت */
-  --font-thin: 100;
-  --font-light: 300;
-  --font-normal: 400;
-  --font-medium: 500;
-  --font-bold: 700;
-  --font-black: 900;
+  --text-xl: 20px;
+  --text-l: 18px;
+  --text-m: 16px;
+  --text-s: 14px;
+  --text-ms: 13px;
+  --text-xs: 12px;
+  --text-t: 10px;
+  --text-ss: 9px;
+
+  /* FONT WEIGHTS */
+  --font-weight-fat: 900;
+  --font-weight-heavy: 700;
+  --font-weight-bold: 600;
+  --font-weight-medium: 400;
+
+  /* LINE HEIGHT */
+  --leading-default: 1.8;
+}
+
+/* Global line-height rule */
+* {
+  line-height: var(--leading-default);
+
 }
