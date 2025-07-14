@@ -1,119 +1,142 @@
-import React, { useId, forwardRef } from 'react';
+import React, { useState, useId, ReactNode } from 'react';
 import cn from '@/utils/cn';
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  state?: 'default' | 'error' | 'disabled';
+export type InputProps = {
+  state?: 'default' | 'disabled' | 'error';
   label: string;
   helperText?: string;
-  leadingIcon?: React.ReactNode;
-  trailingIcon?: React.ReactNode;
+  startIcon?: ReactNode;
+  endIcon?: ReactNode;
   isMobile?: boolean;
-  containerClassName?: string;
-}
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'id'>;
 
-const Input = forwardRef<HTMLInputElement, InputProps>(
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       state = 'default',
       label,
-      helperText,
-      leadingIcon,
-      trailingIcon,
-      isMobile = false,
-      id: providedId,
-      className,
-      containerClassName,
-      disabled,
       value,
+      onChange,
+      helperText,
+      startIcon,
+      endIcon,
+      isMobile = false,
+      type = 'text',
       ...props
     },
     ref,
   ) => {
-    const fallbackId = useId();
-    const id = providedId || fallbackId;
+    const [isFocused, setIsFocused] = useState(false);
+    const id = useId();
 
-    const isActuallyDisabled = state === 'disabled' || disabled;
+    const hasContent = value !== '' && value !== null && value !== undefined;
+    const isLabelFloated = isFocused || hasContent;
+    const isDisabled = state === 'disabled';
 
-    const wrapperClassName = cn(
-      'relative flex items-center bg-white border rounded-lg transition-colors duration-200',
-      isMobile ? 'h-[48px]' : 'h-[54px]',
-      {
-        'border-gray-300 focus-within:border-purple-600': state === 'default',
-        'border-red-500 focus-within:border-red-500': state === 'error',
-        'border-gray-200 bg-gray-100 cursor-not-allowed': state === 'disabled',
-      },
-    );
+    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+      if (!isDisabled) {
+        setIsFocused(true);
+        props.onFocus?.(e);
+      }
+    };
 
-    const labelClassName = cn(
-      'absolute transition-all duration-200 ease-in-out pointer-events-none origin-right bg-white px-1',
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+      if (!isDisabled) {
+        setIsFocused(false);
+        props.onBlur?.(e);
+      }
+    };
 
-      leadingIcon ? 'right-11' : 'right-4',
+    const baseContainerClasses =
+      'relative flex items-center border rounded-lg transition-all duration-300 w-[360px]';
+    const baseLabelClasses =
+      'absolute pointer-events-none transition-all duration-300';
+    const baseInputClasses =
+      'peer w-full h-full bg-transparent outline-none text-m font-medium disabled:text-neutral-light';
+    const baseIconClasses = 'absolute h-5 w-5 transition-colors duration-300';
 
-      {
-        'text-gray-400 peer-focus:text-purple-600': state === 'default',
-        'text-red-500 peer-focus:text-red-500': state === 'error',
-        'text-gray-400': state === 'disabled',
-      },
+    const containerClasses = cn(baseContainerClasses, {
+      'h-[54px]': !isMobile,
+      'h-12': isMobile,
+      'border-neutral-light': state === 'default' && !isFocused,
+      'border-primary': state === 'default' && isFocused,
+      'border-error': state === 'error',
+      'bg-white border-neutral-light cursor-not-allowed': isDisabled,
+    });
 
-      'top-0 -translate-y-1/2 text-xs',
-      'peer-placeholder-shown:text-base peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2',
-    );
+    const labelClasses = cn(baseLabelClasses, {
+      'top-[-10px] bg-white px-1 mx-3 font-medium': isLabelFloated,
+      'text-s': (!isMobile && isLabelFloated) || (isMobile && !isLabelFloated),
+      'text-xs': isMobile && isLabelFloated,
+      'text-m': !isMobile && !isLabelFloated,
+      'right-1': startIcon,
+      'right-3': !startIcon,
+      'top-1/2 -translate-y-1/2 text-m font-medium': !isLabelFloated,
+      'right-11': !isLabelFloated && startIcon,
+      'right-4': !isLabelFloated && !startIcon,
+      'text-neutral-main': !isFocused && state === 'default',
+      'text-neutral-light': isDisabled,
+      'text-primary': isFocused && state === 'default',
+      'text-error': isLabelFloated && state === 'error',
+    });
 
-    const inputClassName = cn(
-      'peer w-full h-full self-stretch bg-transparent placeholder-transparent outline-none text-gray-800 text-right',
-      'pt-2',
-      leadingIcon ? 'pr-11' : 'pr-4',
-      trailingIcon ? 'pl-11' : 'pl-4',
-      isActuallyDisabled && 'cursor-not-allowed',
-      className,
-    );
+    const inputClasses = cn(baseInputClasses, {
+      'pr-12': startIcon,
+      'pl-12': endIcon,
+      'px-4': !startIcon && !endIcon,
+      'pr-4 pl-12': !startIcon && endIcon,
+      'pl-4 pr-12': startIcon && !endIcon,
+      'cursor-not-allowed text-red-500': isDisabled,
+      'text-neutral-dark': !isFocused,
+      'text-neutral-darker': isFocused,
+    });
 
-    const leadingIconClassName = cn(
-      'absolute top-1/2 -translate-y-1/2 h-5 w-5 right-4',
-      {
-        'text-gray-400 peer-focus:text-purple-600': state === 'default',
-        'text-red-500': state === 'error',
-        'text-gray-400': state === 'disabled',
-      },
-    );
+    const iconClasses = cn(baseIconClasses, {
+      'text-neutral-main': state !== 'error' && !isFocused,
+      'text-primary': state === 'default' && isFocused,
+      'text-error': state === 'error',
+      'text-neutral-light': isDisabled,
+    });
 
-    const trailingIconClassName = cn(
-      'absolute top-1/2 -translate-y-1/2 h-5 w-5 left-4 text-gray-400',
-    );
-
-    const helperTextClassName = cn('mt-1 text-xs text-right', {
-      'text-gray-500': state === 'default',
-      'text-red-500': state === 'error',
-      'text-gray-400': state === 'disabled',
+    const helperTextClasses = cn('font-light mt-1 px-2 h-4', {
+      'text-s': !isMobile,
+      'text-xs': isMobile,
+      'text-neutral-main': state === 'default',
+      'text-primary': state === 'default' && isFocused,
+      'text-error': state === 'error',
+      'text-neutral-light': isDisabled,
     });
 
     return (
-      <div className={cn('w-[360px] flex flex-col', containerClassName)}>
-        <div className={wrapperClassName}>
-          {leadingIcon && (
-            <span className={leadingIconClassName}>{leadingIcon}</span>
+      <div>
+        <div className={containerClasses}>
+          {endIcon && (
+            <span className={cn(iconClasses, 'left-4')}>{endIcon}</span>
           )}
 
-          <input
-            id={id}
-            ref={ref}
-            disabled={isActuallyDisabled}
-            placeholder={label}
-            className={inputClassName}
-            value={value}
-            {...props}
-          />
-
-          <label htmlFor={id} className={labelClassName}>
+          <label htmlFor={id} className={labelClasses}>
             {label}
           </label>
 
-          {trailingIcon && (
-            <span className={trailingIconClassName}>{trailingIcon}</span>
+          <input
+            ref={ref}
+            id={id}
+            type={type}
+            value={value}
+            onChange={onChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            disabled={isDisabled}
+            className={inputClasses}
+            {...props}
+          />
+
+          {startIcon && (
+            <span className={cn(iconClasses, 'right-4')}>{startIcon}</span>
           )}
         </div>
-        {helperText && <p className={helperTextClassName}>{helperText}</p>}
+
+        {helperText && <p className={helperTextClasses}>{helperText}</p>}
       </div>
     );
   },

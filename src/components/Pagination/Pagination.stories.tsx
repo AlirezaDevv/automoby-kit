@@ -1,5 +1,5 @@
-import { Pagination } from '@/components/Pagination/Pagination';
 import { useEffect, useState } from 'react';
+import { Pagination } from '@/components/Pagination/Pagination';
 
 export default {
   title: 'Components/Pagination (Unified)',
@@ -46,7 +46,7 @@ export const Uncontrolled = ({ pageCount, defaultPage }: StoryProps) => (
     <Pagination
       pageCount={pageCount}
       defaultPage={defaultPage}
-      onPageChange={(p) => console.log('page changed:', p)}
+      onPageChange={() => {}}
     />
   </div>
 );
