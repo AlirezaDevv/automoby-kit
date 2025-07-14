@@ -27,7 +27,7 @@
     --text-xl: 20px;
     --text-xl--line-height: calc(1.75 / 1.25);
     --font-weight-medium: 400;
-    --font-weight-bold: 600;
+    --font-weight-bold: 500;
     --radius-lg: 0.5rem;
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
     --default-transition-duration: 150ms;
@@ -45,18 +45,8 @@
     --color-neutral-main: #6b688d;
     --color-neutral-light: #ebeaf0;
     --color-neutral-lighter: #f7f7f9;
-    --text-h1: 36px;
-    --text-h2: 32px;
-    --text-h3: 28px;
-    --text-h4: 24px;
-    --text-h5: 22px;
-    --text-h6: 20px;
     --text-l: 18px;
-    --text-m: 16px;
     --text-s: 14px;
-    --text-ms: 13px;
-    --text-t: 10px;
-    --text-ss: 9px;
     --font-weight-fat: 900;
     --font-weight-heavy: 700;
     --leading-default: 1.8;
@@ -439,6 +429,45 @@
     font-size: var(--text-xs);
     line-height: var(--tw-leading, var(--text-xs--line-height));
   }
+  .text-\[9px\] {
+    font-size: 9px;
+  }
+  .text-\[10px\] {
+    font-size: 10px;
+  }
+  .text-\[12px\] {
+    font-size: 12px;
+  }
+  .text-\[13px\] {
+    font-size: 13px;
+  }
+  .text-\[14px\] {
+    font-size: 14px;
+  }
+  .text-\[16px\] {
+    font-size: 16px;
+  }
+  .text-\[18px\] {
+    font-size: 18px;
+  }
+  .text-\[20px\] {
+    font-size: 20px;
+  }
+  .text-\[22px\] {
+    font-size: 22px;
+  }
+  .text-\[24px\] {
+    font-size: 24px;
+  }
+  .text-\[28px\] {
+    font-size: 28px;
+  }
+  .text-\[32px\] {
+    font-size: 32px;
+  }
+  .text-\[36px\] {
+    font-size: 36px;
+  }
   .text-l {
     font-size: var(--text-l);
   }
@@ -490,48 +519,6 @@
   }
   .text-\[var\(--color-white\)\] {
     color: var(--color-white);
-  }
-  .text-\[var\(--text-h1\)\] {
-    color: var(--text-h1);
-  }
-  .text-\[var\(--text-h2\)\] {
-    color: var(--text-h2);
-  }
-  .text-\[var\(--text-h3\)\] {
-    color: var(--text-h3);
-  }
-  .text-\[var\(--text-h4\)\] {
-    color: var(--text-h4);
-  }
-  .text-\[var\(--text-h5\)\] {
-    color: var(--text-h5);
-  }
-  .text-\[var\(--text-h6\)\] {
-    color: var(--text-h6);
-  }
-  .text-\[var\(--text-l\)\] {
-    color: var(--text-l);
-  }
-  .text-\[var\(--text-m\)\] {
-    color: var(--text-m);
-  }
-  .text-\[var\(--text-ms\)\] {
-    color: var(--text-ms);
-  }
-  .text-\[var\(--text-s\)\] {
-    color: var(--text-s);
-  }
-  .text-\[var\(--text-ss\)\] {
-    color: var(--text-ss);
-  }
-  .text-\[var\(--text-t\)\] {
-    color: var(--text-t);
-  }
-  .text-\[var\(--text-xl\)\] {
-    color: var(--text-xl);
-  }
-  .text-\[var\(--text-xs\)\] {
-    color: var(--text-xs);
   }
   .text-gray-400 {
     color: var(--color-gray-400);
