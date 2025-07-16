@@ -1,4 +1,4 @@
-import './tailwind.build.css'
+import '../tailwind-build/tailwind.build.css'
 import type { Preview } from '@storybook/react-vite'
 
 const preview: Preview = {
