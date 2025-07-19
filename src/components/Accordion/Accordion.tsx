@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import cn from '@/utils/cn';
+import { useMobile } from '@/contexts';
+import { Typography } from '../Typography/Typography';
 
 export interface AccordionProps {
-  /** The header content, typically a Typography component */
-  title: React.ReactNode;
-  /** The body content, typically a Typography component */
-  body: React.ReactNode;
+  /** The header text content */
+  title: string;
+  /** The body text content */
+  body: string;
   /** Icon to display at the start of the header */
   startIcon?: React.ReactNode;
   /** Whether the accordion is expanded (controlled) */
@@ -21,6 +23,8 @@ export interface AccordionProps {
   id?: string;
   /** Whether the accordion is disabled */
   disabled?: boolean;
+  /** Force mobile mode (optional, for testing/storybook) */
+  forceMobile?: boolean;
 }
 
 export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
@@ -35,11 +39,16 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       className,
       id,
       disabled = false,
+      forceMobile,
       ...props
     },
     ref,
   ) => {
     const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
+    const { isMobile: contextIsMobile } = useMobile();
+
+    // Use forceMobile prop if provided, otherwise use context
+    const isMobile = forceMobile !== undefined ? forceMobile : contextIsMobile;
 
     // Use controlled state if provided, otherwise use internal state
     const isExpanded =
@@ -62,6 +71,13 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     const headerId = `${accordionId}-header`;
     const contentId = `${accordionId}-content`;
 
+    // Icon size based on device
+    const iconSize = isMobile ? 20 : 24;
+
+    // Typography variants based on device
+    const titleVariant = isMobile ? 'body-s-heavy' : 'body-l-heavy';
+    const bodyVariant = isMobile ? 'body-s-medium' : 'body-m-medium';
+
     return (
       <div
         ref={ref}
@@ -82,7 +98,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
           aria-controls={contentId}
           className={cn(
             'w-full flex items-center justify-between',
-            'p-4',
+            isMobile ? 'p-3' : 'p-4',
             'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
             'disabled:opacity-50 disabled:cursor-not-allowed',
             'transition-all duration-200 ease-in-out',
@@ -93,13 +109,13 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
           <div className="flex-shrink-0 mr-4">
             {isExpanded ? (
               <ChevronUp
-                size={24}
+                size={iconSize}
                 className="text-neutral-darker transition-transform duration-200"
                 aria-hidden="true"
               />
             ) : (
               <ChevronDown
-                size={24}
+                size={iconSize}
                 className="text-neutral-darker transition-transform duration-200"
                 aria-hidden="true"
               />
@@ -107,10 +123,24 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
           </div>
 
           {/* Right side: Start icon and title */}
-          <div className="flex items-center gap-4 flex-1">
-            <div className="flex-1 text-right">{title}</div>
+          <div
+            className={cn(
+              'flex items-center flex-1',
+              isMobile ? 'gap-3' : 'gap-4',
+            )}
+          >
+            <div className="flex-1 text-right">
+              <Typography variant={titleVariant} color="neutral-darker">
+                {title}
+              </Typography>
+            </div>
             {startIcon && (
-              <div className="flex-shrink-0 flex items-center justify-center w-8 h-8">
+              <div
+                className={cn(
+                  'flex-shrink-0 flex items-center justify-center',
+                  isMobile ? 'w-6 h-6' : 'w-8 h-8',
+                )}
+              >
                 {startIcon}
               </div>
             )}
@@ -127,9 +157,16 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
             isExpanded ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0',
           )}
         >
-          <div className="pb-4 mt-1.5">
-            <div className={cn('bg-neutral-lighter rounded-lg', 'p-4')}>
-              {body}
+          <div className={cn(isMobile ? 'pb-3 mt-1' : 'pb-4 mt-1.5')}>
+            <div
+              className={cn(
+                'bg-neutral-lighter rounded-lg',
+                isMobile ? 'p-3' : 'p-4',
+              )}
+            >
+              <Typography variant={bodyVariant} color="neutral-dark">
+                {body}
+              </Typography>
             </div>
           </div>
         </div>

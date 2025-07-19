@@ -4,8 +4,6 @@ import { Accordion, type AccordionProps } from './Accordion';
 import { Typography } from '../Typography/Typography';
 
 type StoryArgs = AccordionProps & {
-  titleText?: string;
-  bodyText?: string;
   startIconType?: 'none' | 'number' | 'user' | 'help' | 'settings' | 'info';
 };
 
@@ -17,22 +15,23 @@ export default {
       description: {
         component: `کامپوننت Accordion برای نمایش محتوای قابل باز و بسته شدن طراحی شده است.
         
+- **Responsive Design:** اندازه‌ها و فاصله‌ها برای موبایل و دسکتاپ بهینه شده‌اند.
 - **حالت کنترل شده و غیرکنترل شده:** قابلیت استفاده در هر دو حالت کنترل شده و غیرکنترل شده.
 - **آیکون شروع:** امکان افزودن آیکون در ابتدای عنوان (مثل شماره، آیکون کاربری و...).
 - **آیکون انتها:** آیکون Chevron که بر اساس وضعیت باز یا بسته تغییر می‌کند.
 - **دسترسی‌پذیری:** شامل ARIA attributes مناسب برای استفاده توسط کاربران دارای نیازهای ویژه.
 - **انیمیشن:** انتقال نرم بین حالت‌های باز و بسته.
-- **Typography Integration:** محتوای عنوان و بدنه با استفاده از کامپوننت Typography.
+- **Typography Integration:** متن عنوان و بدنه با کامپوننت Typography مدیریت می‌شود.
         `,
       },
     },
   },
   argTypes: {
-    titleText: {
+    title: {
       name: 'متن عنوان',
       control: { type: 'text' },
     },
-    bodyText: {
+    body: {
       name: 'متن محتوا',
       control: { type: 'text' },
     },
@@ -49,9 +48,11 @@ export default {
       name: 'غیرفعال',
       control: { type: 'boolean' },
     },
+    forceMobile: {
+      name: 'حالت موبایل اجباری',
+      control: { type: 'boolean' },
+    },
     // پراپ‌هایی که نباید در پنل کنترل نمایش داده شوند
-    title: { table: { disable: true } },
-    body: { table: { disable: true } },
     startIcon: { table: { disable: true } },
     isExpanded: { table: { disable: true } },
     onToggle: { table: { disable: true } },
@@ -83,38 +84,51 @@ const getStartIcon = (type: StoryArgs['startIconType']) => {
   }
 };
 
-export const Default = ({
-  titleText,
-  bodyText,
-  startIconType,
-  ...args
-}: StoryArgs) => (
+export const Default = ({ startIconType, ...args }: StoryArgs) => (
   <div style={{ width: 600 }}>
-    <Accordion
-      {...args}
-      startIcon={getStartIcon(startIconType)}
-      title={
-        <Typography variant="body-l-heavy" color="neutral-darker">
-          {titleText}
-        </Typography>
-      }
-      body={
-        <Typography variant="body-m-medium" color="neutral-darker">
-          {bodyText}
-        </Typography>
-      }
-    />
+    <Accordion {...args} startIcon={getStartIcon(startIconType)} />
   </div>
 );
 
 Default.storyName = 'پیش‌فرض (Default)';
 Default.args = {
-  titleText: 'می‌تونم لوازم یدکی رو با تخفیف بخرم؟',
-  bodyText:
-    'اگر رانندۀ اسنپی، می‌تونی هر محصولی رو که نیاز داری، تو اتوموبی با ۵% تخفیف بخری.\nکافیه شمارۀ موبایلت رو وارد کنی تا کد تخفیف برات پیامک بشه.',
+  title: 'می‌تونم لوازم یدکی رو با تخفیف بخرم؟',
+  body: 'اگر رانندۀ اسنپی، می‌تونی هر محصولی رو که نیاز داری، تو اتوموبی با ۵% تخفیف بخری.\nکافیه شمارۀ موبایلت رو وارد کنی تا کد تخفیف برات پیامک بشه.',
   startIconType: 'number',
   defaultExpanded: false,
   disabled: false,
+  forceMobile: false,
+};
+
+export const Mobile = ({ startIconType, ...args }: StoryArgs) => (
+  <div style={{ width: 320 }}>
+    <Accordion {...args} forceMobile startIcon={getStartIcon(startIconType)} />
+  </div>
+);
+
+Mobile.storyName = 'نمای موبایل (Mobile)';
+Mobile.args = {
+  ...Default.args,
+  title: 'کالا چه زمانی به دستت می‌رسه؟',
+  body: 'اگر ساکن تهران باشی، روز سفارش برات ارسال می‌شه.\nاگر ساکن شهرستانی، ۱ الی ۲ روز بعد به دستت می‌رسه.',
+  startIconType: 'number',
+  defaultExpanded: true,
+};
+
+export const Desktop = ({ startIconType, ...args }: StoryArgs) => (
+  <div style={{ width: 1000 }}>
+    <Accordion
+      {...args}
+      forceMobile={false}
+      startIcon={getStartIcon(startIconType)}
+    />
+  </div>
+);
+
+Desktop.storyName = 'نمای دسکتاپ (Desktop)';
+Desktop.args = {
+  ...Default.args,
+  defaultExpanded: true,
 };
 
 export const ExpandedByDefault = (args: StoryArgs) => <Default {...args} />;
@@ -122,9 +136,8 @@ ExpandedByDefault.storyName = 'باز شده به صورت پیش‌فرض';
 ExpandedByDefault.args = {
   ...Default.args,
   defaultExpanded: true,
-  titleText: 'چطور می‌تونم سفارش بدم؟',
-  bodyText:
-    'می‌تونید از طریق وب‌سایت یا اپلیکیشن موبایل، محصولات مورد نظرتون رو انتخاب کنید و سفارش بدید. پردازی آنلاین یا پرداخت در محل هر دو امکان‌پذیرند.',
+  title: 'چطور می‌تونم سفارش بدم؟',
+  body: 'می‌تونید از طریق وب‌سایت یا اپلیکیشن موبایل، محصولات مورد نظرتون رو انتخاب کنید و سفارش بدید. پردازی آنلاین یا پرداخت در محل هر دو امکان‌پذیرند.',
 };
 
 export const Disabled = (args: StoryArgs) => <Default {...args} />;
@@ -132,26 +145,22 @@ Disabled.storyName = 'حالت غیرفعال (Disabled)';
 Disabled.args = {
   ...Default.args,
   disabled: true,
-  titleText: 'این سوال در حال حاضر در دسترس نیست',
-  bodyText: 'محتوای این بخش موقتاً در دسترس نمی‌باشد.',
+  title: 'این سوال در حال حاضر در دسترس نیست',
+  body: 'محتوای این بخش موقتاً در دسترس نمی‌باشد.',
 };
 
 export const WithDifferentIcons = (args: StoryArgs) => (
   <div className="space-y-4" style={{ width: 600 }}>
-    <Default {...args} startIconType="user" titleText="اطلاعات کاربری" />
-    <Default {...args} startIconType="help" titleText="راهنما و پشتیبانی" />
-    <Default
-      {...args}
-      startIconType="settings"
-      titleText="تنظیمات حساب کاربری"
-    />
-    <Default {...args} startIconType="info" titleText="اطلاعات تماس" />
+    <Default {...args} startIconType="user" title="اطلاعات کاربری" />
+    <Default {...args} startIconType="help" title="راهنما و پشتیبانی" />
+    <Default {...args} startIconType="settings" title="تنظیمات حساب کاربری" />
+    <Default {...args} startIconType="info" title="اطلاعات تماس" />
   </div>
 );
 WithDifferentIcons.storyName = 'انواع آیکون‌ها';
 WithDifferentIcons.args = {
   ...Default.args,
-  bodyText: 'این یک متن نمونه برای نمایش محتوای آکاردئون است.',
+  body: 'این یک متن نمونه برای نمایش محتوای آکاردئون است.',
 };
 
 export const MultipleAccordions = () => {
@@ -187,22 +196,57 @@ export const MultipleAccordions = () => {
               .{item.id}
             </Typography>
           }
-          title={
-            <Typography variant="body-l-heavy" color="neutral-darker">
-              {item.title}
-            </Typography>
-          }
-          body={
-            <Typography variant="body-m-medium" color="neutral-darker">
-              {item.body}
-            </Typography>
-          }
+          title={item.title}
+          body={item.body}
         />
       ))}
     </div>
   );
 };
 MultipleAccordions.storyName = 'چندین آکاردئون (FAQ)';
+
+export const MobileFAQ = () => {
+  const faqData = [
+    {
+      id: 1,
+      title: 'می‌شه لوازم یدکی رو با تخفیف خرید؟',
+      body: 'اگر رانندۀ اسنپی، می‌تونی هر محصولی رو که نیاز داری، تو اتوموبی با ۵% تخفیف بخری.',
+    },
+    {
+      id: 2,
+      title: 'کالا چه زمانی به دستت می‌رسه؟',
+      body: 'اگر ساکن تهران باشی، روز سفارش برات ارسال می‌شه. اگر ساکن شهرستانی، ۱ الی ۲ روز بعد به دستت می‌رسه.',
+    },
+    {
+      id: 3,
+      title: 'چطور سفارش بدم؟',
+      body: 'از طریق وب‌سایت یا اپلیکیشن موبایل، محصولات مورد نظرتون رو انتخاب کنید.',
+    },
+  ];
+
+  return (
+    <div className="space-y-3" style={{ width: 320 }}>
+      {faqData.map((item) => (
+        <Accordion
+          key={item.id}
+          forceMobile
+          startIcon={
+            <Typography
+              variant="body-s-heavy"
+              color="primary"
+              className="text-center"
+            >
+              .{item.id}
+            </Typography>
+          }
+          title={item.title}
+          body={item.body}
+        />
+      ))}
+    </div>
+  );
+};
+MobileFAQ.storyName = 'FAQ موبایل';
 
 export const Controlled = (args: StoryArgs) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -225,17 +269,16 @@ export const Controlled = (args: StoryArgs) => {
 Controlled.storyName = 'کنترل شده (Controlled)';
 Controlled.args = {
   ...Default.args,
-  titleText: 'آکاردئون کنترل شده از بیرون',
-  bodyText:
-    'این آکاردئون توسط دکمه بالایی کنترل می‌شود. شما می‌توانید وضعیت آن را از طریق کد برنامه تغییر دهید.',
+  title: 'آکاردئون کنترل شده از بیرون',
+  body: 'این آکاردئون توسط دکمه بالایی کنترل می‌شود. شما می‌توانید وضعیت آن را از طریق کد برنامه تغییر دهید.',
 };
 
 export const LongContent = (args: StoryArgs) => <Default {...args} />;
 LongContent.storyName = 'محتوای طولانی';
 LongContent.args = {
   ...Default.args,
-  titleText: 'شرایط و قوانین استفاده',
-  bodyText: `شرایط استفاده از خدمات اتوموبی:
+  title: 'شرایط و قوانین استفاده',
+  body: `شرایط استفاده از خدمات اتوموبی:
 
 ۱. کاربر موظف است اطلاعات صحیح و کامل ارائه دهد.
 ۲. استفاده از خدمات به منظور فعالیت‌های غیرقانونی ممنوع است.
