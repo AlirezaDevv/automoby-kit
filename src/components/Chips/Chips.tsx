@@ -47,39 +47,39 @@ export interface ChipsProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const chipVariants = {
   purple: {
-    background: 'bg-[#f4f0fc]',
-    text: 'text-[#42076a]',
-    border: 'border-[#e8e6f0]',
+    background: 'bg-[var(--color-primary-lightest)]',
+    text: 'text-[var(--color-primary-darkest)]',
+    border: 'border-[var(--color-primary-light)]',
   },
   red: {
-    background: 'bg-[#fbebeb]',
-    text: 'text-[#d63333]',
+    background: 'bg-[var(--color-error-light)]',
+    text: 'text-[var(--color-error)]',
     border: 'border-[#f0d6d6]',
   },
   green: {
-    background: 'bg-[#e8f4ed]',
-    text: 'text-[#1b9650]',
+    background: 'bg-[var(--color-success-light)]',
+    text: 'text-[var(--color-success)]',
     border: 'border-[#d4e8dc]',
   },
   orange: {
-    background: 'bg-[#fef0e5]',
-    text: 'text-[#fa6c00]',
+    background: 'bg-[var(--color-warning-light)]',
+    text: 'text-[var(--color-warning)]',
     border: 'border-[#f5e1d1]',
   },
   blue: {
-    background: 'bg-[#e7f4fa]',
-    text: 'text-[#0a90c9]',
+    background: 'bg-[var(--color-info-light)]',
+    text: 'text-[var(--color-info)]',
     border: 'border-[#d3e9f2]',
   },
   white: {
-    background: 'bg-white',
-    text: 'text-[#1a1922]',
-    border: 'border-[#e8e8ea]',
+    background: 'bg-[var(--color-white)]',
+    text: 'text-[var(--color-neutral-darker)]',
+    border: 'border-[var(--color-neutral-light)]',
   },
   disabled: {
-    background: 'bg-[#f7f7f9]',
-    text: 'text-[#a4a2bb]',
-    border: 'border-[#eaeaec]',
+    background: 'bg-[var(--color-neutral-lighter)]',
+    text: 'text-[var(--color-neutral-main)]',
+    border: 'border-[var(--color-neutral-light)]',
   },
 };
 
