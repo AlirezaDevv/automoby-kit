@@ -1,6 +1,6 @@
 import React from 'react';
 import { Wrench, User, Settings, Shield, Car, Home } from 'lucide-react';
-import RadioGroup, { RadioOption } from '@/components/RadioGroup/RadioGroup';
+import { RadioGroup, RadioOption } from '@/components/RadioGroup/RadioGroup';
 
 export default {
   title: 'Components/RadioGroup',

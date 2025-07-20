@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { X, Menu, Settings, User } from 'lucide-react';
-import Drawer, { DrawerProps } from './Drawer';
+import { Drawer, DrawerProps } from './Drawer';
 
 type StoryArgs = DrawerProps & {
   triggerButtonText?: string;

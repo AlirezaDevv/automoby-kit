@@ -1,14 +1,4 @@
-import {
-  Typography,
-  Heading1,
-  Heading2,
-  Heading3,
-  Heading4,
-  Heading5,
-  Heading6,
-  BodyText,
-  TypographyProps,
-} from './Typography';
+import { Typography, TypographyProps } from './Typography';
 
 export default {
   title: 'Components/Typography',
@@ -109,12 +99,24 @@ export const AllHeadings = () => (
     >
       <strong>هدینگ‌ها (Headings)</strong>
     </div>
-    <Heading1>عنوان ۱ - Heading #1 (36px / Heavy 900)</Heading1>
-    <Heading2>عنوان ۲ - Heading #2 (32px / Heavy 900)</Heading2>
-    <Heading3>عنوان ۳ - Heading #3 (28px / Heavy 900)</Heading3>
-    <Heading4>عنوان ۴ - Heading #4 (24px / Heavy 700)</Heading4>
-    <Heading5>عنوان ۵ - Heading #5 (22px / Heavy 700)</Heading5>
-    <Heading6>عنوان ۶ - Heading #6 (20px / Heavy 700)</Heading6>
+    <Typography variant="h1">
+      عنوان ۱ - Heading #1 (36px / Heavy 900)
+    </Typography>
+    <Typography variant="h2">
+      عنوان ۲ - Heading #2 (32px / Heavy 900)
+    </Typography>
+    <Typography variant="h3">
+      عنوان ۳ - Heading #3 (28px / Heavy 900)
+    </Typography>
+    <Typography variant="h4">
+      عنوان ۴ - Heading #4 (24px / Heavy 700)
+    </Typography>
+    <Typography variant="h5">
+      عنوان ۵ - Heading #5 (22px / Heavy 700)
+    </Typography>
+    <Typography variant="h6">
+      عنوان ۶ - Heading #6 (20px / Heavy 700)
+    </Typography>
   </div>
 );
 AllHeadings.storyName = 'تمام هدینگ‌ها';
@@ -135,153 +137,153 @@ export const BodyCopyVariants = () => (
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / XL / Heavy (20px)
       </div>
-      <BodyText variant="body-xl-heavy">
+      <Typography variant="body-xl-heavy">
         این متن نمونه برای BodyCopy XL Heavy است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / L / Heavy (18px)
       </div>
-      <BodyText variant="body-l-heavy">
+      <Typography variant="body-l-heavy">
         این متن نمونه برای BodyCopy L Heavy است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / L / Bold (18px)
       </div>
-      <BodyText variant="body-l-bold">
+      <Typography variant="body-l-bold">
         این متن نمونه برای BodyCopy L Bold است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / L / Medium (18px)
       </div>
-      <BodyText variant="body-l-medium">
+      <Typography variant="body-l-medium">
         این متن نمونه برای BodyCopy L Medium است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / M / Heavy (16px)
       </div>
-      <BodyText variant="body-m-heavy">
+      <Typography variant="body-m-heavy">
         این متن نمونه برای BodyCopy M Heavy است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / M / Bold (16px)
       </div>
-      <BodyText variant="body-m-bold">
+      <Typography variant="body-m-bold">
         این متن نمونه برای BodyCopy M Bold است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / M / Medium (16px)
       </div>
-      <BodyText variant="body-m-medium">
+      <Typography variant="body-m-medium">
         این متن نمونه برای BodyCopy M Medium است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / S / Heavy (14px)
       </div>
-      <BodyText variant="body-s-heavy">
+      <Typography variant="body-s-heavy">
         این متن نمونه برای BodyCopy S Heavy است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / S / Bold (14px)
       </div>
-      <BodyText variant="body-s-bold">
+      <Typography variant="body-s-bold">
         این متن نمونه برای BodyCopy S Bold است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / S / Medium (14px)
       </div>
-      <BodyText variant="body-s-medium">
+      <Typography variant="body-s-medium">
         این متن نمونه برای BodyCopy S Medium است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / MS / Bold (13px)
       </div>
-      <BodyText variant="body-ms-bold">
+      <Typography variant="body-ms-bold">
         این متن نمونه برای BodyCopy MS Bold است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / MS / Medium (13px)
       </div>
-      <BodyText variant="body-ms-medium">
+      <Typography variant="body-ms-medium">
         این متن نمونه برای BodyCopy MS Medium است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / XS / Bold (12px)
       </div>
-      <BodyText variant="body-xs-bold">
+      <Typography variant="body-xs-bold">
         این متن نمونه برای BodyCopy XS Bold است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / XS / Medium (12px)
       </div>
-      <BodyText variant="body-xs-medium">
+      <Typography variant="body-xs-medium">
         این متن نمونه برای BodyCopy XS Medium است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / T / Bold (10px)
       </div>
-      <BodyText variant="body-t-bold">
+      <Typography variant="body-t-bold">
         این متن نمونه برای BodyCopy T Bold است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / T / Medium (10px)
       </div>
-      <BodyText variant="body-t-medium">
+      <Typography variant="body-t-medium">
         این متن نمونه برای BodyCopy T Medium است
-      </BodyText>
+      </Typography>
     </div>
 
     <div>
       <div style={{ fontSize: '14px', color: '#666', marginBottom: 4 }}>
         BodyCopy / SS / Medium (9px)
       </div>
-      <BodyText variant="body-ss-medium">
+      <Typography variant="body-ss-medium">
         این متن نمونه برای BodyCopy SS Medium است
-      </BodyText>
+      </Typography>
     </div>
   </div>
 );

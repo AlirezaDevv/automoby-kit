@@ -1,6 +1,6 @@
 // src/components/Breadcrumb/Breadcrumb.stories.tsx
 
-import Breadcrumb, { BreadcrumbProps } from './Breadcrumb';
+import { Breadcrumb, BreadcrumbProps } from './Breadcrumb';
 
 type StoryArgs = BreadcrumbProps;
 

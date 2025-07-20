@@ -122,35 +122,3 @@ export const Typography = React.forwardRef<HTMLElement, TypographyProps>(
 );
 
 Typography.displayName = 'Typography';
-
-// Helper components for convenience
-export const Heading1 = (props: Omit<TypographyProps, 'variant'>) => (
-  <Typography variant="h1" {...props} />
-);
-
-export const Heading2 = (props: Omit<TypographyProps, 'variant'>) => (
-  <Typography variant="h2" {...props} />
-);
-
-export const Heading3 = (props: Omit<TypographyProps, 'variant'>) => (
-  <Typography variant="h3" {...props} />
-);
-
-export const Heading4 = (props: Omit<TypographyProps, 'variant'>) => (
-  <Typography variant="h4" {...props} />
-);
-
-export const Heading5 = (props: Omit<TypographyProps, 'variant'>) => (
-  <Typography variant="h5" {...props} />
-);
-
-export const Heading6 = (props: Omit<TypographyProps, 'variant'>) => (
-  <Typography variant="h6" {...props} />
-);
-
-export const BodyText = ({
-  variant = 'body-m-medium',
-  ...props
-}: Omit<TypographyProps, 'variant'> & {
-  variant?: Exclude<TypographyVariant, 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'>;
-}) => <Typography variant={variant} {...props} />;

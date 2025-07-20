@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { User, Mail } from 'lucide-react';
-import Input, { InputProps } from './Input';
+import { Input, InputProps } from './Input';
 
 type StoryArgs = Omit<InputProps, 'onChange' | 'ref'> & {
   initialValue?: string;

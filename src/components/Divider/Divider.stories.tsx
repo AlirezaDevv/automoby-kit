@@ -1,4 +1,4 @@
-import Divider, { DividerProps } from './Divider';
+import { Divider, DividerProps } from './Divider';
 
 export default {
   title: 'Components/Divider',
