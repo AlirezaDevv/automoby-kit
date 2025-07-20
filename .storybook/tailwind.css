@@ -33,6 +33,16 @@
   /* WHITE */
   --color-white: #ffffff;
 
+  /* ADDITIONAL SEMANTIC COLORS */
+  --color-success-light: #d4edda;
+  --color-success-dark: #155724;
+  --color-error-light: #f8d7da;
+  --color-error-dark: #721c24;
+  --color-warning-light: #fff3cd;
+  --color-warning-dark: #856404;
+  --color-info-light: #d1ecf1;
+  --color-info-dark: #0c5460;
+
   /* NEUTRALS */
   --color-neutral-darker: #1a1a23;
   --color-neutral-dark: #44425a;
@@ -41,6 +51,8 @@
   --color-midnight-light: #cecebe;
   --color-neutral-light: #ebeaf0;
   --color-neutral-lighter: #f7f7f9;
+  --color-neutral-white: #ffffff;
+  --color-neutral-black: #000000;
 
   /* TYPOGRAPHY */
   --font-sans: "YekanBakh", "Vazirmatn", "IRANSansX", "Tahoma", "Arial", sans-serif;
