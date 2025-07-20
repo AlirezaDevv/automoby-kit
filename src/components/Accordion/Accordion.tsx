@@ -27,7 +27,7 @@ export interface AccordionProps {
   forceMobile?: boolean;
 }
 
-export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
+const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
   (
     {
       title,
@@ -177,4 +177,4 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
 
 Accordion.displayName = 'Accordion';
 
-export default Accordion;
+export { Accordion };

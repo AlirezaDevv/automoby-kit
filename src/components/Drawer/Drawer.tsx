@@ -180,4 +180,4 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
 
 Drawer.displayName = 'Drawer';
 
-export default Drawer;
+export { Drawer };

@@ -65,4 +65,4 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
 
 Divider.displayName = 'Divider';
 
-export default Divider;
+export { Divider };

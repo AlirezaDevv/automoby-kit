@@ -203,4 +203,4 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
 
 Tabs.displayName = 'Tabs';
 
-export default Tabs;
+export { Tabs };

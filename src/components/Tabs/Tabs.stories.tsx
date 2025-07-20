@@ -1,5 +1,5 @@
 import React from 'react';
-import Tabs, { TabItem } from '@/components/Tabs/Tabs';
+import { Tabs, TabItem } from '@/components/Tabs/Tabs';
 
 export default {
   title: 'Components/Tabs',

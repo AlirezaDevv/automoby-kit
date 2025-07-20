@@ -124,4 +124,4 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
 
 Breadcrumb.displayName = 'Breadcrumb';
 
-export default Breadcrumb;
+export { Breadcrumb };
