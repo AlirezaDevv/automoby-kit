@@ -312,6 +312,7 @@ export const AutoResponsive = () => {
             items={sampleTabs}
             activeTab={activeTab}
             onTabChange={setActiveTab}
+            isMobile={false}
           />
         </div>
         <p style={{ marginTop: 12, color: '#666', fontSize: '14px' }}>
@@ -387,6 +388,7 @@ export const InteractiveExample = () => {
             items={dynamicTabs}
             activeTab={activeTab}
             onTabChange={setActiveTab}
+            isMobile={false}
           />
         </div>
       </div>

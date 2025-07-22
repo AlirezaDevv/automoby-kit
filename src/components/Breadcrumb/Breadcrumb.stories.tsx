@@ -241,7 +241,7 @@ export const ResponsiveComparison = () => (
         Mobile View (10px font, 4px gap)
       </h3>
       <Breadcrumb
-        isMobile={true}
+        isMobile
         items={[
           { label: 'صفحه اصلی', onClick: () => console.log('home-clicked') },
           { label: 'محصولات', onClick: () => console.log('products-clicked') },

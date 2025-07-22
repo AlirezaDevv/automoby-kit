@@ -129,7 +129,7 @@ export const ResponsiveComparison = () => {
             pageCount={10}
             page={mobilePage}
             onPageChange={setMobilePage}
-            isMobile={true}
+            isMobile
           />
         </div>
       </div>

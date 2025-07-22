@@ -82,7 +82,12 @@ export const AllVariants = () => {
         <div style={{ marginBottom: 12, fontWeight: 700 }}>سایز دسکتاپ</div>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           {variants.map((variant) => (
-            <Chips key={variant} variant={variant} size="desktop">
+            <Chips
+              key={variant}
+              variant={variant}
+              size="desktop"
+              isMobile={false}
+            >
               {variant === 'purple' && 'بنفش'}
               {variant === 'red' && 'قرمز'}
               {variant === 'green' && 'سبز'}
@@ -98,7 +103,7 @@ export const AllVariants = () => {
         <div style={{ marginBottom: 12, fontWeight: 700 }}>سایز موبایل</div>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           {variants.map((variant) => (
-            <Chips key={variant} variant={variant} size="mobile">
+            <Chips key={variant} variant={variant} size="mobile" isMobile>
               {variant === 'purple' && 'بنفش'}
               {variant === 'red' && 'قرمز'}
               {variant === 'green' && 'سبز'}
@@ -132,7 +137,7 @@ export const AutoResponsive = () => {
         </div>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           {variants.map((variant) => (
-            <Chips key={variant} variant={variant}>
+            <Chips key={variant} variant={variant} isMobile={false}>
               {variant === 'purple' && 'بنفش'}
               {variant === 'red' && 'قرمز'}
               {variant === 'green' && 'سبز'}
@@ -202,7 +207,13 @@ export const DisabledStates = () => {
         </div>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           {variants.map((variant) => (
-            <Chips key={variant} variant={variant} size="desktop" disabled>
+            <Chips
+              key={variant}
+              variant={variant}
+              size="desktop"
+              disabled
+              isMobile={false}
+            >
               {variant === 'purple' && 'بنفش غیرفعال'}
               {variant === 'red' && 'قرمز غیرفعال'}
               {variant === 'green' && 'سبز غیرفعال'}
@@ -220,7 +231,13 @@ export const DisabledStates = () => {
         </div>
         <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
           {variants.map((variant) => (
-            <Chips key={variant} variant={variant} size="mobile" disabled>
+            <Chips
+              key={variant}
+              variant={variant}
+              size="mobile"
+              disabled
+              isMobile
+            >
               غیرفعال
             </Chips>
           ))}
@@ -286,6 +303,7 @@ export const InteractiveExample = () => {
             size="desktop"
             onIconClick={() => removeChip(chip.id)}
             onClick={() => alert(`تگ "${chip.text}" کلیک شد!`)}
+            isMobile={false}
           >
             {chip.text}
           </Chips>
@@ -345,7 +363,7 @@ export const ResponsiveComparison = () => {
               }}
             >
               <span style={{ fontSize: '12px', color: '#666' }}>Desktop</span>
-              <Chips variant={variant} size="desktop">
+              <Chips variant={variant} size="desktop" isMobile={false}>
                 متن نمونه
               </Chips>
             </div>
@@ -358,7 +376,7 @@ export const ResponsiveComparison = () => {
               }}
             >
               <span style={{ fontSize: '12px', color: '#666' }}>Mobile</span>
-              <Chips variant={variant} size="mobile">
+              <Chips variant={variant} size="mobile" isMobile>
                 متن نمونه
               </Chips>
             </div>

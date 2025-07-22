@@ -250,6 +250,7 @@ export const AutoResponsive = () => {
             options={sampleOptionsWithIcons}
             value={value}
             onChange={setValue}
+            isMobile={false}
           />
         </div>
         <p style={{ marginTop: 12, color: '#666', fontSize: '14px' }}>
@@ -320,6 +321,7 @@ export const InteractiveExample = () => {
             options={roleOptions}
             value={userRole}
             onChange={setUserRole}
+            isMobile={false}
           />
         </div>
       </div>
@@ -334,6 +336,7 @@ export const InteractiveExample = () => {
             options={preferenceOptions}
             value={preferences}
             onChange={setPreferences}
+            isMobile={false}
           />
         </div>
       </div>
@@ -390,6 +393,7 @@ export const AllStates = () => {
             options={stateOptions}
             value={normalValue}
             onChange={setNormalValue}
+            isMobile={false}
           />
         </div>
       </div>
@@ -404,6 +408,7 @@ export const AllStates = () => {
             options={stateOptions}
             value={selectedValue}
             onChange={() => {}} // No change allowed
+            isMobile={false}
           />
         </div>
       </div>
@@ -417,6 +422,7 @@ export const AllStates = () => {
             value={disabledValue}
             onChange={() => {}}
             disabled
+            isMobile={false}
           />
         </div>
       </div>
