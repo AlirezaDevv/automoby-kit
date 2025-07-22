@@ -1,6 +1,5 @@
 import React, { useState, useId, ReactNode } from 'react';
 import cn from '@/utils/cn';
-import { useMobile } from '@/contexts/MobileContext';
 
 export type InputProps = {
   state?: 'default' | 'disabled' | 'error';
@@ -8,6 +7,10 @@ export type InputProps = {
   helperText?: string;
   startIcon?: ReactNode;
   endIcon?: ReactNode;
+  /**
+   * Whether the component is in mobile mode
+   */
+  isMobile: boolean;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'id'>;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -21,6 +24,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       startIcon,
       endIcon,
       type = 'text',
+      isMobile,
       ...props
     },
     ref,
@@ -31,8 +35,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const hasContent = value !== '' && value !== null && value !== undefined;
     const isLabelFloated = isFocused || hasContent;
     const isDisabled = state === 'disabled';
-
-    const { isMobile } = useMobile();
 
     const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
       if (!isDisabled) {

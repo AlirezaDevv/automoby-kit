@@ -1,7 +1,6 @@
 import React from 'react';
 import { X } from 'lucide-react';
 import cn from '@/utils/cn';
-import { useMobile } from '@/contexts/MobileContext';
 
 export interface ChipsProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -40,9 +39,9 @@ export interface ChipsProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   className?: string;
   /**
-   * Override mobile detection
+   * Whether the component is in mobile mode
    */
-  isMobile?: boolean;
+  isMobile: boolean;
 }
 
 const chipVariants = {
@@ -110,12 +109,11 @@ export const Chips = React.forwardRef<HTMLDivElement, ChipsProps>(
       onClick,
       onIconClick,
       className,
-      isMobile: isMobileProp,
+      isMobile,
       ...props
     },
     ref,
   ) => {
-    const { isMobile } = useMobile(isMobileProp);
     const actualSize = size || (isMobile ? 'mobile' : 'desktop');
 
     const actualVariant = disabled ? 'disabled' : variant;

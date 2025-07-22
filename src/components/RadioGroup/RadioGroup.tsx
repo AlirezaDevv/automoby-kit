@@ -1,6 +1,5 @@
 import React from 'react';
 import cn from '@/utils/cn';
-import { useMobile } from '@/contexts/MobileContext';
 
 export interface RadioOption {
   /**
@@ -48,9 +47,9 @@ export interface RadioGroupProps
    */
   className?: string;
   /**
-   * Override mobile detection for testing
+   * Whether the component is in mobile mode
    */
-  isMobile?: boolean;
+  isMobile: boolean;
   /**
    * Layout direction of radio options
    */
@@ -280,14 +279,12 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       name,
       disabled = false,
       className,
-      isMobile: isMobileProp,
+      isMobile,
       direction = 'vertical',
       ...props
     },
     ref,
   ) => {
-    const { isMobile } = useMobile(isMobileProp);
-
     const handleOptionClick = (optionId: string) => {
       if (!disabled && onChange) {
         onChange(optionId);

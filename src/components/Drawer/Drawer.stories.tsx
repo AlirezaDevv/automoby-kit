@@ -18,7 +18,7 @@ export default {
 - **حالت تمام‌صفحه:** با پراپ fullScreen می‌توان کشو را در تمام صفحه نمایش داد
 - **بستن با کلیک خارج:** هنگامی که fullScreen فعال نیست، کلیک خارج از کشو آن را می‌بندد
 - **کلید Escape:** امکان بستن کشو با کلید Escape
-- **طراحی واکنش‌گرا:** با استفاده از useMobile برای سایزهای مختلف بهینه‌سازی شده
+- **طراحی واکنش‌گرا:** با استفاده از پراپ isMobile برای سایزهای مختلف بهینه‌سازی شده
 - **دسترسی‌پذیری:** شامل لیبل‌های aria و نقش‌های مناسب برای دسترسی‌پذیری
         `,
       },
@@ -38,13 +38,23 @@ export default {
       name: 'باز',
       control: { type: 'boolean' },
     },
+    isMobile: {
+      name: 'حالت موبایل',
+      control: { type: 'boolean' },
+      defaultValue: false,
+      description: 'تعیین حالت موبایل یا دسکتاپ',
+    },
     children: { table: { disable: true } },
     onClose: { table: { disable: true } },
     className: { table: { disable: true } },
   },
 };
 
-export const Default = ({ triggerButtonText, ...args }: StoryArgs) => {
+export const Default = ({
+  triggerButtonText,
+  isMobile = false,
+  ...args
+}: StoryArgs) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -57,7 +67,12 @@ export const Default = ({ triggerButtonText, ...args }: StoryArgs) => {
         {triggerButtonText || 'باز کردن کشو'}
       </button>
 
-      <Drawer {...args} isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Drawer
+        {...args}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        isMobile={isMobile}
+      >
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold text-neutral-darker">عنوان کشو</h2>
@@ -98,8 +113,7 @@ export const Default = ({ triggerButtonText, ...args }: StoryArgs) => {
 Default.storyName = 'پیش‌فرض (Bottom)';
 Default.args = {
   direction: 'bottom',
-  fullScreen: false,
-  triggerButtonText: 'باز کردن کشو از پایین',
+  isMobile: false,
 };
 
 export const TopDirection = (args: StoryArgs) => <Default {...args} />;
@@ -134,7 +148,11 @@ FullScreenDrawer.args = {
   triggerButtonText: 'باز کردن کشوی تمام‌صفحه',
 };
 
-export const NavigationDrawer = ({ triggerButtonText, ...args }: StoryArgs) => {
+export const NavigationDrawer = ({
+  triggerButtonText,
+  isMobile = false,
+  ...args
+}: StoryArgs) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navigationItems = [
@@ -154,7 +172,12 @@ export const NavigationDrawer = ({ triggerButtonText, ...args }: StoryArgs) => {
         {triggerButtonText || 'منوی ناوبری'}
       </button>
 
-      <Drawer {...args} isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Drawer
+        {...args}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        isMobile={isMobile}
+      >
         <div className="space-y-6">
           <div className="flex items-center justify-between border-b border-neutral-light pb-4">
             <h2 className="text-xl font-bold text-neutral-darker">
@@ -203,6 +226,7 @@ NavigationDrawer.args = {
   direction: 'right',
   fullScreen: false,
   triggerButtonText: 'منوی ناوبری',
+  isMobile: false,
 };
 
 export const MobileVersion = (args: StoryArgs) => (
@@ -216,4 +240,91 @@ MobileVersion.args = {
   ...Default.args,
   direction: 'bottom',
   triggerButtonText: 'کشو موبایل',
+  isMobile: true,
 };
+
+export const ResponsiveComparison = () => {
+  const [desktopOpen, setDesktopOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
+      <div>
+        <h3 style={{ marginBottom: 16, fontWeight: 700 }}>نسخه دسکتاپ</h3>
+        <button
+          type="button"
+          onClick={() => setDesktopOpen(true)}
+          className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors font-medium"
+        >
+          باز کردن کشو دسکتاپ
+        </button>
+
+        <Drawer
+          direction="bottom"
+          isOpen={desktopOpen}
+          onClose={() => setDesktopOpen(false)}
+          isMobile={false}
+        >
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-bold text-neutral-darker">
+                کشو دسکتاپ
+              </h2>
+              <button
+                type="button"
+                onClick={() => setDesktopOpen(false)}
+                className="p-2 hover:bg-neutral-light rounded-lg transition-colors"
+                aria-label="بستن کشو"
+              >
+                <X size={20} />
+              </button>
+            </div>
+            <p className="text-neutral-main leading-relaxed">
+              این کشو در حالت دسکتاپ نمایش داده می‌شود و فاصله‌ها و اندازه‌های
+              بزرگ‌تری دارد.
+            </p>
+          </div>
+        </Drawer>
+      </div>
+
+      <div>
+        <h3 style={{ marginBottom: 16, fontWeight: 700 }}>نسخه موبایل</h3>
+        <button
+          type="button"
+          onClick={() => setMobileOpen(true)}
+          className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors font-medium"
+        >
+          باز کردن کشو موبایل
+        </button>
+
+        <Drawer
+          direction="bottom"
+          isOpen={mobileOpen}
+          onClose={() => setMobileOpen(false)}
+          isMobile
+        >
+          <div className="space-y-4">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-bold text-neutral-darker">
+                کشو موبایل
+              </h2>
+              <button
+                type="button"
+                onClick={() => setMobileOpen(false)}
+                className="p-2 hover:bg-neutral-light rounded-lg transition-colors"
+                aria-label="بستن کشو"
+              >
+                <X size={20} />
+              </button>
+            </div>
+            <p className="text-neutral-main leading-relaxed">
+              این کشو در حالت موبایل نمایش داده می‌شود و فاصله‌ها و اندازه‌های
+              کوچک‌تری دارد.
+            </p>
+          </div>
+        </Drawer>
+      </div>
+    </div>
+  );
+};
+ResponsiveComparison.storyName = 'مقایسه واکنش‌گرا';

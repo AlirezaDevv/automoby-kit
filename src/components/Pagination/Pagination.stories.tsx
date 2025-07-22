@@ -33,20 +33,32 @@ export default {
       control: { type: 'number', min: 1, max: 20 },
       defaultValue: undefined,
     },
+    isMobile: {
+      name: 'حالت موبایل',
+      control: { type: 'boolean' },
+      defaultValue: false,
+      description: 'تعیین حالت موبایل یا دسکتاپ',
+    },
   },
 };
 
 type StoryProps = {
   pageCount: number;
   defaultPage: number;
+  isMobile: boolean;
 };
 
-export const Uncontrolled = ({ pageCount, defaultPage }: StoryProps) => (
+export const Uncontrolled = ({
+  pageCount,
+  defaultPage,
+  isMobile,
+}: StoryProps) => (
   <div dir="rtl" style={{ width: 480, margin: 'auto' }}>
     <Pagination
       pageCount={pageCount}
       defaultPage={defaultPage}
       onPageChange={() => {}}
+      isMobile={isMobile}
     />
   </div>
 );
@@ -55,9 +67,14 @@ Uncontrolled.storyName = 'Uncontrolled (داخلی)';
 Uncontrolled.args = {
   pageCount: 7,
   defaultPage: 2,
+  isMobile: false,
 };
 
-export const Controlled = ({ pageCount, defaultPage }: StoryProps) => {
+export const Controlled = ({
+  pageCount,
+  defaultPage,
+  isMobile,
+}: StoryProps) => {
   const [page, setPage] = useState(defaultPage);
 
   useEffect(() => {
@@ -66,7 +83,12 @@ export const Controlled = ({ pageCount, defaultPage }: StoryProps) => {
 
   return (
     <div dir="rtl" style={{ width: 480, margin: 'auto' }}>
-      <Pagination pageCount={pageCount} page={page} onPageChange={setPage} />
+      <Pagination
+        pageCount={pageCount}
+        page={page}
+        onPageChange={setPage}
+        isMobile={isMobile}
+      />
       <div style={{ textAlign: 'center', marginTop: 16 }}>
         صفحه فعلی:{' '}
         <span style={{ color: '#590DB8', fontWeight: 700 }}>{page}</span>
@@ -79,4 +101,40 @@ Controlled.storyName = 'Controlled (کنترل‌شده)';
 Controlled.args = {
   pageCount: 10,
   defaultPage: 1,
+  isMobile: false,
 };
+
+export const ResponsiveComparison = () => {
+  const [desktopPage, setDesktopPage] = useState(1);
+  const [mobilePage, setMobilePage] = useState(1);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
+      <div>
+        <h3 style={{ marginBottom: 16, fontWeight: 700 }}>نسخه دسکتاپ</h3>
+        <div dir="rtl" style={{ width: 480, margin: 'auto' }}>
+          <Pagination
+            pageCount={10}
+            page={desktopPage}
+            onPageChange={setDesktopPage}
+            isMobile={false}
+          />
+        </div>
+      </div>
+
+      <div>
+        <h3 style={{ marginBottom: 16, fontWeight: 700 }}>نسخه موبایل</h3>
+        <div dir="rtl" style={{ width: 320, margin: 'auto' }}>
+          <Pagination
+            pageCount={10}
+            page={mobilePage}
+            onPageChange={setMobilePage}
+            isMobile={true}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+ResponsiveComparison.storyName = 'مقایسه واکنش‌گرا';

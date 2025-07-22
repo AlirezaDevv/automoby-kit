@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import cn from '@/utils/cn';
-import { useMobile } from '@/contexts';
 import { Typography } from '../Typography/Typography';
 
 export interface AccordionProps {
@@ -23,8 +22,8 @@ export interface AccordionProps {
   id?: string;
   /** Whether the accordion is disabled */
   disabled?: boolean;
-  /** Force mobile mode (optional, for testing/storybook) */
-  forceMobile?: boolean;
+  /** Whether the component is in mobile mode */
+  isMobile: boolean;
 }
 
 const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
@@ -39,16 +38,12 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       className,
       id,
       disabled = false,
-      forceMobile,
+      isMobile,
       ...props
     },
     ref,
   ) => {
     const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
-    const { isMobile: contextIsMobile } = useMobile();
-
-    // Use forceMobile prop if provided, otherwise use context
-    const isMobile = forceMobile !== undefined ? forceMobile : contextIsMobile;
 
     // Use controlled state if provided, otherwise use internal state
     const isExpanded =

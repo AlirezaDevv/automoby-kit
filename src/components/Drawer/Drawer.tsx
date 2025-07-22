@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, ReactNode } from 'react';
 import cn from '@/utils/cn';
-import { useMobile } from '@/contexts/MobileContext';
 
 export type DrawerDirection = 'top' | 'bottom' | 'left' | 'right';
 
@@ -11,6 +10,10 @@ export type DrawerProps = {
   isOpen?: boolean;
   onClose?: () => void;
   className?: string;
+  /**
+   * Whether the component is in mobile mode
+   */
+  isMobile: boolean;
 };
 
 const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
@@ -22,13 +25,13 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       isOpen = false,
       onClose,
       className,
+      isMobile,
       ...props
     },
     ref,
   ) => {
     const overlayRef = useRef<HTMLDivElement>(null);
     const drawerRef = useRef<HTMLDivElement>(null);
-    const { isMobile } = useMobile();
 
     // Handle escape key
     useEffect(() => {

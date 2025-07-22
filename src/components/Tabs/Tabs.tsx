@@ -1,6 +1,5 @@
 import React from 'react';
 import cn from '@/utils/cn';
-import { useMobile } from '@/contexts/MobileContext';
 
 export interface TabItem {
   /**
@@ -39,9 +38,9 @@ export interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   className?: string;
   /**
-   * Override mobile detection for testing
+   * Whether the component is in mobile mode
    */
-  isMobile?: boolean;
+  isMobile: boolean;
 }
 
 // Helper functions moved outside component
@@ -173,19 +172,7 @@ const renderTab = (
 };
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
-  (
-    {
-      items,
-      activeTab,
-      onTabChange,
-      className,
-      isMobile: isMobileProp,
-      ...props
-    },
-    ref,
-  ) => {
-    const { isMobile } = useMobile(isMobileProp);
-
+  ({ items, activeTab, onTabChange, className, isMobile, ...props }, ref) => {
     return (
       <div ref={ref} className={cn('relative w-full', className)} {...props}>
         <div className="box-border flex flex-row items-center justify-end p-0 relative w-full">

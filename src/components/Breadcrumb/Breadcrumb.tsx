@@ -1,7 +1,6 @@
 import React from 'react';
 import { ChevronLeft } from 'lucide-react';
 import cn from '@/utils/cn';
-import { useMobile } from '@/contexts/MobileContext';
 
 export interface BreadcrumbItem {
   label: string;
@@ -12,13 +11,14 @@ export interface BreadcrumbItem {
 export interface BreadcrumbProps {
   items: BreadcrumbItem[];
   className?: string;
-  testIsMobile?: boolean;
+  /**
+   * Whether the component is in mobile mode
+   */
+  isMobile: boolean;
 }
 
 const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
-  ({ items, className, testIsMobile }, ref) => {
-    const { isMobile } = useMobile(testIsMobile);
-
+  ({ items, className, isMobile }, ref) => {
     const handleItemClick = (
       item: BreadcrumbItem,
       index: number,

@@ -32,10 +32,10 @@ export default {
       control: { type: 'text' },
       description: 'کلاس‌های CSS اضافی برای سفارشی‌سازی ظاهر',
     },
-    testIsMobile: {
-      name: 'حالت موبایل (تست)',
+    isMobile: {
+      name: 'حالت موبایل',
       control: { type: 'boolean' },
-      description: 'برای تست و نمایش حالت موبایل استفاده می‌شود',
+      description: 'تعیین حالت موبایل یا دسکتاپ',
     },
   },
   args: {
@@ -57,6 +57,7 @@ export default {
       },
       { label: 'صفحه فعلی' },
     ],
+    isMobile: false,
   },
 };
 
@@ -196,7 +197,7 @@ export const DesktopView = (args: StoryArgs) => <Breadcrumb {...args} />;
 
 DesktopView.storyName = 'نمایش دسکتاپ';
 DesktopView.args = {
-  testIsMobile: false,
+  isMobile: false,
   items: [
     { label: 'صفحه اصلی', onClick: () => console.log('home-clicked') },
     { label: 'صفحه پیشین', onClick: () => console.log('previous-clicked') },
@@ -209,7 +210,7 @@ export const MobileView = (args: StoryArgs) => <Breadcrumb {...args} />;
 
 MobileView.storyName = 'نمایش موبایل';
 MobileView.args = {
-  testIsMobile: true,
+  isMobile: true,
   items: [
     { label: 'صفحه اصلی', onClick: () => console.log('home-clicked') },
     { label: 'صفحه پیشین', onClick: () => console.log('previous-clicked') },
@@ -226,7 +227,7 @@ export const ResponsiveComparison = () => (
         Desktop View (14px font, 12px gap)
       </h3>
       <Breadcrumb
-        testIsMobile={false}
+        isMobile={false}
         items={[
           { label: 'صفحه اصلی', onClick: () => console.log('home-clicked') },
           { label: 'محصولات', onClick: () => console.log('products-clicked') },
@@ -240,7 +241,7 @@ export const ResponsiveComparison = () => (
         Mobile View (10px font, 4px gap)
       </h3>
       <Breadcrumb
-        testIsMobile
+        isMobile={true}
         items={[
           { label: 'صفحه اصلی', onClick: () => console.log('home-clicked') },
           { label: 'محصولات', onClick: () => console.log('products-clicked') },

@@ -48,9 +48,10 @@ export default {
       name: 'غیرفعال',
       control: { type: 'boolean' },
     },
-    forceMobile: {
-      name: 'حالت موبایل اجباری',
+    isMobile: {
+      name: 'حالت موبایل',
       control: { type: 'boolean' },
+      description: 'تعیین حالت موبایل یا دسکتاپ',
     },
     // پراپ‌هایی که نباید در پنل کنترل نمایش داده شوند
     startIcon: { table: { disable: true } },
@@ -97,12 +98,12 @@ Default.args = {
   startIconType: 'number',
   defaultExpanded: false,
   disabled: false,
-  forceMobile: false,
+  isMobile: false,
 };
 
 export const Mobile = ({ startIconType, ...args }: StoryArgs) => (
   <div style={{ width: 320 }}>
-    <Accordion {...args} forceMobile startIcon={getStartIcon(startIconType)} />
+    <Accordion {...args} isMobile startIcon={getStartIcon(startIconType)} />
   </div>
 );
 
@@ -119,7 +120,7 @@ export const Desktop = ({ startIconType, ...args }: StoryArgs) => (
   <div style={{ width: 1000 }}>
     <Accordion
       {...args}
-      forceMobile={false}
+      isMobile={false}
       startIcon={getStartIcon(startIconType)}
     />
   </div>
@@ -187,6 +188,7 @@ export const MultipleAccordions = () => {
       {faqData.map((item) => (
         <Accordion
           key={item.id}
+          isMobile={false}
           startIcon={
             <Typography
               variant="body-l-heavy"
@@ -229,7 +231,7 @@ export const MobileFAQ = () => {
       {faqData.map((item) => (
         <Accordion
           key={item.id}
-          forceMobile
+          isMobile
           startIcon={
             <Typography
               variant="body-s-heavy"
