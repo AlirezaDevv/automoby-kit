@@ -1,0 +1,38 @@
+# Source files (only include built dist)
+src/
+*.stories.tsx
+.storybook/
+storybook-static/
+tailwind-build/
+
+# Development files
+.git/
+.github/
+node_modules/
+example/
+
+# Config files
+tsconfig.json
+rollup.config.js
+postcss.config.js
+.eslintrc.*
+.prettierrc.*
+.husky/
+
+# Documentation
+*.md
+!README.md
+
+# Build artifacts (keep only dist)
+*.log
+*.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db 

@@ -1,62 +1,84 @@
-// Typography
-export { Typography } from './components/Typography/Typography';
+import { withLicenseProtection } from './components/ProtectedComponent';
+// Original Components (for internal use)
+import { Typography as OriginalTypography } from './components/Typography/Typography';
+import { Button as OriginalButton } from './components/Button/Button';
+import { Input as OriginalInput } from './components/Input/Input';
+import { Tabs as OriginalTabs } from './components/Tabs/Tabs';
+import { Drawer as OriginalDrawer } from './components/Drawer/Drawer';
+import { Backdrop as OriginalBackdrop } from './components/Backdrop/Backdrop';
+import { Breadcrumb as OriginalBreadcrumb } from './components/Breadcrumb/Breadcrumb';
+import { Pagination as OriginalPagination } from './components/Pagination/Pagination';
+import { Accordion as OriginalAccordion } from './components/Accordion/Accordion';
+import { Divider as OriginalDivider } from './components/Divider/Divider';
+import { RadioGroup as OriginalRadioGroup } from './components/RadioGroup/RadioGroup';
+import { Chips as OriginalChips } from './components/Chips/Chips';
+
+// License Management - Must be imported and called first
+export { initializeAutomobiKit } from './licensing';
+export type { LicenseConfig } from './licensing';
+
+// Protected Components (license-wrapped)
+export const Typography = withLicenseProtection(
+  OriginalTypography,
+  'Typography',
+);
+export const Button = withLicenseProtection(OriginalButton, 'Button');
+export const Input = withLicenseProtection(OriginalInput, 'Input');
+export const Tabs = withLicenseProtection(OriginalTabs, 'Tabs');
+export const Drawer = withLicenseProtection(OriginalDrawer, 'Drawer');
+export const Backdrop = withLicenseProtection(OriginalBackdrop, 'Backdrop');
+export const Breadcrumb = withLicenseProtection(
+  OriginalBreadcrumb,
+  'Breadcrumb',
+);
+export const Pagination = withLicenseProtection(
+  OriginalPagination,
+  'Pagination',
+);
+export const Accordion = withLicenseProtection(OriginalAccordion, 'Accordion');
+export const Divider = withLicenseProtection(OriginalDivider, 'Divider');
+export const RadioGroup = withLicenseProtection(
+  OriginalRadioGroup,
+  'RadioGroup',
+);
+export const Chips = withLicenseProtection(OriginalChips, 'Chips');
+
+// Type exports
 export type {
   TypographyProps,
   TypographyVariant,
 } from './components/Typography/Typography';
 
-// Button
-export { Button } from './components/Button/Button';
 export type {
   ButtonProps,
   ButtonVariant,
   ButtonSize,
 } from './components/Button/Button';
 
-// Input
-export { Input } from './components/Input/Input';
 export type { InputProps } from './components/Input/Input';
 
-// Tabs
-export { Tabs } from './components/Tabs/Tabs';
 export type { TabsProps, TabItem } from './components/Tabs/Tabs';
 
-// Drawer
-export { Drawer } from './components/Drawer/Drawer';
 export type { DrawerProps, DrawerDirection } from './components/Drawer/Drawer';
 
-// Backdrop
-export { Backdrop } from './components/Backdrop/Backdrop';
 export type { BackdropProps } from './components/Backdrop/Backdrop';
 
-// Breadcrumb
-export { Breadcrumb } from './components/Breadcrumb/Breadcrumb';
 export type {
   BreadcrumbProps,
   BreadcrumbItem,
 } from './components/Breadcrumb/Breadcrumb';
 
-// Pagination
-export { Pagination } from './components/Pagination/Pagination';
 export type { UnifiedPaginationProps as PaginationProps } from './components/Pagination/Pagination';
 
-// Accordion
-export { Accordion } from './components/Accordion/Accordion';
 export type { AccordionProps } from './components/Accordion/Accordion';
 
-// Divider
-export { Divider } from './components/Divider/Divider';
 export type { DividerProps } from './components/Divider/Divider';
 
-// RadioGroup
-export { RadioGroup } from './components/RadioGroup/RadioGroup';
 export type {
   RadioGroupProps,
   RadioOption,
 } from './components/RadioGroup/RadioGroup';
 
-// Chips
-export { Chips } from './components/Chips/Chips';
 export type { ChipsProps } from './components/Chips/Chips';
 
 // Contexts

@@ -1,8 +1,21 @@
 {
   "name": "automoby-kit",
-  "version": "0.0.0",
-  "description": "this package was created in war 2025",
-  "main": "index.js",
+  "version": "1.0.0",
+  "description": "A comprehensive React UI component library with built-in licensing system - created in war 2025",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/types/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "typescript",
+    "tailwind",
+    "kit"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint \"src/**/*.{js,ts,jsx,tsx}\" --fix",
@@ -11,6 +24,7 @@
     "check-lint": "eslint \"src/**/*.{js,ts,jsx,tsx}\"",
     "check-types": "tsc --noEmit",
     "prepare": "husky",
+    "prepublishOnly": "npm run build",
     "storybook": "storybook dev -p 6006",
     "storybook:dev": "concurrently \"npm:build:storybook:css:watch\" \"storybook dev -p 6006\"",
     "build-storybook": "storybook build",
