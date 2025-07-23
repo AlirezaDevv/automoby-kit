@@ -26,6 +26,7 @@ export const MobileProvider = ({
 }: MobileProviderProps) => {
   const isMobile = detectMobile(userAgent);
 
+  // eslint-disable-next-line react/jsx-no-constructed-context-values
   const value: MobileContextValue = {
     isMobile,
     userAgent,
