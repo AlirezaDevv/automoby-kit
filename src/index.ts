@@ -84,6 +84,5 @@ export type {
 export type { ChipsProps } from './components/Chips/Chips';
 
 export type { MenuProps, MenuItem } from './components/Menu/Menu';
-
 // Contexts
-export { MobileProvider, useMobile } from './contexts/MobileContext';
+export { MobileProvider } from './contexts/MobileContext';

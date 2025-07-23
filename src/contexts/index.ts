@@ -1,2 +1,2 @@
-export { MobileProvider, useMobile } from './MobileContext';
+export { MobileProvider } from './MobileContext';
 export { default as MobileContext } from './MobileContext';

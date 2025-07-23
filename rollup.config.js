@@ -133,19 +133,19 @@ export default [
       dir: 'dist/types',
       format: 'esm',
     },
-    external: ['react', 'react-dom'],
-    plugins: [
-      alias({
-        entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
-      }),
-      resolve(),
-      commonjs(),
-      typescript({
+  external: ['react', 'react-dom'],
+  plugins: [
+    alias({
+      entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
+    }),
+    resolve(),
+    commonjs(),
+    typescript({
         tsconfig: './tsconfig.build.json',
-        declaration: true,
-        declarationDir: 'dist/types',
+      declaration: true,
+      declarationDir: 'dist/types',
         emitDeclarationOnly: true,
-      }),
-    ],
+    }),
+  ],
   },
 ];

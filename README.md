@@ -121,23 +121,15 @@ const MyButton: React.FC<ButtonProps> = (props) => {
 The library includes a mobile detection context:
 
 ```typescript
-import { MobileProvider, useMobile } from 'automoby-kit';
+import { MobileProvider } from 'automoby-kit';
 
 function App() {
   return (
-    <MobileProvider>
+    <MobileProvider userAgent={navigator.userAgent}>
       <MyComponent />
     </MobileProvider>
   );
 }
-
-function MyComponent() {
-  const isMobile = useMobile();
-  
-  return (
-    <div>
-      {isMobile ? 'Mobile view' : 'Desktop view'}
-    </div>
   );
 }
 ```
