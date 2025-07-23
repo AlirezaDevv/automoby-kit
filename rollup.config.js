@@ -41,7 +41,7 @@ const componentEntries = {
   
   // Licensing and contexts
   licensing: 'src/licensing/index.ts',
-  contexts: 'src/contexts/index.ts',
+  contexts: 'src/contexts/MobileContext.tsx',
   ProtectedComponent: 'src/components/ProtectedComponent.tsx',
   
   // Utilities
