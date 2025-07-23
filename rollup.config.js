@@ -61,7 +61,7 @@ export default [
     output: {
       dir: 'dist/esm',
       format: 'esm',
-      sourcemap: true,
+      sourcemap: false,
       entryFileNames: '[name].js',
       chunkFileNames: 'chunks/[name]-[hash].js',
       banner: (chunk) => getBanner(chunk.name),
@@ -98,7 +98,7 @@ export default [
     output: {
       dir: 'dist/cjs',
       format: 'cjs',
-      sourcemap: true,
+      sourcemap: false,
       entryFileNames: '[name].js',
       chunkFileNames: 'chunks/[name]-[hash].js',
       banner: (chunk) => getBanner(chunk.name),
