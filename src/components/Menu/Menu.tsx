@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
 import cn from '@/utils/cn';
 import { Typography } from '../Typography/Typography';
 

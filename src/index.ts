@@ -12,6 +12,7 @@ import { Accordion as OriginalAccordion } from './components/Accordion/Accordion
 import { Divider as OriginalDivider } from './components/Divider/Divider';
 import { RadioGroup as OriginalRadioGroup } from './components/RadioGroup/RadioGroup';
 import { Chips as OriginalChips } from './components/Chips/Chips';
+import { Menu as OriginalMenu } from './components/Menu/Menu';
 
 // License Management - Must be imported and called first
 export { initializeAutomobiKit } from './licensing';
@@ -42,6 +43,7 @@ export const RadioGroup = withLicenseProtection(
   'RadioGroup',
 );
 export const Chips = withLicenseProtection(OriginalChips, 'Chips');
+export const Menu = withLicenseProtection(OriginalMenu, 'Menu');
 
 // Type exports
 export type {
@@ -80,6 +82,8 @@ export type {
 } from './components/RadioGroup/RadioGroup';
 
 export type { ChipsProps } from './components/Chips/Chips';
+
+export type { MenuProps, MenuItem } from './components/Menu/Menu';
 
 // Contexts
 export { MobileProvider, useMobile } from './contexts/MobileContext';

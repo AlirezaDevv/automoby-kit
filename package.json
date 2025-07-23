@@ -2,12 +2,99 @@
   "name": "automoby-kit",
   "version": "1.0.2",
   "description": "A comprehensive React UI component library with built-in licensing system - created in war 2025",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./Typography": {
+      "import": "./dist/esm/Typography.js",
+      "require": "./dist/cjs/Typography.js",
+      "types": "./dist/types/components/Typography/Typography.d.ts"
+    },
+    "./Button": {
+      "import": "./dist/esm/Button.js",
+      "require": "./dist/cjs/Button.js",
+      "types": "./dist/types/components/Button/Button.d.ts"
+    },
+    "./Input": {
+      "import": "./dist/esm/Input.js",
+      "require": "./dist/cjs/Input.js",
+      "types": "./dist/types/components/Input/Input.d.ts"
+    },
+    "./Tabs": {
+      "import": "./dist/esm/Tabs.js",
+      "require": "./dist/cjs/Tabs.js",
+      "types": "./dist/types/components/Tabs/Tabs.d.ts"
+    },
+    "./Drawer": {
+      "import": "./dist/esm/Drawer.js",
+      "require": "./dist/cjs/Drawer.js",
+      "types": "./dist/types/components/Drawer/Drawer.d.ts"
+    },
+    "./Backdrop": {
+      "import": "./dist/esm/Backdrop.js",
+      "require": "./dist/cjs/Backdrop.js",
+      "types": "./dist/types/components/Backdrop/Backdrop.d.ts"
+    },
+    "./Breadcrumb": {
+      "import": "./dist/esm/Breadcrumb.js",
+      "require": "./dist/cjs/Breadcrumb.js",
+      "types": "./dist/types/components/Breadcrumb/Breadcrumb.d.ts"
+    },
+    "./Pagination": {
+      "import": "./dist/esm/Pagination.js",
+      "require": "./dist/cjs/Pagination.js",
+      "types": "./dist/types/components/Pagination/Pagination.d.ts"
+    },
+    "./Accordion": {
+      "import": "./dist/esm/Accordion.js",
+      "require": "./dist/cjs/Accordion.js",
+      "types": "./dist/types/components/Accordion/Accordion.d.ts"
+    },
+    "./Divider": {
+      "import": "./dist/esm/Divider.js",
+      "require": "./dist/cjs/Divider.js",
+      "types": "./dist/types/components/Divider/Divider.d.ts"
+    },
+    "./RadioGroup": {
+      "import": "./dist/esm/RadioGroup.js",
+      "require": "./dist/cjs/RadioGroup.js",
+      "types": "./dist/types/components/RadioGroup/RadioGroup.d.ts"
+    },
+    "./Chips": {
+      "import": "./dist/esm/Chips.js",
+      "require": "./dist/cjs/Chips.js",
+      "types": "./dist/types/components/Chips/Chips.d.ts"
+    },
+    "./Menu": {
+      "import": "./dist/esm/Menu.js",
+      "require": "./dist/cjs/Menu.js",
+      "types": "./dist/types/components/Menu/Menu.d.ts"
+    },
+    "./licensing": {
+      "import": "./dist/esm/licensing.js",
+      "require": "./dist/cjs/licensing.js",
+      "types": "./dist/types/licensing/index.d.ts"
+    },
+    "./contexts": {
+      "import": "./dist/esm/contexts.js",
+      "require": "./dist/cjs/contexts.js",
+      "types": "./dist/types/contexts/index.d.ts"
+    },
+    "./utils": {
+      "import": "./dist/esm/utils.js",
+      "require": "./dist/cjs/utils.js",
+      "types": "./dist/types/utils/cn.d.ts"
+    }
+  },
   "keywords": [
     "react",
     "ui",
@@ -48,6 +135,7 @@
     "@rollup/plugin-alias": "^5.1.1",
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.3",
     "@storybook/addon-docs": "^9.0.6",
     "@storybook/addon-onboarding": "^9.0.6",
