@@ -16,7 +16,8 @@ const clientComponents = [
   'Pagination',
   'Accordion',
   'RadioGroup',
-  'Menu'
+  'Menu',
+  'contexts'
 ];
 
 // Define individual component entry points
