@@ -66,7 +66,8 @@ export default [
       chunkFileNames: 'chunks/[name]-[hash].js',
       banner: (chunk) => getBanner(chunk.name),
     },
-    external: ['react', 'react-dom'],
+    // ✅ مهم‌ترین تغییر برای حل مشکل
+    external: [/^react($|\/)/, 'react-dom'],
     plugins: [
       alias({
         entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
@@ -79,14 +80,14 @@ export default [
       }),
       terser({
         compress: {
-          directives: false, // Preserve 'use client' and other directives
+          directives: false,
         },
         format: {
-          comments: false, // Remove comments but preserve directives via banner
-          preserve_annotations: true, // Preserve important annotations
+          comments: false, 
+          preserve_annotations: true,
         },
         mangle: {
-          keep_fnames: true, // Keep function names for better debugging
+          keep_fnames: true,
         },
       }),
     ],
@@ -102,7 +103,8 @@ export default [
       chunkFileNames: 'chunks/[name]-[hash].js',
       banner: (chunk) => getBanner(chunk.name),
     },
-    external: ['react', 'react-dom'],
+    // ✅ مهم‌ترین تغییر برای حل مشکل
+    external: [/^react($|\/)/, 'react-dom'],
     plugins: [
       alias({
         entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
@@ -115,14 +117,14 @@ export default [
       }),
       terser({
         compress: {
-          directives: false, // Preserve 'use client' and other directives
+          directives: false,
         },
         format: {
-          comments: false, // Remove comments but preserve directives via banner
-          preserve_annotations: true, // Preserve important annotations
+          comments: false,
+          preserve_annotations: true,
         },
         mangle: {
-          keep_fnames: true, // Keep function names for better debugging
+          keep_fnames: true,
         },
       }),
     ],
@@ -134,19 +136,20 @@ export default [
       dir: 'dist/types',
       format: 'esm',
     },
-  external: ['react', 'react-dom'],
-  plugins: [
-    alias({
-      entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
-    }),
-    resolve(),
-    commonjs(),
-    typescript({
+    // ✅ اضافه کردن این خط برای هماهنگی
+    external: [/^react($|\/)/, 'react-dom'],
+    plugins: [
+      alias({
+        entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
+      }),
+      resolve(),
+      commonjs(),
+      typescript({
         tsconfig: './tsconfig.build.json',
-      declaration: true,
-      declarationDir: 'dist/types',
+        declaration: true,
+        declarationDir: 'dist/types',
         emitDeclarationOnly: true,
-    }),
-  ],
+      }),
+    ],
   },
 ];
