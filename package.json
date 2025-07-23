@@ -1,6 +1,6 @@
 {
   "name": "automoby-kit",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A comprehensive React UI component library with built-in licensing system - created in war 2025",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
