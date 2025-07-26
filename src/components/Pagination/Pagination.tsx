@@ -7,6 +7,7 @@ import {
   MoreHorizontalIcon,
 } from 'lucide-react';
 import cn from '@/utils/cn';
+import { useMobile } from '@/contexts/MobileContext';
 
 type Device = 'mobile' | 'desktop';
 
@@ -195,9 +196,9 @@ export interface UnifiedPaginationProps {
   onPageChange?: (page: number) => void;
   className?: string;
   /**
-   * Whether the component is in mobile mode
+   * Whether the component is in mobile mode (optional, auto-detected if not provided)
    */
-  isMobile: boolean;
+  isMobile?: boolean;
 }
 
 export const Pagination: React.FC<UnifiedPaginationProps> = ({
@@ -209,12 +210,15 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
   isMobile,
   ...navProps
 }) => {
+  const detectedIsMobile = useMobile();
+  const actualIsMobile = isMobile ?? detectedIsMobile;
+
   const isControlled = controlledPage !== undefined;
   const [internalPage, setInternalPage] = useState(defaultPage);
 
   const page = isControlled ? controlledPage! : internalPage;
 
-  const device = isMobile ? 'mobile' : 'desktop';
+  const device = actualIsMobile ? 'mobile' : 'desktop';
 
   useEffect(() => {
     if (!isControlled) setInternalPage(defaultPage);

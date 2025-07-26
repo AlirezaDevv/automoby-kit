@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronLeft } from 'lucide-react';
 import cn from '@/utils/cn';
+import { useMobile } from '@/contexts/MobileContext';
 
 export interface BreadcrumbItem {
   label: string;
@@ -12,13 +13,16 @@ export interface BreadcrumbProps {
   items: BreadcrumbItem[];
   className?: string;
   /**
-   * Whether the component is in mobile mode
+   * Whether the component is in mobile mode (optional, auto-detected if not provided)
    */
-  isMobile: boolean;
+  isMobile?: boolean;
 }
 
 const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
   ({ items, className, isMobile }, ref) => {
+    const detectedIsMobile = useMobile();
+    const actualIsMobile = isMobile ?? detectedIsMobile;
+
     const handleItemClick = (
       item: BreadcrumbItem,
       index: number,
@@ -41,7 +45,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
           // Base layout - RTL with flex-row-reverse to show items right to left
           'flex flex-row-reverse items-center',
           // Responsive gap and padding based on mobile state
-          isMobile ? 'gap-1 px-4 py-2.5' : 'gap-3 pr-1 pt-3 pb-4 pl-0',
+          actualIsMobile ? 'gap-1 px-4 py-2.5' : 'gap-3 pr-1 pt-3 pb-4 pl-0',
           className,
         )}
         aria-label="Breadcrumb navigation"
@@ -62,7 +66,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                       // Base styles
                       'whitespace-nowrap border-0 bg-transparent p-0 no-underline',
                       // Responsive font size based on mobile state
-                      isMobile ? 'text-t' : 'text-s',
+                      actualIsMobile ? 'text-t' : 'text-s',
                       // Color
                       'text-neutral-main',
                       // Cursor and hover effects for clickable items
@@ -87,7 +91,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                       // Base styles
                       'whitespace-nowrap',
                       // Responsive font size based on mobile state
-                      isMobile ? 'text-t' : 'text-s',
+                      actualIsMobile ? 'text-t' : 'text-s',
                       // Color
                       'text-neutral-main',
                       // Different styles for current page (last item)
@@ -108,7 +112,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                     className={cn(
                       'text-black flex-shrink-0',
                       // Responsive icon size
-                      isMobile ? 'w-2.5 h-2.5' : 'w-3 h-3',
+                      actualIsMobile ? 'w-2.5 h-2.5' : 'w-3 h-3',
                     )}
                     aria-hidden="true"
                   />

@@ -62,7 +62,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     const selectRef = useRef<HTMLDivElement>(null);
     const listRef = useRef<HTMLUListElement>(null);
     const id = useId();
-    const { isMobile } = useMobile();
+    const isMobile = useMobile();
 
     // Determine if component is controlled or uncontrolled
     const isControlled = controlledValue !== undefined;

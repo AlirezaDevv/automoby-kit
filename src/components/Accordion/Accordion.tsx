@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import cn from '@/utils/cn';
 import { Typography } from '../Typography/Typography';
+import { useMobile } from '@/contexts/MobileContext';
 
 export interface AccordionProps {
   /** The header text content */
@@ -22,8 +23,8 @@ export interface AccordionProps {
   id?: string;
   /** Whether the accordion is disabled */
   disabled?: boolean;
-  /** Whether the component is in mobile mode */
-  isMobile: boolean;
+  /** Whether the component is in mobile mode (optional, auto-detected if not provided) */
+  isMobile?: boolean;
 }
 
 const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
@@ -43,6 +44,9 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     },
     ref,
   ) => {
+    const detectedIsMobile = useMobile();
+    const actualIsMobile = isMobile ?? detectedIsMobile;
+
     const [internalExpanded, setInternalExpanded] = useState(defaultExpanded);
 
     // Use controlled state if provided, otherwise use internal state
@@ -67,11 +71,11 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
     const contentId = `${accordionId}-content`;
 
     // Icon size based on device
-    const iconSize = isMobile ? 20 : 24;
+    const iconSize = actualIsMobile ? 20 : 24;
 
     // Typography variants based on device
-    const titleVariant = isMobile ? 'body-s-heavy' : 'body-l-heavy';
-    const bodyVariant = isMobile ? 'body-s-medium' : 'body-m-medium';
+    const titleVariant = actualIsMobile ? 'body-s-heavy' : 'body-l-heavy';
+    const bodyVariant = actualIsMobile ? 'body-s-medium' : 'body-m-medium';
 
     return (
       <div
@@ -93,7 +97,7 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
           aria-controls={contentId}
           className={cn(
             'w-full flex items-center justify-between',
-            isMobile ? 'p-3' : 'p-4',
+            actualIsMobile ? 'p-3' : 'p-4',
             'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
             'disabled:opacity-50 disabled:cursor-not-allowed',
             'transition-all duration-200 ease-in-out',
@@ -121,7 +125,7 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
           <div
             className={cn(
               'flex items-center flex-1',
-              isMobile ? 'gap-3' : 'gap-4',
+              actualIsMobile ? 'gap-3' : 'gap-4',
             )}
           >
             <div className="flex-1 text-right">
@@ -133,7 +137,7 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
               <div
                 className={cn(
                   'flex-shrink-0 flex items-center justify-center',
-                  isMobile ? 'w-6 h-6' : 'w-8 h-8',
+                  actualIsMobile ? 'w-6 h-6' : 'w-8 h-8',
                 )}
               >
                 {startIcon}
@@ -152,11 +156,11 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
             isExpanded ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0',
           )}
         >
-          <div className={cn(isMobile ? 'pb-3 mt-1' : 'pb-4 mt-1.5')}>
+          <div className={cn(actualIsMobile ? 'pb-3 mt-1' : 'pb-4 mt-1.5')}>
             <div
               className={cn(
                 'bg-neutral-lighter rounded-lg',
-                isMobile ? 'p-3' : 'p-4',
+                actualIsMobile ? 'p-3' : 'p-4',
               )}
             >
               <Typography variant={bodyVariant} color="neutral-dark">

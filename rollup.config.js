@@ -129,14 +129,13 @@ export default [
       }),
     ],
   },
-  // TypeScript declarations (no minification needed)
+  // TypeScript declarations for ESM
   {
     input: componentEntries,
     output: {
-      dir: 'dist/types',
+      dir: 'dist/esm',
       format: 'esm',
     },
-    // ✅ اضافه کردن این خط برای هماهنگی
     external: [/^react($|\/)/, 'react-dom'],
     plugins: [
       alias({
@@ -147,7 +146,29 @@ export default [
       typescript({
         tsconfig: './tsconfig.build.json',
         declaration: true,
-        declarationDir: 'dist/types',
+        declarationDir: 'dist/esm',
+        emitDeclarationOnly: true,
+      }),
+    ],
+  },
+  // TypeScript declarations for CJS
+  {
+    input: componentEntries,
+    output: {
+      dir: 'dist/cjs',
+      format: 'cjs',
+    },
+    external: [/^react($|\/)/, 'react-dom'],
+    plugins: [
+      alias({
+        entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
+      }),
+      resolve(),
+      commonjs(),
+      typescript({
+        tsconfig: './tsconfig.build.json',
+        declaration: true,
+        declarationDir: 'dist/cjs',
         emitDeclarationOnly: true,
       }),
     ],

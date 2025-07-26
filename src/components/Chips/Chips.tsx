@@ -1,6 +1,7 @@
 import React from 'react';
 import { X } from 'lucide-react';
 import cn from '@/utils/cn';
+import { useMobile } from '@/contexts/MobileContext';
 
 export interface ChipsProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -19,7 +20,7 @@ export interface ChipsProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   size?: 'mobile' | 'desktop';
   /**
-   * Text content of the chip
+   * The text or content to display in the chip
    */
   children?: React.ReactNode;
   /**
@@ -31,17 +32,17 @@ export interface ChipsProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   onClick?: () => void;
   /**
-   * Click handler for the X icon/close button
+   * Click handler for the close icon
    */
   onIconClick?: () => void;
   /**
-   * Custom class name
+   * Custom CSS class
    */
   className?: string;
   /**
-   * Whether the component is in mobile mode
+   * Whether the component is in mobile mode (optional, auto-detected if not provided)
    */
-  isMobile: boolean;
+  isMobile?: boolean;
 }
 
 const chipVariants = {
@@ -114,7 +115,9 @@ export const Chips = React.forwardRef<HTMLDivElement, ChipsProps>(
     },
     ref,
   ) => {
-    const actualSize = size || (isMobile ? 'mobile' : 'desktop');
+    const detectedIsMobile = useMobile();
+    const actualIsMobile = isMobile ?? detectedIsMobile;
+    const actualSize = size || (actualIsMobile ? 'mobile' : 'desktop');
 
     const actualVariant = disabled ? 'disabled' : variant;
     const variantStyles = chipVariants[actualVariant];

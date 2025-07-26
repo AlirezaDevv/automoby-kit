@@ -1,5 +1,6 @@
 import React from 'react';
 import cn from '@/utils/cn';
+import { useMobile } from '@/contexts/MobileContext';
 
 export interface RadioOption {
   /**
@@ -47,9 +48,9 @@ export interface RadioGroupProps
    */
   className?: string;
   /**
-   * Whether the component is in mobile mode
+   * Whether the component is in mobile mode (optional, auto-detected if not provided)
    */
-  isMobile: boolean;
+  isMobile?: boolean;
   /**
    * Layout direction of radio options
    */
@@ -137,9 +138,9 @@ interface RadioOptionComponentProps {
    */
   name: string;
   /**
-   * Whether in mobile mode
+   * Whether in mobile mode (optional, passed from parent)
    */
-  isMobile: boolean;
+  isMobile?: boolean;
 }
 
 const RadioOptionComponent: React.FC<RadioOptionComponentProps> = ({
@@ -148,7 +149,7 @@ const RadioOptionComponent: React.FC<RadioOptionComponentProps> = ({
   disabled,
   onClick,
   name,
-  isMobile,
+  isMobile = false,
 }) => {
   const [isHovered, setIsHovered] = React.useState(false);
 
@@ -285,6 +286,9 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
     },
     ref,
   ) => {
+    const detectedIsMobile = useMobile();
+    const actualIsMobile = isMobile ?? detectedIsMobile;
+
     const handleOptionClick = (optionId: string) => {
       if (!disabled && onChange) {
         onChange(optionId);
@@ -295,7 +299,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
       if (direction === 'horizontal') {
         return cn(
           'flex flex-row gap-2',
-          isMobile ? 'flex-wrap' : 'flex-nowrap',
+          actualIsMobile ? 'flex-wrap' : 'flex-nowrap',
           className,
         );
       }
@@ -317,7 +321,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
             disabled={disabled || option.disabled}
             onClick={() => handleOptionClick(option.id)}
             name={name}
-            isMobile={isMobile}
+            isMobile={actualIsMobile}
           />
         ))}
       </div>

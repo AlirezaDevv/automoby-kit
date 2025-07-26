@@ -1,4 +1,4 @@
-import { createContext, ReactNode } from 'react';
+import { createContext, ReactNode, useContext } from 'react';
 import { UAParser } from 'ua-parser-js';
 
 interface MobileContextValue {
@@ -35,6 +35,14 @@ export const MobileProvider = ({
   return (
     <MobileContext.Provider value={value}>{children}</MobileContext.Provider>
   );
+};
+
+export const useMobile = (): boolean => {
+  const context = useContext(MobileContext);
+  if (context === undefined) {
+    throw new Error('useMobile must be used within a MobileProvider');
+  }
+  return context.isMobile;
 };
 
 export default MobileContext;

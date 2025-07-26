@@ -1,5 +1,6 @@
 import React, { useState, useId, ReactNode } from 'react';
 import cn from '@/utils/cn';
+import { useMobile } from '@/contexts/MobileContext';
 
 export type InputProps = {
   state?: 'default' | 'disabled' | 'error';
@@ -8,9 +9,9 @@ export type InputProps = {
   startIcon?: ReactNode;
   endIcon?: ReactNode;
   /**
-   * Whether the component is in mobile mode
+   * Whether the component is in mobile mode (optional, auto-detected if not provided)
    */
-  isMobile: boolean;
+  isMobile?: boolean;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'id'>;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -31,6 +32,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const [isFocused, setIsFocused] = useState(false);
     const id = useId();
+    const detectedIsMobile = useMobile();
+    const actualIsMobile = isMobile ?? detectedIsMobile;
 
     const hasContent = value !== '' && value !== null && value !== undefined;
     const isLabelFloated = isFocused || hasContent;
@@ -59,8 +62,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const baseIconClasses = 'absolute h-5 w-5 transition-colors duration-300';
 
     const containerClasses = cn(baseContainerClasses, {
-      'h-[54px]': !isMobile,
-      'h-12': isMobile,
+      'h-[54px]': !actualIsMobile,
+      'h-12': actualIsMobile,
       'border-neutral-light': state === 'default' && !isFocused,
       'border-primary': state === 'default' && isFocused,
       'border-error': state === 'error',
@@ -69,9 +72,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const labelClasses = cn(baseLabelClasses, {
       'top-[-10px] bg-white px-1 mx-3 font-medium': isLabelFloated,
-      'text-s': (!isMobile && isLabelFloated) || (isMobile && !isLabelFloated),
-      'text-xs': isMobile && isLabelFloated,
-      'text-m': !isMobile && !isLabelFloated,
+      'text-s':
+        (!actualIsMobile && isLabelFloated) ||
+        (actualIsMobile && !isLabelFloated),
+      'text-xs': actualIsMobile && isLabelFloated,
+      'text-m': !actualIsMobile && !isLabelFloated,
       'right-1': startIcon,
       'right-3': !startIcon,
       'top-1/2 -translate-y-1/2 text-m font-medium': !isLabelFloated,
@@ -102,8 +107,8 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     });
 
     const helperTextClasses = cn('font-light mt-1 px-2 h-4', {
-      'text-s': !isMobile,
-      'text-xs': isMobile,
+      'text-s': !actualIsMobile,
+      'text-xs': actualIsMobile,
       'text-neutral-main': state === 'default',
       'text-primary': state === 'default' && isFocused,
       'text-error': state === 'error',

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, ReactNode } from 'react';
 import cn from '@/utils/cn';
+import { useMobile } from '@/contexts/MobileContext';
 
 export type DrawerDirection = 'top' | 'bottom' | 'left' | 'right';
 
@@ -11,9 +12,9 @@ export type DrawerProps = {
   onClose?: () => void;
   className?: string;
   /**
-   * Whether the component is in mobile mode
+   * Whether the component is in mobile mode (optional, auto-detected if not provided)
    */
-  isMobile: boolean;
+  isMobile?: boolean;
 };
 
 const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
@@ -30,6 +31,8 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     },
     ref,
   ) => {
+    const detectedIsMobile = useMobile();
+    const actualIsMobile = isMobile ?? detectedIsMobile;
     const overlayRef = useRef<HTMLDivElement>(null);
     const drawerRef = useRef<HTMLDivElement>(null);
 
@@ -146,8 +149,8 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
         'rounded-b-2xl': direction === 'top' && !fullScreen,
         'rounded-r-2xl': direction === 'left' && !fullScreen,
         'rounded-l-2xl': direction === 'right' && !fullScreen,
-        'p-6': !isMobile,
-        'p-4': isMobile,
+        'p-6': !actualIsMobile,
+        'p-4': actualIsMobile,
       },
       className,
     );
