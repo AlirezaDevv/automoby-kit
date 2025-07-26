@@ -64,7 +64,6 @@ export default [
       chunkFileNames: 'chunks/[name]-[hash].js',
       banner: (chunk) => getBanner(chunk.name),
     },
-    // ✅ مهم‌ترین تغییر برای حل مشکل
     external: [/^react($|\/)/, 'react-dom'],
     plugins: [
       alias({
@@ -101,7 +100,6 @@ export default [
       chunkFileNames: 'chunks/[name]-[hash].js',
       banner: (chunk) => getBanner(chunk.name),
     },
-    // ✅ مهم‌ترین تغییر برای حل مشکل
     external: [/^react($|\/)/, 'react-dom'],
     plugins: [
       alias({
@@ -127,11 +125,11 @@ export default [
       }),
     ],
   },
-  // TypeScript declarations for ESM
+  // TypeScript declarations build
   {
     input: componentEntries,
     output: {
-      dir: 'dist/esm',
+      dir: 'dist/types',
       format: 'esm',
     },
     external: [/^react($|\/)/, 'react-dom'],
@@ -144,29 +142,7 @@ export default [
       typescript({
         tsconfig: './tsconfig.build.json',
         declaration: true,
-        declarationDir: 'dist/esm',
-        emitDeclarationOnly: true,
-      }),
-    ],
-  },
-  // TypeScript declarations for CJS
-  {
-    input: componentEntries,
-    output: {
-      dir: 'dist/cjs',
-      format: 'cjs',
-    },
-    external: [/^react($|\/)/, 'react-dom'],
-    plugins: [
-      alias({
-        entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
-      }),
-      resolve(),
-      commonjs(),
-      typescript({
-        tsconfig: './tsconfig.build.json',
-        declaration: true,
-        declarationDir: 'dist/cjs',
+        declarationDir: 'dist/types',
         emitDeclarationOnly: true,
       }),
     ],
