@@ -1,7 +1,7 @@
 {
   "name": "automoby-kit",
   "version": "1.0.12",
-  "description": "A comprehensive React UI component library with built-in licensing system - created in war 2025",
+  "description": "A comprehensive React UI component library - created in war 2025",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
@@ -78,11 +78,6 @@
       "import": "./dist/esm/Menu.js",
       "require": "./dist/cjs/Menu.js",
       "types": "./dist/types/components/Menu/Menu.d.ts"
-    },
-    "./licensing": {
-      "import": "./dist/esm/licensing.js",
-      "require": "./dist/cjs/licensing.js",
-      "types": "./dist/types/licensing/index.d.ts"
     },
     "./contexts": {
       "import": "./dist/esm/contexts.js",

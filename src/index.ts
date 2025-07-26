@@ -1,4 +1,3 @@
-import { withLicenseProtection } from './components/ProtectedComponent';
 // Original Components (for internal use)
 import { Typography as OriginalTypography } from './components/Typography/Typography';
 import { Button as OriginalButton } from './components/Button/Button';
@@ -14,36 +13,20 @@ import { RadioGroup as OriginalRadioGroup } from './components/RadioGroup/RadioG
 import { Chips as OriginalChips } from './components/Chips/Chips';
 import { Menu as OriginalMenu } from './components/Menu/Menu';
 
-// License Management - Must be imported and called first
-export { initializeAutomobiKit } from './licensing';
-export type { LicenseConfig } from './licensing';
-
-// Protected Components (license-wrapped)
-export const Typography = withLicenseProtection(
-  OriginalTypography,
-  'Typography',
-);
-export const Button = withLicenseProtection(OriginalButton, 'Button');
-export const Input = withLicenseProtection(OriginalInput, 'Input');
-export const Tabs = withLicenseProtection(OriginalTabs, 'Tabs');
-export const Drawer = withLicenseProtection(OriginalDrawer, 'Drawer');
-export const Backdrop = withLicenseProtection(OriginalBackdrop, 'Backdrop');
-export const Breadcrumb = withLicenseProtection(
-  OriginalBreadcrumb,
-  'Breadcrumb',
-);
-export const Pagination = withLicenseProtection(
-  OriginalPagination,
-  'Pagination',
-);
-export const Accordion = withLicenseProtection(OriginalAccordion, 'Accordion');
-export const Divider = withLicenseProtection(OriginalDivider, 'Divider');
-export const RadioGroup = withLicenseProtection(
-  OriginalRadioGroup,
-  'RadioGroup',
-);
-export const Chips = withLicenseProtection(OriginalChips, 'Chips');
-export const Menu = withLicenseProtection(OriginalMenu, 'Menu');
+// Components (direct exports)
+export const Typography = OriginalTypography;
+export const Button = OriginalButton;
+export const Input = OriginalInput;
+export const Tabs = OriginalTabs;
+export const Drawer = OriginalDrawer;
+export const Backdrop = OriginalBackdrop;
+export const Breadcrumb = OriginalBreadcrumb;
+export const Pagination = OriginalPagination;
+export const Accordion = OriginalAccordion;
+export const Divider = OriginalDivider;
+export const RadioGroup = OriginalRadioGroup;
+export const Chips = OriginalChips;
+export const Menu = OriginalMenu;
 
 // Type exports
 export type {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import cn from '@/utils/cn';
-import { Typography } from '../Typography/Typography';
 import { useMobile } from '@/contexts/MobileContext';
+import { Typography } from '../Typography/Typography';
 
 export interface AccordionProps {
   /** The header text content */

@@ -40,10 +40,8 @@ const componentEntries = {
   Chips: 'src/components/Chips/Chips.tsx',
   Menu: 'src/components/Menu/Menu.tsx',
   
-  // Licensing and contexts
-  licensing: 'src/licensing/index.ts',
+  // Contexts
   contexts: 'src/contexts/MobileContext.tsx',
-  ProtectedComponent: 'src/components/ProtectedComponent.tsx',
   
   // Utilities
   utils: 'src/utils/cn.ts',
