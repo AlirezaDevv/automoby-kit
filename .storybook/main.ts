@@ -16,6 +16,13 @@ const config: StorybookConfig = {
         '@': path.resolve(__dirname, '../src'),
       },
     };
+    
+    // Define environment variables for the browser
+    config.define = {
+      ...config.define,
+      'process.env.STORYBOOK_FORCE_MOBILE': JSON.stringify(process.env.STORYBOOK_FORCE_MOBILE),
+    };
+    
     return config;
   },
 };

@@ -38,6 +38,15 @@ export const MobileProvider = ({
 };
 
 export const useMobile = (): boolean => {
+  // Check for Storybook environment variable first
+  if (process.env.STORYBOOK_FORCE_MOBILE === 'true') {
+    return true;
+  }
+
+  if (process.env.STORYBOOK_FORCE_MOBILE === 'false') {
+    return false;
+  }
+
   const context = useContext(MobileContext);
   if (context === undefined) {
     throw new Error('useMobile must be used within a MobileProvider');
