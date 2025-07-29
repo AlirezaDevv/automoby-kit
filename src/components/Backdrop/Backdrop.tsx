@@ -1,7 +1,8 @@
 import React from 'react';
 import cn from '@/utils/cn';
 
-export interface BackdropProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface BackdropProps {
+  className?: string;
   /**
    * Whether the backdrop is visible
    */
@@ -18,6 +19,7 @@ export interface BackdropProps extends React.HTMLAttributes<HTMLDivElement> {
    * Custom z-index (defaults to z-51 which is drawer z-index + 1)
    */
   zIndex?: number;
+  children?: React.ReactNode;
 }
 
 export const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(

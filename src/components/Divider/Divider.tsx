@@ -1,7 +1,9 @@
 import React from 'react';
 import cn from '@/utils/cn';
 
-export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface DividerProps {
+  className?: string;
+  style?: React.CSSProperties;
   /**
    * Width of the divider
    * @default "100%"

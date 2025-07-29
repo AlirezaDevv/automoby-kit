@@ -8,14 +8,16 @@ import {
 export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'ghost';
 export type ButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps {
+  className?: string;
   variant?: ButtonVariant;
   size?: ButtonSize;
   textVariant?: TypographyVariant;
   icon?: React.ReactNode;
   iconPosition?: 'left' | 'right';
   loading?: boolean;
+  disabled?: boolean;
+  children?: React.ReactNode;
 }
 
 const sizeClasses: Record<ButtonSize, string> = {

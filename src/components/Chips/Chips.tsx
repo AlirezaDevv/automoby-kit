@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 import cn from '@/utils/cn';
 import { useMobile } from '@/contexts/MobileContext';
 
-export interface ChipsProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ChipsProps {
   /**
    * The variant/color of the chip
    */

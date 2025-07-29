@@ -28,8 +28,9 @@ export type TypographyVariant =
   | 'body-t-medium' // 10px / Medium (400)
   | 'body-ss-medium'; // 9px / Medium (400)
 
-export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
+export interface TypographyProps {
   variant?: TypographyVariant;
+  children?: React.ReactNode;
   color?:
     | 'primary'
     | 'secondary'
@@ -39,6 +40,7 @@ export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
     | 'white'
     | 'inherit';
   as?: React.ElementType;
+  className?: string;
 }
 
 const variantClasses: Record<TypographyVariant, string> = {

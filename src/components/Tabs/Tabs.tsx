@@ -21,7 +21,8 @@ export interface TabItem {
   disabled?: boolean;
 }
 
-export interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TabsProps {
+  className?: string;
   /**
    * Array of tab items
    */
