@@ -18,6 +18,7 @@ export interface ButtonProps {
   loading?: boolean;
   disabled?: boolean;
   children?: React.ReactNode;
+  onClick?: () => void;
 }
 
 const sizeClasses: Record<ButtonSize, string> = {

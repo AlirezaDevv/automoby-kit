@@ -38,7 +38,6 @@ export interface TabsProps {
   /**
    * Custom class name
    */
-  className?: string;
   /**
    * Whether the component is in mobile mode (optional, auto-detected if not provided)
    */
