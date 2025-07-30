@@ -47,39 +47,39 @@ export interface ChipsProps {
 
 const chipVariants = {
   purple: {
-    background: 'bg-[var(--color-primary-lightest)]',
-    text: 'text-[var(--color-primary-darkest)]',
-    border: 'border-[var(--color-primary-light)]',
+    background: 'bg-primary-lightest',
+    text: 'text-primary-darkest',
+    border: 'border-primary-light',
   },
   red: {
-    background: 'bg-[var(--color-error-light)]',
-    text: 'text-[var(--color-error)]',
+    background: 'bg-error-light',
+    text: 'text-error',
     border: 'border-[#f0d6d6]',
   },
   green: {
-    background: 'bg-[var(--color-success-light)]',
-    text: 'text-[var(--color-success)]',
+    background: 'bg-success-light',
+    text: 'text-success',
     border: 'border-[#d4e8dc]',
   },
   orange: {
-    background: 'bg-[var(--color-warning-light)]',
-    text: 'text-[var(--color-warning)]',
+    background: 'bg-warning-light',
+    text: 'text-warning',
     border: 'border-[#f5e1d1]',
   },
   blue: {
-    background: 'bg-[var(--color-info-light)]',
-    text: 'text-[var(--color-info)]',
+    background: 'bg-info-light',
+    text: 'text-info',
     border: 'border-[#d3e9f2]',
   },
   white: {
-    background: 'bg-[var(--color-white)]',
-    text: 'text-[var(--color-neutral-darker)]',
-    border: 'border-[var(--color-neutral-light)]',
+    background: 'bg-white',
+    text: 'text-neutral-darker',
+    border: 'border-neutral-light',
   },
   disabled: {
-    background: 'bg-[var(--color-neutral-lighter)]',
-    text: 'text-[var(--color-neutral-main)]',
-    border: 'border-[var(--color-neutral-light)]',
+    background: 'bg-neutral-lighter',
+    text: 'text-neutral-main',
+    border: 'border-neutral-light',
   },
 };
 

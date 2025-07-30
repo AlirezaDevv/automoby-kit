@@ -37,24 +37,24 @@ const defaultTextVariants: Record<ButtonSize, TypographyVariant> = {
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary: `
-    bg-[var(--color-primary)] text-white
-    hover:bg-[var(--color-primary-dark)]
-    disabled:bg-[var(--color-neutral-light)] disabled:text-[var(--color-neutral-darker)]
+    bg-primary text-white
+    hover:bg-primary-dark
+    disabled:bg-neutral-light disabled:text-neutral-darker
   `,
   secondary: `
-    bg-[var(--color-primary-lightest)] text-[var(--color-primary)]
-    hover:bg-[var(--color-primary-lighter)]
-    disabled:bg-[var(--color-neutral-light)] disabled:text-[var(--color-neutral-darker)]
+    bg-primary-lightest text-primary
+    hover:bg-primary-lighter
+    disabled:bg-neutral-light disabled:text-neutral-darker
   `,
   tertiary: `
-    bg-white border border-[var(--color-primary-light)] text-[var(--color-primary)]
-    hover:bg-[var(--color-neutral-lighter)]
-    disabled:bg-[var(--color-neutral-light)] disabled:text-[var(--color-neutral-darker)]
+    bg-white border border-primary-light text-primary
+    hover:bg-neutral-lighter
+    disabled:bg-neutral-light disabled:text-neutral-darker
   `,
   ghost: `
-    bg-transparent text-[var(--color-primary)]
-    hover:bg-[var(--color-primary-lightest)]
-    disabled:bg-[var(--color-neutral-light)] disabled:text-[var(--color-neutral-darker)]
+    bg-transparent text-primary
+    hover:bg-primary-lightest
+    disabled:bg-neutral-light disabled:text-neutral-darker
   `,
 };
 

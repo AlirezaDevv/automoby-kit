@@ -78,12 +78,12 @@ export const getTypographyClasses = (variant: TypographyVariant): string => {
 };
 
 const colorClasses: Record<string, string> = {
-  primary: 'text-[var(--color-primary)]',
-  secondary: 'text-[var(--color-secondary)]',
-  'neutral-darker': 'text-[var(--color-neutral-darker)]',
-  'neutral-dark': 'text-[var(--color-neutral-dark)]',
-  'neutral-main': 'text-[var(--color-neutral-main)]',
-  white: 'text-[var(--color-white)]',
+  primary: 'text-primary',
+  secondary: 'text-secondary',
+  'neutral-darker': 'text-neutral-darker',
+  'neutral-dark': 'text-neutral-dark',
+  'neutral-main': 'text-neutral-main',
+  white: 'text-white',
   inherit: 'text-inherit',
 };
 

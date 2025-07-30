@@ -146,12 +146,12 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
     const buttonClasses = cn(
       // Base button styles matching Figma design
       'inline-flex items-center justify-center',
-      'bg-white border border-[var(--color-neutral-light)]',
+      'bg-white border border-neutral-light',
       'rounded-[6px] px-[16px] py-[13px]',
       'transition-colors duration-200',
       // Interactive states
-      'hover:bg-[var(--color-neutral-lighter)]',
-      'focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] focus:ring-offset-2',
+      'hover:bg-neutral-lighter',
+      'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
       // Disabled state
       {
         'opacity-50 cursor-not-allowed': disabled,
@@ -162,7 +162,7 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
     const dropdownClasses = cn(
       // Base dropdown styles
       'absolute top-full left-0 right-0 z-10 mt-[4px]',
-      'bg-white border border-[var(--color-neutral-light)]',
+      'bg-white border border-neutral-light',
       'rounded-[6px] py-[13px] px-[16px]',
       'shadow-lg',
       // Animation
@@ -176,8 +176,8 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
     const itemClasses = cn(
       'block w-full text-right',
       'transition-colors duration-200',
-      'hover:bg-[var(--color-neutral-lighter)] rounded-[4px] px-[8px] py-[4px] -mx-[8px]',
-      'focus:outline-none focus:bg-[var(--color-neutral-lighter)]',
+      'hover:bg-neutral-lighter rounded-[4px] px-[8px] py-[4px] -mx-[8px]',
+      'focus:outline-none focus:bg-neutral-lighter',
     );
 
     return (
