@@ -110,12 +110,7 @@ export const Typography = React.forwardRef<HTMLElement, TypographyProps>(
       Element,
       {
         ref,
-        className: cn(
-          colorClasses[color],
-          variantClasses[variant],
-          'leading-[var(--leading-default)]', // 180% line height
-          className,
-        ),
+        className: cn(colorClasses[color], variantClasses[variant], className),
         ...props,
       },
       children,
