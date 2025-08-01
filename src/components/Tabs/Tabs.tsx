@@ -80,9 +80,7 @@ const renderBadge = (
       className={cn(
         'flex items-center justify-center rounded-[5px] font-sans font-bold text-white',
         'transition-colors duration-200',
-        isMobile
-          ? 'size-6 text-[14px] pt-0.5'
-          : 'size-[25px] text-[14px] pt-[3px]',
+        isMobile ? 'size-6 text-s pt-0.5' : 'size-[25px] text-s pt-[3px]',
         disabled ? 'bg-midnight' : isActive ? 'bg-primary' : 'bg-neutral-main',
       )}
     >
@@ -111,7 +109,7 @@ const renderTabContent = (
       <div
         className={cn(
           'font-sans text-nowrap text-right transition-colors duration-200',
-          isMobile ? 'text-[14px]' : isActive ? 'text-[16px]' : 'text-[18px]',
+          isMobile ? 'text-s' : isActive ? 'text-m' : 'text-l',
           item.disabled
             ? 'font-normal text-midnight'
             : isActive

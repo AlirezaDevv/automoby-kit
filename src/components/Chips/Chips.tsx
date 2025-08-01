@@ -88,14 +88,14 @@ const chipSizes = {
     padding: 'px-2.5 py-1',
     gap: 'gap-1',
     iconSize: 'size-4',
-    fontSize: 'text-[12px]',
+    fontSize: 'text-xs',
     lineHeight: 'leading-[1.8]',
   },
   desktop: {
     padding: 'px-3 py-1',
     gap: 'gap-1.5',
     iconSize: 'size-5',
-    fontSize: 'text-[14px]',
+    fontSize: 'text-s',
     lineHeight: 'leading-[24px]',
   },
 };

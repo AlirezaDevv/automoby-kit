@@ -231,9 +231,7 @@ const RadioOptionComponent: React.FC<RadioOptionComponentProps> = ({
               <div
                 className={cn(
                   'font-sans font-bold text-nowrap text-right transition-colors duration-200',
-                  isMobile
-                    ? 'text-[14px] leading-[24px]'
-                    : 'text-[16px] leading-normal',
+                  isMobile ? 'text-s leading-[24px]' : 'text-m leading-normal',
                   getTextColor(),
                 )}
               >
