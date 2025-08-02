@@ -17,6 +17,11 @@ const clientComponents = [
   'Accordion',
   'RadioGroup',
   'Menu',
+  'Select',
+  'Chips',
+  'Tabs',
+  'Button',
+  'Breadcrumb',
   'contexts'
 ];
 
