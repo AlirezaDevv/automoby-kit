@@ -81,7 +81,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         type="button"
         className={cn(
-          'inline-flex items-center justify-center rounded-[8px] transition-colors duration-200',
+          'inline-flex items-center justify-center rounded-lg transition-colors duration-200',
           sizeClasses[size],
           variantClasses[variant],
           getTypographyClasses(finalTextVariant),
