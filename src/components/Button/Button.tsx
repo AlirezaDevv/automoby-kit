@@ -22,10 +22,10 @@ export interface ButtonProps {
 }
 
 const sizeClasses: Record<ButtonSize, string> = {
-  sm: 'px-[16px] py-[7px]',
-  md: 'px-[16px] py-[9px]',
-  lg: 'px-[16px] py-[13px]',
-  xl: 'px-[20px] py-[13px]',
+  sm: 'px-4 py-2',
+  md: 'px-4 py-2.5',
+  lg: 'px-4 py-3',
+  xl: 'px-5 py-3',
 };
 
 const defaultTextVariants: Record<ButtonSize, TypographyVariant> = {
