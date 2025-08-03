@@ -42,7 +42,7 @@ const variantClasses: Record<ButtonVariant, string> = {
     disabled:bg-neutral-light disabled:text-neutral-darker
   `,
   secondary: `
-    bg-primary-lightest text-primary
+    bg-primary-lightest text-primary-dark
     hover:bg-primary-lighter
     disabled:bg-neutral-light disabled:text-neutral-darker
   `,
