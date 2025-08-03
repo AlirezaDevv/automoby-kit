@@ -132,54 +132,34 @@ export const WithContent: Story = {
   },
 };
 
-// Backdrop with visible children (always visible)
-export const WithVisibleChildren: Story = {
+// Backdrop with custom z-index
+export const WithCustomZIndex: Story = {
   render: () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
       <div className="relative h-screen bg-gray-100 p-8">
         <Typography variant="h1" className="mb-4">
-          Backdrop with Visible Children
+          Backdrop with Custom Z-Index
         </Typography>
         <Typography variant="body-m-medium" className="mb-8">
-          The visible children are always shown, both when backdrop is closed
-          and open. Click the button to toggle the backdrop and see the
-          difference.
+          This backdrop uses a custom z-index value to demonstrate layering
+          control.
         </Typography>
 
         <Button onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? 'Close' : 'Open'} Backdrop
         </Button>
 
-        <Backdrop
-          isOpen={isOpen}
-          onClick={() => setIsOpen(false)}
-          visibleChildren={
-            <div className="fixed top-20 right-8 z-50">
-              <div className="bg-white border border-gray-300 rounded-lg p-4 shadow-lg max-w-xs">
-                <Typography
-                  variant="body-s-medium"
-                  className="mb-2 text-blue-600"
-                >
-                  Always Visible Content
-                </Typography>
-                <Typography variant="body-xs-medium" className="text-gray-600">
-                  This content is visible whether the backdrop is open or
-                  closed. It uses visibleChildren prop.
-                </Typography>
-              </div>
-            </div>
-          }
-        >
+        <Backdrop isOpen={isOpen} onClick={() => setIsOpen(false)} zIndex={100}>
           <div className="flex items-center justify-center h-full">
             <div className="bg-white rounded-lg p-8 max-w-md mx-4">
               <Typography variant="h3" className="mb-4">
-                Backdrop Content
+                High Z-Index Backdrop
               </Typography>
               <Typography variant="body-m-medium" className="mb-6">
-                This content only appears when the backdrop is open. It uses the
-                children prop.
+                This backdrop has a z-index of 100, making it appear above most
+                other elements.
               </Typography>
               <Button onClick={() => setIsOpen(false)}>Close Backdrop</Button>
             </div>

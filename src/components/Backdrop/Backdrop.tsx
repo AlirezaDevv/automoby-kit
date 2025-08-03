@@ -20,7 +20,6 @@ export interface BackdropProps {
    */
   zIndex?: number;
   children?: React.ReactNode;
-  visibleChildren?: React.ReactNode;
 }
 
 export const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
@@ -32,15 +31,14 @@ export const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
       zIndex = 51,
       className,
       children,
-      visibleChildren,
       ...props
     },
     ref,
   ) => {
-    // // Don't render anything if backdrop is not open
-    // if (!isOpen) {
-    //   return null;
-    // }
+    // Don't render anything if backdrop is not open
+    if (!isOpen) {
+      return null;
+    }
 
     const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
       if (onClick && event.target === event.currentTarget) {
@@ -62,22 +60,16 @@ export const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
     };
 
     return (
-      <>
-        {visibleChildren}
-        {isOpen && (
-          <div
-            ref={ref}
-            className={backdropClasses}
-            style={backdropStyle}
-            onClick={handleClick}
-            role="presentation"
-            {...props}
-          >
-            {visibleChildren}
-            {children}
-          </div>
-        )}
-      </>
+      <div
+        ref={ref}
+        className={backdropClasses}
+        style={backdropStyle}
+        onClick={handleClick}
+        role="presentation"
+        {...props}
+      >
+        {children}
+      </div>
     );
   },
 );
