@@ -84,6 +84,10 @@
 
   /* LINE HEIGHT */
   --leading-default: 1.8;
+
+  /* SPACING EXTENSIONS */
+  /* 22.5rem = 360px for w-90, h-90, p-90, etc. */
+  --spacing-90: 22.5rem;
 }
 
 /* Global line-height rule */

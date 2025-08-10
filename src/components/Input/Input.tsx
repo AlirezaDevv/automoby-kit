@@ -54,7 +54,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     const baseContainerClasses =
-      'relative flex items-center border rounded-lg transition-all duration-300 w-[360px]';
+      'relative flex items-center border rounded-lg transition-all duration-300 w-90';
     const baseLabelClasses =
       'absolute pointer-events-none transition-all duration-300';
     const baseInputClasses =
@@ -62,7 +62,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const baseIconClasses = 'absolute h-5 w-5 transition-colors duration-300';
 
     const containerClasses = cn(baseContainerClasses, {
-      'h-[54px]': !actualIsMobile,
+      'h-14': !actualIsMobile,
       'h-12': actualIsMobile,
       'border-neutral-light': state === 'default' && !isFocused,
       'border-primary': state === 'default' && isFocused,
@@ -71,7 +71,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     });
 
     const labelClasses = cn(baseLabelClasses, {
-      'top-[-10px] bg-white px-1 mx-3 font-medium': isLabelFloated,
+      '-top-2.5 bg-white px-1 mx-3 font-medium': isLabelFloated,
       'text-s':
         (!actualIsMobile && isLabelFloated) ||
         (actualIsMobile && !isLabelFloated),
