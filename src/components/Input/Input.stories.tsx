@@ -47,6 +47,10 @@ export default {
       name: 'حالت موبایل',
       control: { type: 'boolean' },
     },
+    placeholder: {
+      name: 'Placeholder',
+      control: { type: 'text' },
+    },
     // پراپ‌هایی که نباید در پنل کنترل نمایش داده شوند
     startIcon: { table: { disable: true } },
     endIcon: { table: { disable: true } },
@@ -79,6 +83,7 @@ Default.args = {
   initialValue: '',
   helperText: 'این یک متن کمکی است',
   isMobile: false,
+  placeholder: 'مثال: نام شما',
 };
 
 export const ErrorState = (args: StoryArgs) => <Default {...args} />;
@@ -135,4 +140,20 @@ MobileVersion.args = {
   isMobile: true,
   label: 'جستجو (موبایل)',
   helperText: 'ارتفاع کامپوننت در حالت موبایل کمتر است',
+};
+
+export const WithLabelAndPlaceholder = (args: StoryArgs) => (
+  <div className="flex flex-col gap-8">
+    <Default
+      {...args}
+      label="نام"
+      placeholder="اینجا تایپ کنید..."
+      helperText="Placeholder فقط هنگام فوکوس نمایش داده می‌شود"
+    />
+    <Default {...args} label="نام بدون Placeholder" helperText="برای مقایسه" />
+  </div>
+);
+WithLabelAndPlaceholder.storyName = 'لیبل و Placeholder با هم';
+WithLabelAndPlaceholder.args = {
+  ...Default.args,
 };

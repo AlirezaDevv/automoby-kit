@@ -25,6 +25,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       startIcon,
       endIcon,
       type = 'text',
+      placeholder,
       isMobile,
       ...props
     },
@@ -115,6 +116,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       'text-neutral-light': isDisabled,
     });
 
+    // If both label and placeholder are provided, hide placeholder when not focused
+    const computedPlaceholder =
+      placeholder && !isFocused ? undefined : placeholder;
+
     return (
       <div>
         <div className={containerClasses}>
@@ -135,6 +140,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             onFocus={handleFocus}
             onBlur={handleBlur}
             disabled={isDisabled}
+            placeholder={computedPlaceholder}
             className={inputClasses}
             {...props}
           />
