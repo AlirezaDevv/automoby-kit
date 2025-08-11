@@ -89,7 +89,6 @@
   /* 22.5rem = 360px for w-90, h-90, p-90, etc. */
   --spacing-90: 22.5rem;
 
-  --index-drawer: 1000;
 }
 
 /* Global line-height rule */
