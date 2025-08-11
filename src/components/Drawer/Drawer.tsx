@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, ReactNode } from 'react';
+import React, { useEffect, useRef, ReactNode, useState } from 'react';
+import { createPortal } from 'react-dom';
 import cn from '@/utils/cn';
 import { useMobile } from '@/contexts/MobileContext';
 
@@ -15,6 +16,11 @@ export type DrawerProps = {
    * Whether the component is in mobile mode (optional, auto-detected if not provided)
    */
   isMobile?: boolean;
+  /**
+   * If true, keep the drawer mounted in the DOM when closed.
+   * This allows SSR rendering but keeps it visually hidden until opened.
+   */
+  keepMounted?: boolean;
 };
 
 const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
@@ -27,14 +33,20 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       onClose,
       className,
       isMobile,
+      keepMounted,
       ...props
     },
     ref,
   ) => {
+    const [isClient, setIsClient] = useState(false);
     const detectedIsMobile = useMobile();
     const actualIsMobile = isMobile ?? detectedIsMobile;
     const overlayRef = useRef<HTMLDivElement>(null);
     const drawerRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      setIsClient(true);
+    }, []);
 
     // Handle escape key
     useEffect(() => {
@@ -156,11 +168,7 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       className,
     );
 
-    if (!isOpen) {
-      return null;
-    }
-
-    return (
+    const content = (
       <div
         ref={overlayRef}
         className={overlayClasses}
@@ -169,6 +177,7 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
         tabIndex={-1}
         role="button"
         aria-label="Close drawer"
+        aria-hidden={!isOpen}
       >
         <div
           ref={ref || drawerRef}
@@ -182,6 +191,20 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
         </div>
       </div>
     );
+
+    // If not open and not requested to keep mounted, render nothing
+    if (!isOpen && !keepMounted) {
+      return null;
+    }
+
+    // During SSR or before client mounts, we cannot portal.
+    // If keepMounted is true, render the content inline (hidden when closed).
+    if (!isClient) {
+      return content;
+    }
+
+    // On the client, render into body using a portal.
+    return createPortal(content, document.body);
   },
 );
 

@@ -20,6 +20,8 @@ export default {
 - **کلید Escape:** امکان بستن کشو با کلید Escape
 - **طراحی واکنش‌گرا:** با استفاده از پراپ isMobile برای سایزهای مختلف بهینه‌سازی شده
 - **دسترسی‌پذیری:** شامل لیبل‌های aria و نقش‌های مناسب برای دسترسی‌پذیری
+\n- **رندر با Portal:** محتوای کشو با استفاده از Portal در داخل body رندر می‌شود
+- **پراپ keepMounted:** اگر true باشد، کامپوننت هنگام بسته بودن نیز در DOM باقی می‌ماند (برای SSR مناسب) اما تا زمان باز شدن نمایش داده نمی‌شود
         `,
       },
     },
@@ -43,6 +45,12 @@ export default {
       control: { type: 'boolean' },
       defaultValue: false,
       description: 'تعیین حالت موبایل یا دسکتاپ',
+    },
+    keepMounted: {
+      name: 'keepMounted',
+      control: { type: 'boolean' },
+      description:
+        'اگر فعال باشد، کشو هنگام بسته بودن نیز در DOM باقی می‌ماند (برای SSR مناسب) و با باز شدن نمایش داده می‌شود.',
     },
     children: { table: { disable: true } },
     onClose: { table: { disable: true } },
@@ -114,6 +122,7 @@ Default.storyName = 'پیش‌فرض (Bottom)';
 Default.args = {
   direction: 'bottom',
   isMobile: false,
+  keepMounted: false,
 };
 
 export const TopDirection = (args: StoryArgs) => <Default {...args} />;
@@ -146,6 +155,14 @@ FullScreenDrawer.args = {
   ...Default.args,
   fullScreen: true,
   triggerButtonText: 'باز کردن کشوی تمام‌صفحه',
+};
+
+export const KeepMounted = (args: StoryArgs) => <Default {...args} />;
+KeepMounted.storyName = 'حالت Keep Mounted (SSR-friendly)';
+KeepMounted.args = {
+  ...Default.args,
+  keepMounted: true,
+  triggerButtonText: 'باز کردن کشو (Keep Mounted)',
 };
 
 export const NavigationDrawer = ({
