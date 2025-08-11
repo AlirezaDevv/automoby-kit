@@ -1,5 +1,6 @@
 // src/components/Breadcrumb/Breadcrumb.stories.tsx
 
+import React from 'react';
 import { Breadcrumb, BreadcrumbProps } from './Breadcrumb';
 
 type StoryArgs = BreadcrumbProps;
@@ -17,6 +18,10 @@ export default {
 - **قابلیت کلیک:** تمام آیتم‌ها به جز آیتم آخر (صفحه فعلی) قابل کلیک هستند.
 - **دسترسی‌پذیری:** با کیبورد قابل استفاده و شامل نشانگرهای مناسب است.
 - **آیکون جداکننده:** از آیکون ChevronLeft به عنوان جداکننده استفاده می‌کند.
+ - **کامپوننت سفارشی:** می‌توانید برای هر آیتم یک 'component' (مثل Link) بدهید تا بجای 'span' رندر شود.
+ - **پشتیبانی از لینک:** در صورت ارسال 'href' (برای آیتم‌های غیر آخر)، آیتم به صورت لینک ('a') رندر می‌شود.
+ - **عنوان:** می‌توانید 'title' نیز برای هر آیتم ارسال کنید.
+ - **تایپوگرافی:** برای متن هر آیتم از کامپوننت Typography استفاده می‌شود.
         `,
       },
     },
@@ -40,13 +45,22 @@ export default {
   },
   args: {
     items: [
-      { label: 'صفحه اصلی', onClick: () => console.log('home-clicked') },
+      {
+        label: 'صفحه اصلی',
+        href: '/',
+        title: 'بازگشت به صفحه اصلی',
+        onClick: () => console.log('home-clicked'),
+      },
       {
         label: 'دسته‌بندی اول',
+        href: '/category-1',
+        title: 'مشاهده دسته‌بندی اول',
         onClick: () => console.log('category1-clicked'),
       },
       {
         label: 'دسته‌بندی دوم',
+        href: '/category-1/2',
+        title: 'مشاهده دسته‌بندی دوم',
         onClick: () => console.log('category2-clicked'),
       },
       { label: 'صفحه فعلی' },
@@ -60,9 +74,24 @@ export const Default = (args: StoryArgs) => <Breadcrumb {...args} />;
 Default.storyName = 'پیش‌فرض (Default)';
 Default.args = {
   items: [
-    { label: 'صفحه اصلی', onClick: () => console.log('home-clicked') },
-    { label: 'محصولات', onClick: () => console.log('products-clicked') },
-    { label: 'خودرو', onClick: () => console.log('cars-clicked') },
+    {
+      label: 'صفحه اصلی',
+      href: '/',
+      title: 'خانه',
+      onClick: () => console.log('home-clicked'),
+    },
+    {
+      label: 'محصولات',
+      href: '/products',
+      title: 'محصولات',
+      onClick: () => console.log('products-clicked'),
+    },
+    {
+      label: 'خودرو',
+      href: '/products/cars',
+      title: 'دسته خودرو',
+      onClick: () => console.log('cars-clicked'),
+    },
     { label: 'سدان', onClick: () => console.log('sedan-clicked') },
     { label: 'BMW سری 3' },
   ],
@@ -73,7 +102,7 @@ export const ShortBreadcrumb = (args: StoryArgs) => <Breadcrumb {...args} />;
 ShortBreadcrumb.storyName = 'نقشه راه کوتاه';
 ShortBreadcrumb.args = {
   items: [
-    { label: 'صفحه اصلی', onClick: () => console.log('home-clicked') },
+    { label: 'صفحه اصلی', href: '/', title: 'خانه' },
     { label: 'صفحه فعلی' },
   ],
 };
@@ -83,12 +112,12 @@ export const LongBreadcrumb = (args: StoryArgs) => <Breadcrumb {...args} />;
 LongBreadcrumb.storyName = 'نقشه راه بلند';
 LongBreadcrumb.args = {
   items: [
-    { label: 'صفحه اصلی', onClick: () => console.log('home-clicked') },
-    { label: 'دسته‌بندی اول', onClick: () => console.log('cat1-clicked') },
-    { label: 'دسته‌بندی دوم', onClick: () => console.log('cat2-clicked') },
-    { label: 'دسته‌بندی سوم', onClick: () => console.log('cat3-clicked') },
-    { label: 'دسته‌بندی چهارم', onClick: () => console.log('cat4-clicked') },
-    { label: 'دسته‌بندی پنجم', onClick: () => console.log('cat5-clicked') },
+    { label: 'صفحه اصلی', href: '/' },
+    { label: 'دسته‌بندی اول', href: '/c1' },
+    { label: 'دسته‌بندی دوم', href: '/c1/c2' },
+    { label: 'دسته‌بندی سوم', href: '/c1/c2/c3' },
+    { label: 'دسته‌بندی چهارم', href: '/c1/c2/c3/c4' },
+    { label: 'دسته‌بندی پنجم', href: '/c1/c2/c3/c4/c5' },
     { label: 'صفحه فعلی' },
   ],
 };
@@ -98,8 +127,17 @@ export const WithClickHandlers = (args: StoryArgs) => <Breadcrumb {...args} />;
 WithClickHandlers.storyName = 'با کنترل کننده کلیک';
 WithClickHandlers.args = {
   items: [
-    { label: 'خانه', onClick: () => console.log('navigate-to-home') },
-    { label: 'فروشگاه', onClick: () => console.log('navigate-to-shop') },
+    {
+      label: 'خانه',
+      href: '/',
+      onClick: () => console.log('navigate-to-home'),
+    },
+    {
+      label: 'فروشگاه',
+      href: '/shop',
+      title: 'Shop page',
+      onClick: () => console.log('navigate-to-shop'),
+    },
     { label: 'جزئیات محصول' },
   ],
 };
@@ -111,9 +149,21 @@ export const WithMixedNavigation = (args: StoryArgs) => (
 WithMixedNavigation.storyName = 'ناوبری ترکیبی';
 WithMixedNavigation.args = {
   items: [
-    { label: 'صفحه اصلی', onClick: () => console.log('home-clicked') },
-    { label: 'درباره ما', onClick: () => console.log('about-clicked') },
-    { label: 'تیم ما', onClick: () => console.log('team-clicked') },
+    {
+      label: 'صفحه اصلی',
+      href: '/',
+      onClick: () => console.log('home-clicked'),
+    },
+    {
+      label: 'درباره ما',
+      href: '/about',
+      onClick: () => console.log('about-clicked'),
+    },
+    {
+      label: 'تیم ما',
+      href: '/about/team',
+      onClick: () => console.log('team-clicked'),
+    },
     { label: 'جزئیات عضو' },
   ],
 };
@@ -127,8 +177,8 @@ export const EnglishContent = (args: StoryArgs) => (
 EnglishContent.storyName = 'محتوای انگلیسی';
 EnglishContent.args = {
   items: [
-    { label: 'Home', onClick: () => console.log('home-clicked') },
-    { label: 'Products', onClick: () => console.log('products-clicked') },
+    { label: 'Home', href: '/', title: 'Home' },
+    { label: 'Products', href: '/products', title: 'Products' },
     { label: 'Electronics', onClick: () => console.log('electronics-clicked') },
     { label: 'Current Page' },
   ],
@@ -141,9 +191,9 @@ DesktopView.storyName = 'نمایش دسکتاپ';
 DesktopView.args = {
   isMobile: false,
   items: [
-    { label: 'صفحه اصلی', onClick: () => console.log('home-clicked') },
-    { label: 'صفحه پیشین', onClick: () => console.log('previous-clicked') },
-    { label: 'صفحه پیشین', onClick: () => console.log('previous2-clicked') },
+    { label: 'صفحه اصلی', href: '/', title: 'خانه' },
+    { label: 'صفحه پیشین', href: '/prev-1' },
+    { label: 'صفحه پیشین', href: '/prev-2' },
     { label: 'صفحه فعلی' },
   ],
 };
@@ -154,9 +204,9 @@ MobileView.storyName = 'نمایش موبایل';
 MobileView.args = {
   isMobile: true,
   items: [
-    { label: 'صفحه اصلی', onClick: () => console.log('home-clicked') },
-    { label: 'صفحه پیشین', onClick: () => console.log('previous-clicked') },
-    { label: 'صفحه پیشین', onClick: () => console.log('previous2-clicked') },
+    { label: 'صفحه اصلی', href: '/', title: 'خانه' },
+    { label: 'صفحه پیشین', href: '/prev-1' },
+    { label: 'صفحه پیشین', href: '/prev-2' },
     { label: 'صفحه فعلی' },
   ],
 };
@@ -171,9 +221,9 @@ export const ResponsiveComparison = () => (
       <Breadcrumb
         isMobile={false}
         items={[
-          { label: 'صفحه اصلی', onClick: () => console.log('home-clicked') },
-          { label: 'محصولات', onClick: () => console.log('products-clicked') },
-          { label: 'خودرو', onClick: () => console.log('cars-clicked') },
+          { label: 'صفحه اصلی', href: '/' },
+          { label: 'محصولات', href: '/products' },
+          { label: 'خودرو', href: '/products/cars' },
           { label: 'صفحه فعلی' },
         ]}
       />
@@ -185,9 +235,9 @@ export const ResponsiveComparison = () => (
       <Breadcrumb
         isMobile
         items={[
-          { label: 'صفحه اصلی', onClick: () => console.log('home-clicked') },
-          { label: 'محصولات', onClick: () => console.log('products-clicked') },
-          { label: 'خودرو', onClick: () => console.log('cars-clicked') },
+          { label: 'صفحه اصلی', href: '/' },
+          { label: 'محصولات', href: '/products' },
+          { label: 'خودرو', href: '/products/cars' },
           { label: 'صفحه فعلی' },
         ]}
       />
@@ -196,3 +246,34 @@ export const ResponsiveComparison = () => (
 );
 
 ResponsiveComparison.storyName = 'مقایسه واکنش‌گرا';
+
+// Custom component example (e.g., Next.js Link)
+const MockLink: React.FC<React.ComponentPropsWithoutRef<'a'>> = ({
+  href,
+  title,
+  className,
+  children,
+  ...rest
+}) => (
+  <a href={href} title={title} className={className} {...rest}>
+    {children}
+  </a>
+);
+
+export const WithCustomComponent = (args: StoryArgs) => (
+  <Breadcrumb {...args} />
+);
+
+WithCustomComponent.storyName = 'با کامپوننت سفارشی';
+WithCustomComponent.args = {
+  items: [
+    { label: 'Home', href: '/', component: MockLink, title: 'Go Home' },
+    {
+      label: 'Category',
+      href: '/category',
+      component: MockLink,
+      title: 'View Category',
+    },
+    { label: 'Current Page' },
+  ],
+};
