@@ -172,7 +172,11 @@ WithMixedNavigation.args = {
   ],
 };
 
-export const EnglishContent = (args: StoryArgs) => <Breadcrumb {...args} />;
+export const EnglishContent = (args: StoryArgs) => (
+  <div dir="ltr">
+    <Breadcrumb {...args} />
+  </div>
+);
 
 EnglishContent.storyName = 'محتوای انگلیسی';
 EnglishContent.args = {

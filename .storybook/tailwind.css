@@ -95,3 +95,7 @@
 * {
   line-height: var(--leading-default);
 }
+
+body {
+  direction: rtl;
+}

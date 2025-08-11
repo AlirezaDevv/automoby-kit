@@ -42,15 +42,15 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
       <nav
         ref={ref}
         className={cn(
-          // Base layout - RTL with flex-row-reverse to show items right to left
-          'flex flex-row-reverse items-center',
+          // Base layout - rely on page RTL direction; no manual row-reverse
+          'flex items-center',
           // Responsive gap and padding based on mobile state
           actualIsMobile ? 'gap-1 px-4 py-2.5' : 'gap-3 pr-1 pt-3 pb-4 pl-0',
           className,
         )}
         aria-label="Breadcrumb navigation"
       >
-        <ol className="flex flex-row-reverse items-center gap-inherit">
+        <ol className="flex items-center gap-inherit">
           {items.map((item, index) => {
             const isLast = index === items.length - 1;
             const isClickable = !isLast && (item.href || item.onClick);
@@ -110,7 +110,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                 {!isLast && (
                   <ChevronLeft
                     className={cn(
-                      'text-black flex-shrink-0',
+                      'text-neutral-main flex-shrink-0',
                       // Responsive icon size
                       actualIsMobile ? 'w-2.5 h-2.5' : 'w-3 h-3',
                     )}
