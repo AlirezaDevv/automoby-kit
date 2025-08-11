@@ -5,7 +5,6 @@ import { useMobile } from '@/contexts/MobileContext';
 
 export interface BreadcrumbItem {
   label: string;
-  href?: string;
   onClick?: () => void;
 }
 
@@ -35,7 +34,6 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
         e.preventDefault();
         item.onClick();
       }
-      // If item has href, let the anchor tag handle navigation naturally
     };
 
     return (
@@ -53,58 +51,50 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
         <ol className="flex items-center gap-inherit">
           {items.map((item, index) => {
             const isLast = index === items.length - 1;
-            const isClickable = !isLast && (item.href || item.onClick);
+            const isClickable = !isLast && !!item.onClick;
             const itemKey = `${item.label}-${index}`;
 
             return (
               <li key={itemKey} className="flex items-center gap-inherit">
-                {/* Breadcrumb item */}
-                {isClickable ? (
-                  <a
-                    href={item.href || '#'}
-                    className={cn(
-                      // Base styles
-                      'whitespace-nowrap border-0 bg-transparent p-0 no-underline',
-                      // Responsive font size based on mobile state
-                      actualIsMobile ? 'text-t' : 'text-s',
-                      // Color
-                      'text-neutral-main',
-                      // Cursor and hover effects for clickable items
-                      'cursor-pointer hover:text-neutral-dark transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 rounded-sm',
-                    )}
-                    onClick={(e) => handleItemClick(item, index, e)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        if (item.onClick) {
-                          item.onClick();
+                {/* Breadcrumb item - always span */}
+                {/* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-tabindex, jsx-a11y/interactive-supports-focus, jsx-a11y/click-events-have-key-events */}
+                <span
+                  className={cn(
+                    'whitespace-nowrap',
+                    actualIsMobile ? 'text-t' : 'text-s',
+                    'text-neutral-main',
+                    isLast ? 'font-medium' : undefined,
+                    isClickable
+                      ? 'cursor-pointer hover:text-neutral-dark transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 rounded-sm'
+                      : undefined,
+                  )}
+                  role={isClickable ? 'button' : undefined}
+                  tabIndex={isClickable ? 0 : undefined}
+                  aria-current={isLast ? 'page' : undefined}
+                  aria-label={
+                    isLast ? `Current page: ${item.label}` : undefined
+                  }
+                  onClick={
+                    isClickable
+                      ? (e) => handleItemClick(item, index, e)
+                      : undefined
+                  }
+                  onKeyDown={
+                    isClickable
+                      ? (e) => {
+                          if (e.key === 'Enter' || e.key === ' ') {
+                            e.preventDefault();
+                            if (item.onClick) {
+                              item.onClick();
+                            }
+                          }
                         }
-                      }
-                    }}
-                    aria-label={`Go to ${item.label}`}
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <span
-                    className={cn(
-                      // Base styles
-                      'whitespace-nowrap',
-                      // Responsive font size based on mobile state
-                      actualIsMobile ? 'text-t' : 'text-s',
-                      // Color
-                      'text-neutral-main',
-                      // Different styles for current page (last item)
-                      'font-medium',
-                    )}
-                    aria-current={isLast ? 'page' : undefined}
-                    aria-label={
-                      isLast ? `Current page: ${item.label}` : undefined
-                    }
-                  >
-                    {item.label}
-                  </span>
-                )}
+                      : undefined
+                  }
+                >
+                  {item.label}
+                </span>
+                {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/no-static-element-interactions, jsx-a11y/no-noninteractive-tabindex, jsx-a11y/interactive-supports-focus, jsx-a11y/click-events-have-key-events */}
 
                 {/* Separator - only show if not the last item */}
                 {!isLast && (
