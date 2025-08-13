@@ -47,7 +47,7 @@ export const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
     };
 
     const backdropClasses = cn(
-      'fixed inset-0 transition-all duration-300',
+      'fixed inset-0 transition-all duration-300 flex items-center justify-center',
       {
         'backdrop-blur-sm': blur,
       },

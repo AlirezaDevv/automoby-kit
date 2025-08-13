@@ -48,10 +48,9 @@ export type { DrawerProps, DrawerDirection } from './components/Drawer/Drawer';
 
 export type { BackdropProps } from './components/Backdrop/Backdrop';
 
-export type {
-  BreadcrumbProps,
-  BreadcrumbItem,
-} from './components/Breadcrumb/Breadcrumb';
+// Dialog
+export { Dialog, DialogButton } from './components/Dialog/Dialog';
+export type { DialogProps } from './components/Dialog/Dialog';
 
 export type { UnifiedPaginationProps as PaginationProps } from './components/Pagination/Pagination';
 
