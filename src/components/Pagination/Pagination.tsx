@@ -33,7 +33,7 @@ function PaginationContent({
       data-slot="pagination-content"
       className={cn(
         'flex flex-row items-center',
-        device === 'mobile' ? 'gap-[6px]' : 'gap-2',
+        device === 'mobile' ? 'gap-1.5' : 'gap-2',
         className,
       )}
       {...props}
@@ -105,7 +105,7 @@ function PaginationPrevious({
       aria-label="Go to previous page"
       className={
         !isMobile
-          ? 'flex justify-center items-center gap-2 w-[89px] h-[48px] ml-4'
+          ? 'flex justify-center items-center gap-2 w-20 h-12 ml-4'
           : 'ml-2.5'
       }
       device={device}
@@ -140,7 +140,7 @@ function PaginationNext({
       aria-label="Go to next page"
       className={
         !isMobile
-          ? 'flex justify-center items-center gap-2 w-[89px] h-[48px] mr-4'
+          ? 'flex justify-center items-center gap-2 w-20  h-12 mr-4'
           : 'mr-2.5'
       }
       device={device}
@@ -181,8 +181,8 @@ function buttonVariants({
 
   const base = cn({
     'flex items-center justify-center rounded-[6px]': true,
-    'w-[40px] h-[40px] text-s font-heavy': isMobile,
-    'w-[48px] h-[48px] text-l font-heavy': !isMobile,
+    'w-10 h-10 text-s font-heavy': isMobile,
+    'w-12 h-12 text-l font-heavy': !isMobile,
   });
 
   const variants: Record<ButtonVariant, string> = {
