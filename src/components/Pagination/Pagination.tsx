@@ -50,6 +50,9 @@ type PaginationLinkVariant = 'main' | 'nextPrev';
 type PaginationLinkProps = {
   variant: PaginationLinkVariant;
   isActive?: boolean;
+  linkComponent?: React.ElementType<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>
+  >;
 } & React.ComponentProps<'a'> & { device: Device };
 
 function PaginationLink({
@@ -57,10 +60,12 @@ function PaginationLink({
   device,
   variant,
   isActive,
+  linkComponent,
   ...props
 }: PaginationLinkProps) {
+  const Comp = linkComponent ?? 'a';
   return (
-    <a
+    <Comp
       aria-current={isActive ? 'page' : undefined}
       data-slot="pagination-link"
       data-active={isActive}
@@ -199,6 +204,16 @@ export interface UnifiedPaginationProps {
    * Whether the component is in mobile mode (optional, auto-detected if not provided)
    */
   isMobile?: boolean;
+  /**
+   * Base URL to construct hrefs, e.g. "/products" -> "/products?page=2"
+   */
+  baseUrl?: string;
+  /**
+   * Custom link component to render instead of <a/>
+   */
+  linkComponent?: React.ElementType<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>
+  >;
 }
 
 export const Pagination: React.FC<UnifiedPaginationProps> = ({
@@ -208,6 +223,8 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
   onPageChange,
   className,
   isMobile,
+  baseUrl,
+  linkComponent,
   ...navProps
 }) => {
   const detectedIsMobile = useMobile();
@@ -229,6 +246,21 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
     onPageChange?.(newPage);
   };
 
+  const buildHref = (targetPage: number) => {
+    if (!baseUrl) return '#';
+    try {
+      const url = new URL(baseUrl, 'http://localhost');
+      url.searchParams.set('page', String(targetPage));
+      const { pathname, search, hash } = url; // search already includes leading '?'
+      return `${pathname}${search}${hash}`;
+    } catch {
+      // Fallback naive concatenation
+      const hasQuery = baseUrl.includes('?');
+      const sep = hasQuery ? '&' : '?';
+      return `${baseUrl}${sep}page=${targetPage}`;
+    }
+  };
+
   function renderPages() {
     const items: React.ReactNode[] = [];
 
@@ -237,12 +269,15 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
         items.push(
           <PaginationItem key={i}>
             <PaginationLink
-              href="#"
+              href={buildHref(i)}
               isActive={page === i}
               variant="main"
               device={device}
+              linkComponent={linkComponent}
               onClick={(e) => {
-                e.preventDefault();
+                if (onPageChange) {
+                  e.preventDefault();
+                }
                 if (page !== i) changePage(i);
               }}
               aria-disabled={page === i}
@@ -258,12 +293,15 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
       items.push(
         <PaginationItem key={1}>
           <PaginationLink
-            href="#"
+            href={buildHref(1)}
             isActive={page === 1}
             device={device}
             variant="main"
+            linkComponent={linkComponent}
             onClick={(e) => {
-              e.preventDefault();
+              if (onPageChange) {
+                e.preventDefault();
+              }
               if (page !== 1) changePage(1);
             }}
             aria-disabled={page === 1}
@@ -288,12 +326,15 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
         items.push(
           <PaginationItem key={i}>
             <PaginationLink
-              href="#"
+              href={buildHref(i)}
               isActive={page === i}
               device={device}
               variant="main"
+              linkComponent={linkComponent}
               onClick={(e) => {
-                e.preventDefault();
+                if (onPageChange) {
+                  e.preventDefault();
+                }
                 if (page !== i) changePage(i);
               }}
               aria-disabled={page === i}
@@ -316,12 +357,15 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
       items.push(
         <PaginationItem key={pageCount}>
           <PaginationLink
-            href="#"
+            href={buildHref(pageCount)}
             isActive={page === pageCount}
             device={device}
             variant="main"
+            linkComponent={linkComponent}
             onClick={(e) => {
-              e.preventDefault();
+              if (onPageChange) {
+                e.preventDefault();
+              }
               if (page !== pageCount) changePage(pageCount);
             }}
             aria-disabled={page === pageCount}
@@ -337,12 +381,15 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
 
   return (
     <PaginationRoot className={className} {...navProps}>
-      <PaginationContent device="mobile">
+      <PaginationContent device={device}>
         <PaginationItem>
           <PaginationPrevious
-            href="#"
+            href={buildHref(Math.max(1, page - 1))}
+            linkComponent={linkComponent}
             onClick={(e) => {
-              e.preventDefault();
+              if (onPageChange) {
+                e.preventDefault();
+              }
               if (page > 1) changePage(page - 1);
             }}
             variant="nextPrev"
@@ -354,9 +401,12 @@ export const Pagination: React.FC<UnifiedPaginationProps> = ({
         {renderPages()}
         <PaginationItem>
           <PaginationNext
-            href="#"
+            href={buildHref(Math.min(pageCount, page + 1))}
+            linkComponent={linkComponent}
             onClick={(e) => {
-              e.preventDefault();
+              if (onPageChange) {
+                e.preventDefault();
+              }
               if (page < pageCount) changePage(page + 1);
             }}
             variant="nextPrev"

@@ -33,6 +33,12 @@ export default {
       control: { type: 'number', min: 1, max: 20 },
       defaultValue: undefined,
     },
+    baseUrl: {
+      name: 'Base URL',
+      control: { type: 'text' },
+      defaultValue: '/products',
+      description: 'آدرس پایه برای ساخت href ها (مثال: /products)',
+    },
     isMobile: {
       name: 'حالت موبایل',
       control: { type: 'boolean' },
@@ -45,18 +51,21 @@ export default {
 type StoryProps = {
   pageCount: number;
   defaultPage: number;
+  baseUrl: string;
   isMobile: boolean;
 };
 
 export const Uncontrolled = ({
   pageCount,
   defaultPage,
+  baseUrl,
   isMobile,
 }: StoryProps) => (
   <div dir="rtl" style={{ width: 480, margin: 'auto' }}>
     <Pagination
       pageCount={pageCount}
       defaultPage={defaultPage}
+      baseUrl={baseUrl}
       onPageChange={() => {}}
       isMobile={isMobile}
     />
@@ -67,12 +76,14 @@ Uncontrolled.storyName = 'Uncontrolled (داخلی)';
 Uncontrolled.args = {
   pageCount: 7,
   defaultPage: 2,
+  baseUrl: '/products',
   isMobile: false,
 };
 
 export const Controlled = ({
   pageCount,
   defaultPage,
+  baseUrl,
   isMobile,
 }: StoryProps) => {
   const [page, setPage] = useState(defaultPage);
@@ -87,6 +98,7 @@ export const Controlled = ({
         pageCount={pageCount}
         page={page}
         onPageChange={setPage}
+        baseUrl={baseUrl}
         isMobile={isMobile}
       />
       <div style={{ textAlign: 'center', marginTop: 16 }}>
@@ -101,6 +113,7 @@ Controlled.storyName = 'Controlled (کنترل‌شده)';
 Controlled.args = {
   pageCount: 10,
   defaultPage: 1,
+  baseUrl: '/products',
   isMobile: false,
 };
 
@@ -117,6 +130,7 @@ export const ResponsiveComparison = () => {
             pageCount={10}
             page={desktopPage}
             onPageChange={setDesktopPage}
+            baseUrl="/products"
             isMobile={false}
           />
         </div>
@@ -129,6 +143,7 @@ export const ResponsiveComparison = () => {
             pageCount={10}
             page={mobilePage}
             onPageChange={setMobilePage}
+            baseUrl="/products"
             isMobile
           />
         </div>
@@ -138,3 +153,40 @@ export const ResponsiveComparison = () => {
 };
 
 ResponsiveComparison.storyName = 'مقایسه واکنش‌گرا';
+
+// Demonstrates using a custom link component instead of <a/>
+const DemoLink = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+  const { href, children, ...rest } = props;
+  return (
+    <a href={href} data-demo-link style={{ textDecoration: 'none' }} {...rest}>
+      {children}
+    </a>
+  );
+};
+
+export const WithCustomLinkComponent = ({
+  pageCount,
+  defaultPage,
+  baseUrl,
+  isMobile,
+}: StoryProps) => (
+  <div dir="rtl" style={{ width: 480, margin: 'auto' }}>
+    <Pagination
+      pageCount={pageCount}
+      defaultPage={defaultPage}
+      baseUrl={baseUrl}
+      // Note: keeping onPageChange prevents default navigation and lets Storybook stay on the same page
+      onPageChange={() => {}}
+      linkComponent={DemoLink}
+      isMobile={isMobile}
+    />
+  </div>
+);
+
+WithCustomLinkComponent.storyName = 'With Custom Link Component';
+WithCustomLinkComponent.args = {
+  pageCount: 7,
+  defaultPage: 2,
+  baseUrl: '/products',
+  isMobile: false,
+};
