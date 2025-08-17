@@ -25,6 +25,8 @@ export interface AccordionProps {
   disabled?: boolean;
   /** Whether the component is in mobile mode (optional, auto-detected if not provided) */
   isMobile?: boolean;
+  /** Background color for the content area (defaults to bg-neutral-lighter) */
+  contentBackgroundColor?: string;
 }
 
 const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
@@ -40,6 +42,7 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       id,
       disabled = false,
       isMobile,
+      contentBackgroundColor,
       ...props
     },
     ref,
@@ -159,7 +162,8 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
           <div className={cn(actualIsMobile ? 'pb-3 mt-1' : 'pb-4 mt-1.5')}>
             <div
               className={cn(
-                'bg-neutral-lighter rounded-lg',
+                contentBackgroundColor || 'bg-neutral-lighter',
+                'rounded-lg',
                 actualIsMobile ? 'p-3' : 'p-4',
               )}
             >
