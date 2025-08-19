@@ -28,7 +28,7 @@ export const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
       isOpen = false,
       onClick,
       blur = false,
-      zIndex = 40,
+      zIndex = 60,
       className,
       children,
       ...props
