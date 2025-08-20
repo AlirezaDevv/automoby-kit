@@ -1,8 +1,9 @@
-import { createContext, ReactNode, useContext } from 'react';
+import { createContext, ReactNode, useContext, useMemo } from 'react';
 import { UAParser } from 'ua-parser-js';
 
 interface MobileContextValue {
   isMobile: boolean;
+  isTablet: boolean;
   userAgent: string;
 }
 
@@ -13,45 +14,61 @@ interface MobileProviderProps {
 
 const MobileContext = createContext<MobileContextValue | undefined>(undefined);
 
-const detectMobile = (userAgent: string): boolean => {
-  const parser = new UAParser();
-  parser.setUA(userAgent);
+const detectDevice = (
+  userAgent: string,
+): { isMobile: boolean; isTablet: boolean } => {
+  const parser = new UAParser(userAgent);
   const device = parser.getDevice();
-  return device.type === 'mobile' || device.type === 'tablet';
+  return {
+    isMobile: device.type === 'mobile',
+    isTablet: device.type === 'tablet',
+  };
 };
 
 export const MobileProvider = ({
   userAgent,
   children,
 }: MobileProviderProps) => {
-  const isMobile = detectMobile(userAgent);
+  // 3. هر دو مقدار محاسبه می‌شوند
+  const { isMobile, isTablet } = detectDevice(userAgent);
 
-  // eslint-disable-next-line react/jsx-no-constructed-context-values
-  const value: MobileContextValue = {
-    isMobile,
-    userAgent,
-  };
-
+  const value: MobileContextValue = useMemo(
+    () => ({
+      isMobile,
+      isTablet,
+      userAgent,
+    }),
+    [isMobile, isTablet, userAgent],
+  );
   return (
     <MobileContext.Provider value={value}>{children}</MobileContext.Provider>
   );
 };
 
 export const useMobile = (): boolean => {
-  // Check for Storybook environment variable first
   if (process.env.STORYBOOK_FORCE_MOBILE === 'true') {
     return true;
   }
-
   if (process.env.STORYBOOK_FORCE_MOBILE === 'false') {
     return false;
   }
-
   const context = useContext(MobileContext);
   if (context === undefined) {
     throw new Error('useMobile must be used within a MobileProvider');
   }
   return context.isMobile;
+};
+
+export const useTablet = (): boolean => {
+  if (process.env.STORYBOOK_FORCE_MOBILE === 'true') {
+    return false;
+  }
+
+  const context = useContext(MobileContext);
+  if (context === undefined) {
+    throw new Error('useTablet must be used within a MobileProvider');
+  }
+  return context.isTablet;
 };
 
 export default MobileContext;
