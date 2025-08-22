@@ -150,6 +150,7 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     const overlayClasses = cn(baseOverlayClasses, {
       'bg-neutral-darker/50 backdrop-blur-sm': isOpen,
       'bg-transparent pointer-events-none': !isOpen,
+      'hidden invisible absolute inset-0': keepMounted && !isClient,
     });
 
     const drawerClasses = cn(
@@ -193,13 +194,13 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     );
 
     // If not open and not requested to keep mounted, render nothing
-    if (!isOpen && !keepMounted) {
+    if (!keepMounted && !isClient) {
       return null;
     }
 
     // During SSR or before client mounts, we cannot portal.
     // If keepMounted is true, render the content inline (hidden when closed).
-    if (!isClient) {
+    if (keepMounted && !isClient) {
       return content;
     }
 
