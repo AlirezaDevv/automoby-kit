@@ -205,7 +205,10 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
     }
 
     // On the client, render into body using a portal.
-    return createPortal(content, document.body);
+    if (isOpen) {
+      return createPortal(content, document.body);
+    }
+    return null;
   },
 );
 
