@@ -147,7 +147,7 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
       // Base button styles matching Figma design
       'inline-flex items-center justify-center',
       'bg-white border border-neutral-light',
-      'rounded-[6px] px-[16px] py-[13px]',
+      'rounded-md px-4 py-3',
       'transition-colors duration-200',
       // Interactive states
       'hover:bg-neutral-lighter',
@@ -161,9 +161,9 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
 
     const dropdownClasses = cn(
       // Base dropdown styles
-      'absolute top-full left-0 right-0 z-10 mt-[4px]',
+      'absolute top-full left-0 right-0 z-10 mt-1',
       'bg-white border border-neutral-light',
-      'rounded-[6px] py-[13px] px-[16px]',
+      'rounded-md py-3 px-4',
       'shadow-lg',
       // Animation
       'transition-all duration-200',
@@ -176,7 +176,7 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
     const itemClasses = cn(
       'block w-full text-right',
       'transition-colors duration-200',
-      'hover:bg-neutral-lighter rounded-[4px] px-[8px] py-[4px] -mx-[8px]',
+      'hover:bg-neutral-lighter rounded px-2 py-1 -mx-2',
       'focus:outline-none focus:bg-neutral-lighter',
     );
 
@@ -210,7 +210,7 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
 
           {/* Dropdown Menu */}
           <div className={dropdownClasses}>
-            <div className="flex flex-col gap-[16px]">
+            <div className="flex flex-col gap-4">
               {items.map((item) => {
                 const content = (
                   <Typography
