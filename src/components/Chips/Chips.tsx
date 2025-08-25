@@ -1,7 +1,7 @@
-import React from 'react';
 import { X } from 'lucide-react';
-import cn from '@/utils/cn';
 import { useMobile } from '@/contexts/MobileContext';
+import cn from '@/utils/cn';
+import { forwardRef } from 'react';
 
 export interface ChipsProps {
   /**
@@ -44,9 +44,13 @@ export interface ChipsProps {
    */
   isMobile?: boolean;
   /**
-   * Whether to show the close icon
+   * Whether to show the close icon. Defaults to true to preserve existing behavior.
    */
   showIcon?: boolean;
+  /**
+   * Optional leading icon element rendered before the label
+   */
+  startIcon?: React.ReactNode;
 }
 
 const chipVariants = {
@@ -104,7 +108,7 @@ const chipSizes = {
   },
 };
 
-export const Chips = React.forwardRef<HTMLDivElement, ChipsProps>(
+export const Chips = forwardRef<HTMLDivElement, ChipsProps>(
   (
     {
       variant = 'purple',
@@ -116,6 +120,7 @@ export const Chips = React.forwardRef<HTMLDivElement, ChipsProps>(
       className,
       isMobile,
       showIcon = true,
+      startIcon,
       ...props
     },
     ref,
@@ -143,6 +148,7 @@ export const Chips = React.forwardRef<HTMLDivElement, ChipsProps>(
     };
 
     const renderIcon = () => {
+      if (!showIcon) return null;
       const iconElement = <X className={cn(sizeStyles.iconSize)} />;
 
       if (onIconClick) {
@@ -164,6 +170,20 @@ export const Chips = React.forwardRef<HTMLDivElement, ChipsProps>(
       }
 
       return iconElement;
+    };
+
+    const renderStartIcon = () => {
+      if (!startIcon) return null;
+      return (
+        <span
+          className={cn(
+            'flex items-center justify-center',
+            sizeStyles.iconSize,
+          )}
+        >
+          {startIcon}
+        </span>
+      );
     };
 
     return (
@@ -200,8 +220,9 @@ export const Chips = React.forwardRef<HTMLDivElement, ChipsProps>(
         role={onClick ? 'button' : undefined}
         {...props}
       >
+        {renderStartIcon()}
         <span className="text-center">{children}</span>
-        {showIcon && renderIcon()}
+        {renderIcon()}
       </div>
     );
   },
