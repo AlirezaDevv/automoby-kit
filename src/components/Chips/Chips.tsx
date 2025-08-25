@@ -62,22 +62,22 @@ const chipVariants = {
   red: {
     background: 'bg-error-light',
     text: 'text-error',
-    border: 'border-[#f0d6d6]',
+    border: 'border-error-light',
   },
   green: {
     background: 'bg-success-light',
     text: 'text-success',
-    border: 'border-[#d4e8dc]',
+    border: 'border-success-light',
   },
   orange: {
     background: 'bg-warning-light',
     text: 'text-warning',
-    border: 'border-[#f5e1d1]',
+    border: 'border-warning-light',
   },
   blue: {
     background: 'bg-info-light',
     text: 'text-info',
-    border: 'border-[#d3e9f2]',
+    border: 'border-info-light',
   },
   white: {
     background: 'bg-white',
@@ -95,16 +95,16 @@ const chipSizes = {
   mobile: {
     padding: 'px-2.5 py-1',
     gap: 'gap-1',
-    iconSize: 'size-4',
+    iconSize: 'w-4 h-4',
     fontSize: 'text-xs',
-    lineHeight: 'leading-[1.8]',
+    lineHeight: 'leading-normal',
   },
   desktop: {
     padding: 'px-3 py-1',
     gap: 'gap-1.5',
-    iconSize: 'size-5',
+    iconSize: 'w-5 h-5',
     fontSize: 'text-s',
-    lineHeight: 'leading-[24px]',
+    lineHeight: 'leading-6',
   },
 };
 
@@ -191,7 +191,7 @@ export const Chips = forwardRef<HTMLDivElement, ChipsProps>(
         ref={ref}
         className={cn(
           // Base styles
-          'relative rounded-[50px] border border-solid inline-flex',
+          'relative rounded-full border border-solid inline-flex',
           'flex-row items-center justify-center',
           'font-sans font-bold not-italic',
           'text-nowrap text-right',
