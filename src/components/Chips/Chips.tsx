@@ -43,6 +43,10 @@ export interface ChipsProps {
    * Whether the component is in mobile mode (optional, auto-detected if not provided)
    */
   isMobile?: boolean;
+  /**
+   * Whether to show the close icon
+   */
+  showIcon?: boolean;
 }
 
 const chipVariants = {
@@ -111,6 +115,7 @@ export const Chips = React.forwardRef<HTMLDivElement, ChipsProps>(
       onIconClick,
       className,
       isMobile,
+      showIcon = true,
       ...props
     },
     ref,
@@ -196,7 +201,7 @@ export const Chips = React.forwardRef<HTMLDivElement, ChipsProps>(
         {...props}
       >
         <span className="text-center">{children}</span>
-        {renderIcon()}
+        {showIcon && renderIcon()}
       </div>
     );
   },
