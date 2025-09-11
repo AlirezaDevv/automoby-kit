@@ -12,6 +12,7 @@ export type InputProps = {
    * Whether the component is in mobile mode (optional, auto-detected if not provided)
    */
   isMobile?: boolean;
+  containerClassName?: string;
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'id'>;
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
@@ -27,6 +28,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       type = 'text',
       placeholder,
       isMobile,
+      containerClassName,
       ...props
     },
     ref,
@@ -62,14 +64,18 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       'peer w-full h-full bg-transparent outline-none text-m font-medium disabled:text-neutral-light';
     const baseIconClasses = 'absolute h-5 w-5 transition-colors duration-300';
 
-    const containerClasses = cn(baseContainerClasses, {
-      'h-14': !actualIsMobile,
-      'h-12': actualIsMobile,
-      'border-neutral-light': state === 'default' && !isFocused,
-      'border-primary': state === 'default' && isFocused,
-      'border-error': state === 'error',
-      'bg-white border-neutral-light cursor-not-allowed': isDisabled,
-    });
+    const containerClasses = cn(
+      baseContainerClasses,
+      {
+        'h-14': !actualIsMobile,
+        'h-12': actualIsMobile,
+        'border-neutral-light': state === 'default' && !isFocused,
+        'border-primary': state === 'default' && isFocused,
+        'border-error': state === 'error',
+        'bg-white border-neutral-light cursor-not-allowed': isDisabled,
+      },
+      containerClassName,
+    );
 
     const labelClasses = cn(baseLabelClasses, {
       '-top-2.5 bg-white px-1 mx-3 font-medium': isLabelFloated,
