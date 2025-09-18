@@ -278,13 +278,17 @@ export const ResponsiveDemo = () => (
         color: '#666',
       }}
     >
-      <strong>نکته:</strong> منو بر اساس اندازه صفحه تغییر می‌کند:
+      <strong>نکته:</strong> منو بر اساس اندازه صفحه تغییرات قابل توجه دارد:
       <br />
-      📱 موبایل: دکمه کوچک‌تر، dropdown تمام عرض
+      📱 موبایل: کوچک‌ترین دکمه، dropdown تمام عرض
       <br />
-      💻 تبلت: سایز متوسط، dropdown موقعیت‌یابی هوشمند
+      📱 Small: دکمه متوسط، dropdown موقعیت‌یابی هوشمند
       <br />
-      🖥️ دسکتاپ: سایز کامل، dropdown کنار دکمه
+      💻 Medium: دکمه بزرگ‌تر، dropdown با عرض مشخص
+      <br />
+      🖥️ Large: دکمه کامل، dropdown کنار دکمه
+      <br />
+      🖥️ XL: دکمه حداکثر، dropdown بهینه شده
     </div>
 
     <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>

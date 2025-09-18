@@ -68,10 +68,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const containerClasses = cn(
       baseContainerClasses,
-      // SSR-safe initial height based on mobile detection, then responsive scaling
+      // Enhanced SSR-safe height with notable differences across breakpoints
       {
-        'h-12 sm:h-13 md:h-14 lg:h-14': actualIsMobile,
-        'h-14 sm:h-14 md:h-14 lg:h-14': !actualIsMobile,
+        'h-10 sm:h-12 md:h-14 lg:h-16 xl:h-16': actualIsMobile,
+        'h-12 sm:h-14 md:h-16 lg:h-18 xl:h-18': !actualIsMobile,
       },
       // Enhanced responsive breakpoints for client-side optimization
       'transition-all duration-300',
@@ -86,21 +86,24 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const labelClasses = cn(baseLabelClasses, {
       '-top-2.5 bg-white px-1 mx-3 font-medium': isLabelFloated,
-      // SSR-safe label text sizes with responsive enhancement
-      'text-xs sm:text-s md:text-s lg:text-s': isLabelFloated && actualIsMobile,
-      'text-s sm:text-s md:text-s lg:text-s': isLabelFloated && !actualIsMobile,
-      'text-s sm:text-m md:text-m lg:text-m font-medium':
+      // Enhanced SSR-safe label text sizes with notable differences
+      'text-xs sm:text-s md:text-m lg:text-l xl:text-l':
+        isLabelFloated && actualIsMobile,
+      'text-s sm:text-m md:text-l lg:text-xl xl:text-xl':
+        isLabelFloated && !actualIsMobile,
+      'text-s sm:text-m md:text-l lg:text-xl xl:text-xl font-medium':
         !isLabelFloated && actualIsMobile,
-      'text-m sm:text-m md:text-m lg:text-m font-medium':
+      'text-m sm:text-l md:text-xl lg:text-xl xl:text-xl font-medium':
         !isLabelFloated && !actualIsMobile,
-      // Responsive positioning
-      'right-1 sm:right-1 md:right-1 lg:right-1': startIcon,
-      'right-3 sm:right-3 md:right-3 lg:right-3': !startIcon,
+      // Enhanced responsive positioning
+      'right-1 sm:right-1 md:right-2 lg:right-3 xl:right-3': startIcon,
+      'right-3 sm:right-3 md:right-4 lg:right-5 xl:right-5': !startIcon,
       'top-1/2 -translate-y-1/2': !isLabelFloated,
-      // Responsive positioning for non-floated with icons
-      'right-11 sm:right-11 md:right-12 lg:right-12':
+      // Enhanced responsive positioning for non-floated with icons
+      'right-11 sm:right-12 md:right-14 lg:right-16 xl:right-16':
         !isLabelFloated && startIcon,
-      'right-4 sm:right-4 md:right-4 lg:right-4': !isLabelFloated && !startIcon,
+      'right-4 sm:right-5 md:right-6 lg:right-7 xl:right-7':
+        !isLabelFloated && !startIcon,
       // Colors
       'text-neutral-main': !isFocused && state === 'default',
       'text-neutral-light': isDisabled,
@@ -110,19 +113,19 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const inputClasses = cn(
       baseInputClasses,
-      // SSR-safe text size with responsive enhancement
+      // Enhanced SSR-safe text size with notable differences
       {
-        'text-s sm:text-m md:text-m lg:text-m': actualIsMobile,
-        'text-m sm:text-m md:text-m lg:text-m': !actualIsMobile,
+        'text-s sm:text-m md:text-l lg:text-xl xl:text-xl': actualIsMobile,
+        'text-m sm:text-l md:text-xl lg:text-xl xl:text-xl': !actualIsMobile,
       },
       {
-        // Responsive padding with icons
-        'pr-10 sm:pr-12 md:pr-12 lg:pr-12': startIcon,
-        'pl-10 sm:pl-12 md:pl-12 lg:pl-12': endIcon,
-        'px-3 sm:px-4 md:px-4 lg:px-4': !startIcon && !endIcon,
-        'pr-3 pl-10 sm:pr-4 sm:pl-12 md:pr-4 md:pl-12 lg:pr-4 lg:pl-12':
+        // Enhanced responsive padding with icons
+        'pr-8 sm:pr-10 md:pr-12 lg:pr-14 xl:pr-16': startIcon,
+        'pl-8 sm:pl-10 md:pl-12 lg:pl-14 xl:pl-16': endIcon,
+        'px-2 sm:px-3 md:px-4 lg:px-5 xl:px-6': !startIcon && !endIcon,
+        'pr-2 pl-8 sm:pr-3 sm:pl-10 md:pr-4 md:pl-12 lg:pr-5 lg:pl-14 xl:pr-6 xl:pl-16':
           !startIcon && endIcon,
-        'pl-3 pr-10 sm:pl-4 sm:pr-12 md:pl-4 md:pr-12 lg:pl-4 lg:pr-12':
+        'pl-2 pr-8 sm:pl-3 sm:pr-10 md:pl-4 md:pr-12 lg:pl-5 lg:pr-14 xl:pl-6 xl:pr-16':
           startIcon && !endIcon,
         // States
         'cursor-not-allowed text-red-500': isDisabled,
@@ -133,10 +136,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const iconClasses = cn(
       baseIconClasses,
-      // SSR-safe icon size with responsive enhancement
+      // Enhanced SSR-safe icon size with notable differences
       {
-        'h-4 w-4 sm:h-5 sm:w-5 md:h-5 md:w-5 lg:h-6 lg:w-6': actualIsMobile,
-        'h-5 w-5 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-6 lg:w-6': !actualIsMobile,
+        'h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 lg:h-6 lg:w-6 xl:h-7 xl:w-7':
+          actualIsMobile,
+        'h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 lg:h-7 lg:w-7 xl:h-8 xl:w-8':
+          !actualIsMobile,
       },
       {
         'text-neutral-main': state !== 'error' && !isFocused,
@@ -148,12 +153,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     const helperTextClasses = cn(
       'font-light mt-1 h-4',
-      // Responsive padding and text size
-      'px-2 sm:px-2 md:px-3 lg:px-3',
+      // Enhanced responsive padding and text size
+      'px-2 sm:px-3 md:px-4 lg:px-5 xl:px-6',
       {
-        // SSR-safe text sizing with responsive enhancement
-        'text-xs sm:text-s md:text-s lg:text-s': actualIsMobile,
-        'text-s sm:text-s md:text-s lg:text-s': !actualIsMobile,
+        // Enhanced SSR-safe text sizing with notable differences
+        'text-xs sm:text-s md:text-m lg:text-l xl:text-l': actualIsMobile,
+        'text-s sm:text-m md:text-l lg:text-xl xl:text-xl': !actualIsMobile,
       },
       {
         'text-neutral-main': state === 'default',
@@ -174,7 +179,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             <span
               className={cn(
                 iconClasses,
-                'left-3 sm:left-4 md:left-4 lg:left-4',
+                'left-2 sm:left-3 md:left-4 lg:left-5 xl:left-6',
               )}
             >
               {endIcon}
@@ -203,7 +208,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             <span
               className={cn(
                 iconClasses,
-                'right-3 sm:right-4 md:right-4 lg:right-4',
+                'right-2 sm:right-3 md:right-4 lg:right-5 xl:right-6',
               )}
             >
               {startIcon}

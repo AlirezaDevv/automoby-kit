@@ -186,11 +186,15 @@ export const ResponsiveDemo = () => (
       <br />
       🔧 <strong>SSR:</strong> تشخیص اولیه موبایل/دسکتاپ برای رندر سرور
       <br />
-      📱 <strong>موبایل:</strong> کوچک‌تر و فشرده‌تر برای لمس راحت
+      📱 <strong>موبایل:</strong> کوچک‌ترین سایز برای لمس راحت
       <br />
-      💻 <strong>تبلت:</strong> سایز متوسط با فضابندی مناسب
+      📱 <strong>Small:</strong> سایز متوسط برای تبلت‌های کوچک
       <br />
-      🖥️ <strong>دسکتاپ:</strong> سایز کامل با حداکثر راحتی
+      💻 <strong>Medium:</strong> سایز بزرگ‌تر برای تبلت‌ها
+      <br />
+      🖥️ <strong>Large:</strong> سایز کامل برای دسکتاپ
+      <br />
+      🖥️ <strong>XL:</strong> سایز حداکثر برای صفحات بزرگ
       <br />⚡ <strong>Client:</strong> Tailwind breakpoints برای تنظیم دقیق
     </div>
 
