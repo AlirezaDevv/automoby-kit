@@ -28,7 +28,7 @@ export type TypographyVariant =
   | 'body-t-medium' // 10px / Medium (400)
   | 'body-ss-medium'; // 9px / Medium (400)
 
-export interface TypographyProps {
+export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   variant?: TypographyVariant;
   children?: React.ReactNode;
   color?:
@@ -44,32 +44,40 @@ export interface TypographyProps {
 }
 
 const variantClasses: Record<TypographyVariant, string> = {
-  // Headings with Fat weight (900)
-  h1: 'text-h1 font-fat',
-  h2: 'text-h2 font-fat',
-  h3: 'text-h3 font-fat',
-  h4: 'text-h4 font-heavy',
-  h5: 'text-h5 font-heavy',
-  h6: 'text-h6 font-heavy',
+  // Headings with Fat weight (900) - Responsive scaling
+  h1: 'text-h3 sm:text-h2 md:text-h1 lg:text-h1 xl:text-h1 font-fat',
+  h2: 'text-h4 sm:text-h3 md:text-h2 lg:text-h2 xl:text-h2 font-fat',
+  h3: 'text-h5 sm:text-h4 md:text-h3 lg:text-h3 xl:text-h3 font-fat',
+  h4: 'text-h6 sm:text-h5 md:text-h4 lg:text-h4 xl:text-h4 font-heavy',
+  h5: 'text-l sm:text-xl md:text-h5 lg:text-h5 xl:text-h5 font-heavy',
+  h6: 'text-m sm:text-l md:text-h6 lg:text-h6 xl:text-h6 font-heavy',
 
-  // Body Copy with specific weight variants
-  'body-xl-heavy': 'text-xl font-heavy',
-  'body-l-heavy': 'text-l font-heavy',
-  'body-l-bold': 'text-l font-bold',
-  'body-l-medium': 'text-l font-medium',
-  'body-m-heavy': 'text-m font-heavy',
-  'body-m-bold': 'text-m font-bold',
-  'body-m-medium': 'text-m font-medium',
-  'body-s-heavy': 'text-s font-heavy',
-  'body-s-bold': 'text-s font-bold',
-  'body-s-medium': 'text-s font-medium',
-  'body-ms-bold': 'text-ms font-bold',
-  'body-ms-medium': 'text-ms font-medium',
-  'body-xs-bold': 'text-xs font-bold',
-  'body-xs-medium': 'text-xs font-medium',
-  'body-t-bold': 'text-t font-bold',
-  'body-t-medium': 'text-t font-medium',
-  'body-ss-medium': 'text-ss font-medium',
+  // Body Copy with specific weight variants - Responsive scaling
+  'body-xl-heavy':
+    'text-l sm:text-xl md:text-xl lg:text-xl xl:text-xl font-heavy',
+  'body-l-heavy': 'text-m sm:text-l md:text-l lg:text-l xl:text-l font-heavy',
+  'body-l-bold': 'text-m sm:text-l md:text-l lg:text-l xl:text-l font-bold',
+  'body-l-medium': 'text-m sm:text-l md:text-l lg:text-l xl:text-l font-medium',
+  'body-m-heavy': 'text-s sm:text-m md:text-m lg:text-m xl:text-m font-heavy',
+  'body-m-bold': 'text-s sm:text-m md:text-m lg:text-m xl:text-m font-bold',
+  'body-m-medium': 'text-s sm:text-m md:text-m lg:text-m xl:text-m font-medium',
+  'body-s-heavy': 'text-ms sm:text-s md:text-s lg:text-s xl:text-s font-heavy',
+  'body-s-bold': 'text-ms sm:text-s md:text-s lg:text-s xl:text-s font-bold',
+  'body-s-medium':
+    'text-ms sm:text-s md:text-s lg:text-s xl:text-s font-medium',
+  'body-ms-bold':
+    'text-xs sm:text-ms md:text-ms lg:text-ms xl:text-ms font-bold',
+  'body-ms-medium':
+    'text-xs sm:text-ms md:text-ms lg:text-ms xl:text-ms font-medium',
+  'body-xs-bold':
+    'text-t sm:text-xs md:text-xs lg:text-xs xl:text-xs font-bold',
+  'body-xs-medium':
+    'text-t sm:text-xs md:text-xs lg:text-xs xl:text-xs font-medium',
+  'body-t-bold': 'text-ss sm:text-t md:text-t lg:text-t xl:text-t font-bold',
+  'body-t-medium':
+    'text-ss sm:text-t md:text-t lg:text-t xl:text-t font-medium',
+  'body-ss-medium':
+    'text-ss sm:text-ss md:text-ss lg:text-ss xl:text-ss font-medium',
 };
 
 // Export for reuse in other components

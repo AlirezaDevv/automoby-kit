@@ -147,8 +147,10 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
       // Base button styles matching Figma design
       'inline-flex items-center justify-center',
       'bg-white border border-neutral-light',
-      'rounded-md px-4 py-3',
-      'transition-colors duration-200',
+      'rounded-md transition-colors duration-200',
+      // Responsive padding and sizing
+      'px-3 py-2 sm:px-4 sm:py-3 md:px-4 md:py-3 lg:px-5 lg:py-3',
+      'min-w-20 sm:min-w-24 md:min-w-28 lg:min-w-32',
       // Interactive states
       'hover:bg-neutral-lighter',
       'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
@@ -161,10 +163,13 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
 
     const dropdownClasses = cn(
       // Base dropdown styles
-      'absolute top-full left-0 right-0 z-10 mt-1',
+      'absolute top-full z-10 mt-1',
       'bg-white border border-neutral-light',
-      'rounded-md py-3 px-4',
-      'shadow-lg',
+      'rounded-md shadow-lg',
+      // Responsive positioning and sizing
+      'left-0 right-0 sm:left-0 sm:right-auto sm:min-w-48 md:min-w-52 lg:min-w-56',
+      // Responsive padding
+      'py-2 px-3 sm:py-3 sm:px-4 md:py-3 md:px-4 lg:py-4 lg:px-5',
       // Animation
       'transition-all duration-200',
       {
@@ -176,8 +181,12 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
     const itemClasses = cn(
       'block w-full text-right',
       'transition-colors duration-200',
-      'hover:bg-neutral-lighter rounded px-2 py-1 -mx-2',
+      'hover:bg-neutral-lighter rounded',
       'focus:outline-none focus:bg-neutral-lighter',
+      // Responsive padding
+      'px-2 py-1 sm:px-2 sm:py-2 md:px-3 md:py-2 lg:px-3 lg:py-2',
+      // Responsive margins
+      '-mx-2 sm:-mx-2 md:-mx-3 lg:-mx-3',
     );
 
     return (
@@ -210,7 +219,7 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
 
           {/* Dropdown Menu */}
           <div className={dropdownClasses}>
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 lg:gap-4">
               {items.map((item) => {
                 const content = (
                   <Typography

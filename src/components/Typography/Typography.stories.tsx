@@ -8,23 +8,29 @@ export default {
       description: {
         component: `سیستم تایپوگرافی کامل مطابق با دیزاین سیستم شامل:
 
+**قابلیت ریسپانسیو:**
+- تمام متن‌ها دارای تنظیمات خودکار برای صفحه‌های مختلف
+- در موبایل: سایز کوچک‌تر برای فضای محدود
+- در تبلت: سایز متوسط 
+- در دسکتاپ: سایز کامل و بهینه
+
 **هدینگ‌ها (Headings):**
-- H1: 36px / Heavy (900)
-- H2: 32px / Heavy (900) 
-- H3: 28px / Heavy (900)
-- H4: 24px / Heavy (700)
-- H5: 22px / Heavy (700)
-- H6: 20px / Heavy (700)
+- H1: 36px / Heavy (900) - ریسپانسیو
+- H2: 32px / Heavy (900) - ریسپانسیو
+- H3: 28px / Heavy (900) - ریسپانسیو
+- H4: 24px / Heavy (700) - ریسپانسیو
+- H5: 22px / Heavy (700) - ریسپانسیو
+- H6: 20px / Heavy (700) - ریسپانسیو
 
 **متن بدنه (Body Copy):**
-- XL: 20px / Heavy (700)
-- L: 18px / Heavy (700) & Bold (600) & Medium (400)
-- M: 16px / Heavy (700) & Bold (600) & Medium (400)
-- S: 14px / Heavy (700) & Bold (600) & Medium (400)
-- MS: 13px / Bold (600) & Medium (400)
-- XS: 12px / Bold (600) & Medium (400)
-- T: 10px / Bold (700) & Medium (400)
-- SS: 9px / Medium (400)
+- XL: 20px / Heavy (700) - ریسپانسیو
+- L: 18px / Heavy (700) & Bold (600) & Medium (400) - ریسپانسیو
+- M: 16px / Heavy (700) & Bold (600) & Medium (400) - ریسپانسیو
+- S: 14px / Heavy (700) & Bold (600) & Medium (400) - ریسپانسیو
+- MS: 13px / Bold (600) & Medium (400) - ریسپانسیو
+- XS: 12px / Bold (600) & Medium (400) - ریسپانسیو
+- T: 10px / Bold (700) & Medium (400) - ریسپانسیو
+- SS: 9px / Medium (400) - ریسپانسیو
         `,
       },
     },
@@ -323,3 +329,74 @@ export const ColorVariants = () => (
   </div>
 );
 ColorVariants.storyName = 'رنگ‌های مختلف';
+
+export const ResponsiveTypography = () => (
+  <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+    <div
+      style={{
+        borderBottom: '1px solid #eee',
+        paddingBottom: 8,
+        marginBottom: 8,
+      }}
+    >
+      <strong>تایپوگرافی ریسپانسیو</strong>
+      <p style={{ fontSize: '14px', color: '#666', marginTop: 4 }}>
+        متن‌ها بر اساس اندازه صفحه تغییر سایز می‌دهند. اندازه پنجره را تغییر
+        دهید تا تفاوت‌ها را ببینید.
+      </p>
+    </div>
+
+    <div style={{ border: '1px dashed #ccc', padding: 16, borderRadius: 8 }}>
+      <div style={{ fontSize: '12px', color: '#666', marginBottom: 8 }}>
+        <strong>عناوین (Headings)</strong> - در موبایل کوچک‌تر، در دسکتاپ
+        بزرگ‌تر
+      </div>
+      <Typography variant="h1" style={{ marginBottom: 8 }}>
+        عنوان اصلی H1 - ریسپانسیو
+      </Typography>
+      <Typography variant="h2" style={{ marginBottom: 8 }}>
+        عنوان فرعی H2 - ریسپانسیو
+      </Typography>
+      <Typography variant="h3" style={{ marginBottom: 8 }}>
+        عنوان H3 - ریسپانسیو
+      </Typography>
+    </div>
+
+    <div style={{ border: '1px dashed #ccc', padding: 16, borderRadius: 8 }}>
+      <div style={{ fontSize: '12px', color: '#666', marginBottom: 8 }}>
+        <strong>متن بدنه (Body Text)</strong> - تنظیم خودکار برای خوانایی بهتر
+      </div>
+      <Typography variant="body-xl-heavy" style={{ marginBottom: 8 }}>
+        متن بزرگ و پررنگ - مناسب برای تاکید در تمام سایزها
+      </Typography>
+      <Typography variant="body-l-medium" style={{ marginBottom: 8 }}>
+        متن متوسط - مناسب برای محتوای اصلی در تمام دستگاه‌ها
+      </Typography>
+      <Typography variant="body-m-medium" style={{ marginBottom: 8 }}>
+        متن معمولی - خوانایی مطلوب در موبایل و دسکتاپ
+      </Typography>
+      <Typography variant="body-s-medium">
+        متن کوچک - برای جزئیات و توضیحات اضافی
+      </Typography>
+    </div>
+
+    <div
+      style={{
+        background: '#f5f5f5',
+        padding: 16,
+        borderRadius: 8,
+        fontSize: '12px',
+        color: '#666',
+      }}
+    >
+      <strong>نکته:</strong> هر متن در سایزهای مختلف صفحه اندازه متناسب دارد:
+      <br />
+      📱 موبایل (تا 640px): سایز کوچک‌تر برای فضای محدود
+      <br />
+      💻 تبلت (640px - 1024px): سایز متوسط
+      <br />
+      🖥️ دسکتاپ (1024px+): سایز کامل و بهینه
+    </div>
+  </div>
+);
+ResponsiveTypography.storyName = 'تایپوگرافی ریسپانسیو';

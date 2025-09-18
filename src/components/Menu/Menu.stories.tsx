@@ -7,7 +7,19 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: `کامپوننت Menu با قابلیت باز و بسته شدن، پشتیبانی از لینک و دکمه، قابلیت کلیک روی آیتم‌ها، و accessibility کامل. این منو در حالت‌های مختلف نمایش و تعامل قابل استفاده است.`,
+        component: `کامپوننت Menu با قابلیت‌های کامل شامل:
+
+**قابلیت‌های اصلی:**
+- باز و بسته شدن خودکار
+- پشتیبانی از لینک و دکمه
+- قابلیت کلیک روی آیتم‌ها
+- Accessibility کامل
+
+**قابلیت ریسپانسیو:**
+- تنظیم خودکار سایز دکمه برای صفحه‌های مختلف
+- موقعیت‌یابی هوشمند dropdown در موبایل و دسکتاپ
+- فضابندی متناسب با اندازه صفحه
+- بهینه‌سازی برای تعامل لمسی در موبایل`,
       },
     },
   },
@@ -254,18 +266,110 @@ ControlledMenu.storyName = 'منوی کنترل شده';
 export const ResponsiveDemo = () => (
   <div style={{ padding: '20px' }}>
     <h3 style={{ marginBottom: '20px', fontFamily: 'var(--font-sans)' }}>
-      نمایش در سایزهای مختلف
+      نمایش ریسپانسیو منو
     </h3>
+    <div
+      style={{
+        background: '#f5f5f5',
+        padding: '16px',
+        borderRadius: '8px',
+        marginBottom: '24px',
+        fontSize: '14px',
+        color: '#666',
+      }}
+    >
+      <strong>نکته:</strong> منو بر اساس اندازه صفحه تغییر می‌کند:
+      <br />
+      📱 موبایل: دکمه کوچک‌تر، dropdown تمام عرض
+      <br />
+      💻 تبلت: سایز متوسط، dropdown موقعیت‌یابی هوشمند
+      <br />
+      🖥️ دسکتاپ: سایز کامل، dropdown کنار دکمه
+    </div>
+
     <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+      {/* Mobile View Simulation */}
+      <div>
+        <h4 style={{ marginBottom: '16px', fontFamily: 'var(--font-sans)' }}>
+          شبیه‌سازی موبایل (375px)
+        </h4>
+        <div
+          style={{
+            width: '375px',
+            minHeight: '200px',
+            padding: '16px',
+            border: '2px dashed #ccc',
+            borderRadius: '8px',
+            background: '#fff',
+          }}
+        >
+          <div style={{ fontSize: '12px', color: '#999', marginBottom: '8px' }}>
+            • دکمه کوچک‌تر و فشرده‌تر
+            <br />• Dropdown تمام عرض صفحه
+          </div>
+          <Menu
+            buttonText="کاربر"
+            items={menuItemsWithLinks}
+            onOpenChange={(isOpen) =>
+              console.log('Mobile menu changed:', isOpen)
+            }
+          />
+        </div>
+      </div>
+
+      {/* Tablet View Simulation */}
+      <div>
+        <h4 style={{ marginBottom: '16px', fontFamily: 'var(--font-sans)' }}>
+          شبیه‌سازی تبلت (768px)
+        </h4>
+        <div
+          style={{
+            width: '768px',
+            minHeight: '200px',
+            padding: '20px',
+            border: '2px dashed #ccc',
+            borderRadius: '8px',
+            background: '#fff',
+          }}
+        >
+          <div style={{ fontSize: '12px', color: '#999', marginBottom: '8px' }}>
+            • سایز متوسط دکمه
+            <br />• Dropdown با عرض مشخص
+          </div>
+          <Menu
+            buttonText="حساب کاربری"
+            items={menuItemsWithLinks}
+            onOpenChange={(isOpen) =>
+              console.log('Tablet menu changed:', isOpen)
+            }
+          />
+        </div>
+      </div>
+
       {/* Desktop View */}
       <div>
         <h4 style={{ marginBottom: '16px', fontFamily: 'var(--font-sans)' }}>
-          نمای دسکتاپ
+          نمای دسکتاپ (1024px+)
         </h4>
-        <div style={{ width: '100%', minHeight: '200px', padding: '20px' }}>
+        <div
+          style={{
+            width: '100%',
+            minHeight: '200px',
+            padding: '24px',
+            border: '2px dashed #ccc',
+            borderRadius: '8px',
+            background: '#fff',
+          }}
+        >
+          <div style={{ fontSize: '12px', color: '#999', marginBottom: '8px' }}>
+            • دکمه بزرگ و راحت
+            <br />
+            • Dropdown بهینه شده برای دسکتاپ
+            <br />• فضابندی مناسب برای ماوس
+          </div>
           <Menu
-            buttonText="حساب کاربری من"
-            items={menuItemsWithLinks}
+            buttonText="محمد ابراهیم فرجامی"
+            items={manyMenuItems}
             onOpenChange={(isOpen) =>
               console.log('Desktop menu changed:', isOpen)
             }
@@ -273,25 +377,32 @@ export const ResponsiveDemo = () => (
         </div>
       </div>
 
-      {/* Mobile View */}
+      {/* Live Responsive Test */}
       <div>
         <h4 style={{ marginBottom: '16px', fontFamily: 'var(--font-sans)' }}>
-          نمای موبایل
+          تست زنده ریسپانسیو
         </h4>
         <div
           style={{
-            width: '375px',
+            width: '100%',
             minHeight: '200px',
             padding: '20px',
-            border: '1px solid #eee',
+            border: '2px solid #590db8',
             borderRadius: '8px',
+            background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
           }}
         >
+          <div
+            style={{ fontSize: '12px', color: '#666', marginBottom: '12px' }}
+          >
+            <strong>💡 نکته:</strong> اندازه پنجره مرورگر را تغییر دهید تا
+            تغییرات ریسپانسیو را مشاهده کنید
+          </div>
           <Menu
-            buttonText="کاربر"
-            items={menuItemsWithLinks}
+            buttonText="منوی ریسپانسیو"
+            items={manyMenuItems}
             onOpenChange={(isOpen) =>
-              console.log('Mobile menu changed:', isOpen)
+              console.log('Responsive menu changed:', isOpen)
             }
           />
         </div>
