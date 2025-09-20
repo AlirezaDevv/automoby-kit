@@ -69,4 +69,4 @@ export type { MenuProps, MenuItem } from './components/Menu/Menu';
 
 // Contexts
 export { MobileProvider } from './contexts/MobileContext';
-export { useMobile, useTablet } from './contexts/MobileContext';
+export { useMobile } from './contexts/MobileContext';

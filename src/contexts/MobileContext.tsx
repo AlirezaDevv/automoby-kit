@@ -10,7 +10,6 @@ import { UAParser } from 'ua-parser-js';
 
 interface MobileContextValue {
   isMobile: boolean;
-  isTablet: boolean;
   userAgent: string;
 }
 
@@ -21,34 +20,21 @@ interface MobileProviderProps {
 
 const MobileContext = createContext<MobileContextValue | undefined>(undefined);
 
-const detectDevice = (
-  userAgent: string,
-): { isMobile: boolean; isTablet: boolean } => {
+const detectDevice = (userAgent: string): boolean => {
   const parser = new UAParser(userAgent);
   const device = parser.getDevice();
-  return {
-    isMobile: device.type === 'mobile',
-    isTablet: device.type === 'tablet',
-  };
+  // On server: mobile OR tablet = isMobile true, otherwise false
+  return device.type === 'mobile' || device.type === 'tablet';
 };
 
-const detectDeviceByScreenWidth = (): {
-  isMobile: boolean;
-  isTablet: boolean;
-} => {
+const detectDeviceByScreenWidth = (): boolean => {
   if (typeof window === 'undefined') {
-    return { isMobile: false, isTablet: false };
+    return false;
   }
 
   const width = window.innerWidth;
-
-  if (width >= 1200) {
-    return { isMobile: false, isTablet: false };
-  }
-  if (width >= 900) {
-    return { isMobile: false, isTablet: true };
-  }
-  return { isMobile: true, isTablet: false };
+  // On client: <1024px = isMobile true, otherwise false
+  return width < 1024;
 };
 
 export const MobileProvider = ({
@@ -84,21 +70,14 @@ export const MobileProvider = ({
   // Combine server and client detection
   // Use server detection initially (for SSR), then client detection takes over
   const isMobile =
-    typeof window !== 'undefined'
-      ? clientDetection.isMobile
-      : serverDetection.isMobile;
-  const isTablet =
-    typeof window !== 'undefined'
-      ? clientDetection.isTablet
-      : serverDetection.isTablet;
+    typeof window !== 'undefined' ? clientDetection : serverDetection;
 
   const value: MobileContextValue = useMemo(
     () => ({
       isMobile,
-      isTablet,
       userAgent,
     }),
-    [isMobile, isTablet, userAgent],
+    [isMobile, userAgent],
   );
 
   return (
@@ -118,18 +97,6 @@ export const useMobile = (): boolean => {
     throw new Error('useMobile must be used within a MobileProvider');
   }
   return context.isMobile;
-};
-
-export const useTablet = (): boolean => {
-  if (process.env.STORYBOOK_FORCE_MOBILE === 'true') {
-    return false;
-  }
-
-  const context = useContext(MobileContext);
-  if (context === undefined) {
-    throw new Error('useTablet must be used within a MobileProvider');
-  }
-  return context.isTablet;
 };
 
 export default MobileContext;
