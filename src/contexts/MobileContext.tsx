@@ -45,7 +45,7 @@ const detectDeviceByScreenWidth = (): {
   if (width >= 1200) {
     return { isMobile: false, isTablet: false };
   }
-  if (width >= 500) {
+  if (width >= 900) {
     return { isMobile: false, isTablet: true };
   }
   return { isMobile: true, isTablet: false };
