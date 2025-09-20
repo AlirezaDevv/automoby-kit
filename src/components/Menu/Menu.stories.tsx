@@ -38,6 +38,16 @@ export default {
       name: 'باز (کنترل شده)',
       control: { type: 'boolean' },
     },
+    wrapperClassName: {
+      name: 'کلاس wrapper',
+      control: { type: 'text' },
+      description: 'کلاس‌های اضافی برای wrapper منو',
+    },
+    buttonClassName: {
+      name: 'کلاس دکمه',
+      control: { type: 'text' },
+      description: 'کلاس‌های اضافی برای دکمه اصلی منو',
+    },
     items: {
       name: 'آیتم‌های منو',
       control: { type: 'object' },
@@ -140,6 +150,8 @@ type StoryProps = {
   buttonText: string;
   disabled: boolean;
   isOpen?: boolean;
+  wrapperClassName?: string;
+  buttonClassName?: string;
   items: MenuItem[];
 };
 
@@ -262,6 +274,105 @@ export const ControlledMenu = () => {
   );
 };
 ControlledMenu.storyName = 'منوی کنترل شده';
+
+export const CustomStyling = () => (
+  <div style={{ padding: '50px', minHeight: '300px' }}>
+    <div style={{ marginBottom: '30px' }}>
+      <h3 style={{ marginBottom: '16px', fontFamily: 'var(--font-sans)' }}>
+        منو با استایل‌های سفارشی
+      </h3>
+      <p style={{ marginBottom: '20px', color: '#666' }}>
+        این مثال نشان می‌دهد که چگونه می‌توانید از wrapperClassName و
+        buttonClassName برای سفارشی‌سازی ظاهر منو استفاده کنید.
+      </p>
+    </div>
+
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+      {/* Example 1: Custom wrapper with border */}
+      <div>
+        <h4 style={{ marginBottom: '12px', fontFamily: 'var(--font-sans)' }}>
+          مثال ۱: Wrapper با حاشیه سفارشی
+        </h4>
+        <Menu
+          buttonText="منو با حاشیه"
+          items={defaultMenuItems}
+          wrapperClassName="border-2 border-blue-500 rounded-lg p-4 bg-blue-50"
+          onOpenChange={(isOpen) =>
+            console.log('Bordered menu changed:', isOpen)
+          }
+        />
+      </div>
+
+      {/* Example 2: Custom button styling */}
+      <div>
+        <h4 style={{ marginBottom: '12px', fontFamily: 'var(--font-sans)' }}>
+          مثال ۲: دکمه با استایل سفارشی
+        </h4>
+        <Menu
+          buttonText="دکمه رنگارنگ"
+          items={defaultMenuItems}
+          buttonClassName="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+          onOpenChange={(isOpen) =>
+            console.log('Gradient menu changed:', isOpen)
+          }
+        />
+      </div>
+
+      {/* Example 3: Both wrapper and button custom styling */}
+      <div>
+        <h4 style={{ marginBottom: '12px', fontFamily: 'var(--font-sans)' }}>
+          مثال ۳: هر دو wrapper و دکمه سفارشی
+        </h4>
+        <Menu
+          buttonText="منو کامل سفارشی"
+          items={menuItemsWithLinks}
+          wrapperClassName="border border-green-400 rounded-xl p-6 bg-green-50 shadow-md"
+          buttonClassName="bg-green-600 hover:bg-green-700 text-white border-green-600 font-bold text-lg px-8 py-4 rounded-xl shadow-lg"
+          onOpenChange={(isOpen) =>
+            console.log('Full custom menu changed:', isOpen)
+          }
+        />
+      </div>
+
+      {/* Example 4: Multiple menus with different styles */}
+      <div>
+        <h4 style={{ marginBottom: '12px', fontFamily: 'var(--font-sans)' }}>
+          مثال ۴: چندین منو با استایل‌های مختلف
+        </h4>
+        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+          <Menu
+            buttonText="منو ساده"
+            items={defaultMenuItems}
+            wrapperClassName="bg-gray-100 p-3 rounded-md"
+            buttonClassName="bg-gray-600 text-white hover:bg-gray-700"
+            onOpenChange={(isOpen) =>
+              console.log('Simple menu changed:', isOpen)
+            }
+          />
+          <Menu
+            buttonText="منو مدرن"
+            items={defaultMenuItems}
+            wrapperClassName="bg-slate-100 p-3 rounded-full"
+            buttonClassName="bg-slate-800 text-white hover:bg-slate-900 rounded-full shadow-md"
+            onOpenChange={(isOpen) =>
+              console.log('Modern menu changed:', isOpen)
+            }
+          />
+          <Menu
+            buttonText="منو کلاسیک"
+            items={defaultMenuItems}
+            wrapperClassName="bg-amber-50 p-3 rounded-none border-2 border-amber-300"
+            buttonClassName="bg-amber-600 text-white hover:bg-amber-700 rounded-none border-2 border-amber-800 font-serif"
+            onOpenChange={(isOpen) =>
+              console.log('Classic menu changed:', isOpen)
+            }
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+);
+CustomStyling.storyName = 'استایل‌های سفارشی';
 
 export const ResponsiveDemo = () => (
   <div style={{ padding: '20px' }}>

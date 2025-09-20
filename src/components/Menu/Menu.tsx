@@ -24,9 +24,13 @@ export interface MenuProps {
    */
   disabled?: boolean;
   /**
-   * Additional CSS classes for the menu container
+   * Additional CSS classes for the menu wrapper container
    */
-  className?: string;
+  wrapperClassName?: string;
+  /**
+   * Additional CSS classes for the main menu button
+   */
+  buttonClassName?: string;
   /**
    * Callback fired when menu open state changes
    */
@@ -47,7 +51,8 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
       buttonText,
       items,
       disabled = false,
-      className,
+      wrapperClassName,
+      buttonClassName,
       onOpenChange,
       isOpen: controlledIsOpen,
       'aria-label': ariaLabel,
@@ -159,6 +164,7 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
         'opacity-50 cursor-not-allowed': disabled,
         'cursor-pointer': !disabled,
       },
+      buttonClassName,
     );
 
     const dropdownClasses = cn(
@@ -192,7 +198,7 @@ export const Menu = React.forwardRef<HTMLDivElement, MenuProps>(
     return (
       <div
         ref={ref}
-        className={cn('relative inline-block', className)}
+        className={cn('relative inline-block', wrapperClassName)}
         {...props}
       >
         <div ref={menuRef}>
