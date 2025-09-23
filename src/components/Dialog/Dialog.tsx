@@ -44,7 +44,7 @@ const Dialog = React.forwardRef<HTMLDivElement, DialogProps>(
     };
 
     const dialogClasses = cn(
-      'bg-white rounded-[10px] shadow-lg mx-4 w-full',
+      'bg-white rounded-[10px] shadow-lg mx-4',
       sizeClasses[size],
       className,
     );
