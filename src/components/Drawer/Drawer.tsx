@@ -142,7 +142,8 @@ const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
       return 'h-full max-w-[90vw]';
     };
 
-    const baseOverlayClasses = 'fixed inset-0 z-70 transition-all duration-300';
+    const baseOverlayClasses =
+      'fixed inset-0 z-[10000000001] transition-all duration-300';
     const baseDrawerClasses =
       'fixed bg-white shadow-2xl transition-all duration-300 ease-out overflow-auto';
 
